@@ -67,3 +67,7 @@ nb-configuration.xml
 release.properties
 pom.xml.releaseBackup
 pom.xml.tag
+.mvn/
+mvnw
+mvnw.cmd
+/dogs-persistence/lib/
