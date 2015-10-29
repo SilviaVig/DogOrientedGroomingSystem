@@ -1,9 +1,6 @@
 package org.woofenterprise.dogs.entity;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,6 +34,9 @@ public class Customer {
 
     @OneToMany(mappedBy = "owner")
     private Set<Dog> dogs = new HashSet<>();
+
+    @OneToMany(mappedBy = "customer")
+    private Set<Appointment> appointments = new HashSet<>();
 
     /**
      * Returns customers Id.
@@ -144,6 +144,22 @@ public class Customer {
      */
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    /**
+     * Return set of customers appointments.
+     * @return customers appointments
+     */
+    public Set<Appointment> getAppointments() {
+        return Collections.unmodifiableSet(appointments);
+    }
+
+    /**
+     * Adds appointment for customer.
+     * @param appointment appointment to set
+     */
+    public void addAppointment(Appointment appointment) {
+        this.appointments.add(appointment);
     }
 
     @Override
