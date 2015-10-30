@@ -5,11 +5,14 @@ import javax.inject.Inject;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.woofenterprise.dogs.DogsPersistenceApplication;
+import org.woofenterprise.dogs.entity.Customer;
 import org.woofenterprise.dogs.entity.Dog;
+import org.woofenterprise.dogs.utils.Address;
 
 /**
  * Test for {@link DogDAOImpl} class.
@@ -23,25 +26,56 @@ public class DogDAOTest {
 
     @Inject
     private DogDAO dogDAO;
+    @Inject
+    private CustomerDAO customerDAO;
 
     @Test
     public void create() {
+        Customer customer = new Customer();
+        customer.setName("John");
+        customer.setSurname("Doe");
+        Address address =  new Address.Builder()
+                .setCity("city")
+                .setCode("code")
+                .setCountry("country")
+                .setFirstLine("first line")
+                .setSecondLine("Second line")
+                .build();
+        customer.setAddress(address);
+        customerDAO.create(customer);
+
         Dog d = new Dog();
         d.setName("Woofie");
         d.setHobbies("barking");
+        d.setOwner(customer);
         dogDAO.create(d);
         assertNotNull(d.getId());
     }
 
     @Test
     public void findAll() {
+        Customer customer = new Customer();
+        customer.setName("John");
+        customer.setSurname("Doe");
+        Address address =  new Address.Builder()
+                .setCity("city")
+                .setCode("code")
+                .setCountry("country")
+                .setFirstLine("first line")
+                .setSecondLine("Second line")
+                .build();
+        customer.setAddress(address);
+        customerDAO.create(customer);
+
         Dog d1 = new Dog();
         d1.setName("Woofie");
         d1.setHobbies("barking");
+        d1.setOwner(customer);
         dogDAO.create(d1);
 
         Dog d2 = new Dog();
         d2.setName("Fifi");
+        d2.setOwner(customer);
         dogDAO.create(d2);
 
         List<Dog> result = dogDAO.findAll();
@@ -49,9 +83,11 @@ public class DogDAOTest {
         Dog rd1 = new Dog();
         rd1.setName("Woofie");
         rd1.setHobbies("barking");
+        rd1.setOwner(customer);
 
         Dog rd2 = new Dog();
         rd2.setName("Fifi");
+        rd2.setOwner(customer);
 
         assertEquals(2, result.size());
         assertTrue(result.contains(rd1));
@@ -60,9 +96,23 @@ public class DogDAOTest {
 
     @Test
     public void findById() {
+        Customer customer = new Customer();
+        customer.setName("John");
+        customer.setSurname("Doe");
+        Address address =  new Address.Builder()
+                .setCity("city")
+                .setCode("code")
+                .setCountry("country")
+                .setFirstLine("first line")
+                .setSecondLine("Second line")
+                .build();
+        customer.setAddress(address);
+        customerDAO.create(customer);
+
         Dog d1 = new Dog();
         d1.setName("Woofie");
         d1.setHobbies("barking");
+        d1.setOwner(customer);
         dogDAO.create(d1);
 
         Dog result = dogDAO.findById(d1.getId());
@@ -73,13 +123,28 @@ public class DogDAOTest {
 
     @Test
     public void update() {
+        Customer customer = new Customer();
+        customer.setName("John");
+        customer.setSurname("Doe");
+        Address address =  new Address.Builder()
+                .setCity("city")
+                .setCode("code")
+                .setCountry("country")
+                .setFirstLine("first line")
+                .setSecondLine("Second line")
+                .build();
+        customer.setAddress(address);
+        customerDAO.create(customer);
+
         Dog d1 = new Dog();
         d1.setName("Woofie");
         d1.setHobbies("barking");
+        d1.setOwner(customer);
         dogDAO.create(d1);
 
         Dog d2 = new Dog();
         d2.setName("Fifi");
+        d2.setOwner(customer);
         dogDAO.create(d2);
 
         d1.setHobbies("sleeping");
@@ -96,13 +161,28 @@ public class DogDAOTest {
     
     @Test
     public void delete() {
+        Customer customer = new Customer();
+        customer.setName("John");
+        customer.setSurname("Doe");
+        Address address =  new Address.Builder()
+                .setCity("city")
+                .setCode("code")
+                .setCountry("country")
+                .setFirstLine("first line")
+                .setSecondLine("Second line")
+                .build();
+        customer.setAddress(address);
+        customerDAO.create(customer);
+
         Dog d1 = new Dog();
         d1.setName("Woofie");
         d1.setHobbies("barking");
+        d1.setOwner(customer);
         dogDAO.create(d1);
 
         Dog d2 = new Dog();
         d2.setName("Fifi");
+        d2.setOwner(customer);
         dogDAO.create(d2);
 
         List<Dog> result = dogDAO.findAll();

@@ -1,35 +1,42 @@
 package org.woofenterprise.dogs.dao;
 
 import java.util.List;
+
 import org.springframework.stereotype.Repository;
 import org.woofenterprise.dogs.entity.Dog;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Repository
 public class DogDAOImpl implements DogDAO {
 
+    @PersistenceContext
+    EntityManager em;
+
     @Override
     public Dog findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return em.find(Dog.class, id);
     }
 
     @Override
     public void create(Dog d) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        em.persist(d);
     }
 
     @Override
     public void delete(Dog d) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        em.remove(d);
     }
 
     @Override
     public List<Dog> findAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return em.createQuery("select d from Dog d", Dog.class).getResultList();
     }
 
     @Override
     public void update(Dog d) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        em.merge(d);
     }
 
 }
