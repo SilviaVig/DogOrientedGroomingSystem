@@ -142,7 +142,7 @@ public class Appointment {
      * Adds a procedure to the set of procedures
      * @param procedure  procedure to add
      */
-    public void addProcedures(Procedure procedure) {
+    public void addProcedure(Procedure procedure) {
         this.procedures.add(procedure);
     }
 

@@ -101,8 +101,8 @@ public class AppointmentDAOTest {
         endTime.set(2015, 0, 1, 12, 0);
         appointment.setStartTime(startTime.getTime());
         appointment.setEndTime(endTime.getTime());
-        appointment.addProcedures(Procedure.BRUSHING);
-        appointment.addProcedures(Procedure.CLAWS_CUTTING);
+        appointment.addProcedure(Procedure.BRUSHING);
+        appointment.addProcedure(Procedure.CLAWS_CUTTING);
         appointmentDAO.create(appointment);
         assertNotNull(appointment.getId());        
     }
@@ -118,8 +118,8 @@ public class AppointmentDAOTest {
         endTime.set(2015, 0, 1, 12, 0);
         appointment.setStartTime(startTime.getTime());
         appointment.setEndTime(endTime.getTime());
-        appointment.addProcedures(Procedure.BRUSHING);
-        appointment.addProcedures(Procedure.CLAWS_CUTTING);
+        appointment.addProcedure(Procedure.BRUSHING);
+        appointment.addProcedure(Procedure.CLAWS_CUTTING);
         
         thrown.expect(DataIntegrityViolationException.class);
         appointmentDAO.create(appointment);
@@ -136,8 +136,8 @@ public class AppointmentDAOTest {
         endTime.set(2015, 0, 1, 12, 0);
         appointment.setStartTime(startTime.getTime());
         appointment.setEndTime(endTime.getTime());
-        appointment.addProcedures(Procedure.BRUSHING);
-        appointment.addProcedures(Procedure.CLAWS_CUTTING);
+        appointment.addProcedure(Procedure.BRUSHING);
+        appointment.addProcedure(Procedure.CLAWS_CUTTING);
         appointmentDAO.create(appointment);
         
         Appointment appointment2 = new Appointment();
@@ -149,8 +149,8 @@ public class AppointmentDAOTest {
         endTime.set(2015, 0, 1, 14, 0);
         appointment2.setStartTime(startTime2.getTime());
         appointment2.setEndTime(endTime2.getTime());
-        appointment2.addProcedures(Procedure.BRUSHING);
-        appointment2.addProcedures(Procedure.CLAWS_CUTTING);
+        appointment2.addProcedure(Procedure.BRUSHING);
+        appointment2.addProcedure(Procedure.CLAWS_CUTTING);
         appointmentDAO.create(appointment2);
         
         List<Appointment> result = appointmentDAO.findAll();
@@ -170,8 +170,8 @@ public class AppointmentDAOTest {
         endTime.set(2015, 0, 1, 12, 0);
         appointment.setStartTime(startTime.getTime());
         appointment.setEndTime(endTime.getTime());
-        appointment.addProcedures(Procedure.BRUSHING);
-        appointment.addProcedures(Procedure.CLAWS_CUTTING);
+        appointment.addProcedure(Procedure.BRUSHING);
+        appointment.addProcedure(Procedure.CLAWS_CUTTING);
         appointmentDAO.create(appointment);
         
         Appointment result = appointmentDAO.findById(appointment.getId());
@@ -190,8 +190,8 @@ public class AppointmentDAOTest {
         endTime.set(2015, 0, 1, 12, 0);
         appointment.setStartTime(startTime.getTime());
         appointment.setEndTime(endTime.getTime());
-        appointment.addProcedures(Procedure.BRUSHING);
-        appointment.addProcedures(Procedure.CLAWS_CUTTING);
+        appointment.addProcedure(Procedure.BRUSHING);
+        appointment.addProcedure(Procedure.CLAWS_CUTTING);
         appointment.setCustomer(exampleCustomer);
         appointmentDAO.create(appointment);
         
@@ -203,12 +203,12 @@ public class AppointmentDAOTest {
         endTime.set(2015, 0, 1, 14, 0);
         appointment2.setStartTime(startTime2.getTime());
         appointment2.setEndTime(endTime2.getTime());
-        appointment2.addProcedures(Procedure.BRUSHING);
-        appointment2.addProcedures(Procedure.CLAWS_CUTTING);
+        appointment2.addProcedure(Procedure.BRUSHING);
+        appointment2.addProcedure(Procedure.CLAWS_CUTTING);
         appointment2.setCustomer(exampleCustomer2);
         appointmentDAO.create(appointment2);
         
-        appointment.addProcedures(Procedure.WASHING);
+        appointment.addProcedure(Procedure.WASHING);
         appointmentDAO.update(appointment);
        
         Appointment result = appointmentDAO.findById(appointment.getId());
@@ -228,8 +228,8 @@ public class AppointmentDAOTest {
         endTime.set(2015, 0, 1, 12, 0);
         appointment.setStartTime(startTime.getTime());
         appointment.setEndTime(endTime.getTime());
-        appointment.addProcedures(Procedure.BRUSHING);
-        appointment.addProcedures(Procedure.CLAWS_CUTTING);
+        appointment.addProcedure(Procedure.BRUSHING);
+        appointment.addProcedure(Procedure.CLAWS_CUTTING);
         appointment.setCustomer(exampleCustomer2);
         appointmentDAO.create(appointment);
         
@@ -242,8 +242,8 @@ public class AppointmentDAOTest {
         appointment2.setCustomer(exampleCustomer);
         appointment2.setStartTime(startTime2.getTime());
         appointment2.setEndTime(endTime2.getTime());
-        appointment2.addProcedures(Procedure.BRUSHING);
-        appointment2.addProcedures(Procedure.CLAWS_CUTTING);
+        appointment2.addProcedure(Procedure.BRUSHING);
+        appointment2.addProcedure(Procedure.CLAWS_CUTTING);
         appointmentDAO.create(appointment2);
         
         List<Appointment> result = appointmentDAO.findAll();
