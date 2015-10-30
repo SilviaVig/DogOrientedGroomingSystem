@@ -39,12 +39,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public void update(Customer customer) {
-        /*Customer toUpdate = findById(customer.getId());
-        toUpdate.setAddress(customer.getAddress());
-        toUpdate.setName(customer.getName());
-        toUpdate.setSurname(customer.getSurname());
-        toUpdate.setPhoneNumber(customer.getPhoneNumber());
-        em.merge(toUpdate);*/
         em.merge(customer);
     }
 }
