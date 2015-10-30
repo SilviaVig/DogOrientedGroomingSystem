@@ -1,21 +1,28 @@
 package org.woofenterprise.dogs.dao;
 
+import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.woofenterprise.dogs.DogsPersistenceApplication;
 import org.woofenterprise.dogs.entity.Customer;
+import org.woofenterprise.dogs.entity.Dog;
 import org.woofenterprise.dogs.utils.Address;
 
 import javax.inject.Inject;
 import java.util.List;
 
 import static org.junit.Assert.*;
+
 import org.springframework.transaction.annotation.Transactional;
+
 /**
  * Test class for CustomerDAO
- * 
+ *
  * @author Silvia.Vigasova
  */
 
@@ -27,12 +34,16 @@ public class CustomerDAOTest {
     @Inject
     private CustomerDAO customerDAO;
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+
     @Test
     public void create() {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname("Doe");
-        Address address =  new Address.Builder()
+        Address address = new Address.Builder()
                 .setCity("city")
                 .setCode("code")
                 .setCountry("country")
@@ -49,7 +60,7 @@ public class CustomerDAOTest {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname("Doe");
-        Address address =  new Address.Builder()
+        Address address = new Address.Builder()
                 .setCity("city")
                 .setCode("code")
                 .setCountry("country")
@@ -62,7 +73,7 @@ public class CustomerDAOTest {
         Customer customer2 = new Customer();
         customer2.setName("Jane");
         customer2.setSurname("Smith");
-        Address address2 =  new Address.Builder()
+        Address address2 = new Address.Builder()
                 .setCity("city2")
                 .setCode("code2")
                 .setCountry("country2")
@@ -78,7 +89,7 @@ public class CustomerDAOTest {
         Customer rc = new Customer();
         rc.setName("John");
         rc.setSurname("Doe");
-        Address rcAddress =  new Address.Builder()
+        Address rcAddress = new Address.Builder()
                 .setCity("city")
                 .setCode("code")
                 .setCountry("country")
@@ -91,7 +102,7 @@ public class CustomerDAOTest {
         Customer rc2 = new Customer();
         rc2.setName("Jane");
         rc2.setSurname("Smith");
-        Address rcAddress2 =  new Address.Builder()
+        Address rcAddress2 = new Address.Builder()
                 .setCity("city2")
                 .setCode("code2")
                 .setCountry("country2")
@@ -111,7 +122,7 @@ public class CustomerDAOTest {
         Customer rc2 = new Customer();
         rc2.setName("Jane");
         rc2.setSurname("Smith");
-        Address rcAddress2 =  new Address.Builder()
+        Address rcAddress2 = new Address.Builder()
                 .setCity("city2")
                 .setCode("code2")
                 .setCountry("country2")
@@ -126,14 +137,14 @@ public class CustomerDAOTest {
         assertNotNull(result);
         assertEquals(rc2.getName(), result.getName());
     }
-    
-    
+
+
     @Test
     public void update() {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname("Doe");
-        Address address =  new Address.Builder()
+        Address address = new Address.Builder()
                 .setCity("city")
                 .setCode("code")
                 .setCountry("country")
@@ -146,7 +157,7 @@ public class CustomerDAOTest {
         Customer customer2 = new Customer();
         customer2.setName("Jane");
         customer2.setSurname("Smith");
-        Address address2 =  new Address.Builder()
+        Address address2 = new Address.Builder()
                 .setCity("city2")
                 .setCode("code2")
                 .setCountry("country2")
@@ -155,10 +166,10 @@ public class CustomerDAOTest {
                 .build();
         customer2.setAddress(address2);
         customerDAO.create(customer2);
-        
+
         customer2.setSurname("Doe");
         customerDAO.update(customer2);
-        
+
         Customer r1 = customerDAO.findById(customer.getId());
         assertEquals(customer, r1);
         Customer r2 = customerDAO.findById(customer2.getId());
@@ -170,7 +181,7 @@ public class CustomerDAOTest {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname("Doe");
-        Address address =  new Address.Builder()
+        Address address = new Address.Builder()
                 .setCity("city")
                 .setCode("code")
                 .setCountry("country")
@@ -183,7 +194,7 @@ public class CustomerDAOTest {
         Customer rc2 = new Customer();
         rc2.setName("Jane");
         rc2.setSurname("Smith");
-        Address rcAddress2 =  new Address.Builder()
+        Address rcAddress2 = new Address.Builder()
                 .setCity("city2")
                 .setCode("code2")
                 .setCountry("country2")
@@ -203,5 +214,81 @@ public class CustomerDAOTest {
 
         Customer r = result.get(0);
         assertEquals(customer, r);
+    }
+
+    @Test
+    public void nullAddressNotAllowed() {
+        Customer customer = new Customer();
+        customer.setName("John");
+        customer.setSurname("Doe");
+        customer.setAddress(null);
+        thrown.expect(DataIntegrityViolationException.class);
+        customerDAO.create(customer);
+    }
+
+    @Test
+    public void nullSurnameNotAllowed() {
+        Customer customer = new Customer();
+        customer.setName("John");
+        customer.setSurname(null);
+        Address address = new Address.Builder()
+                .setCity("city")
+                .setCode("code")
+                .setCountry("country")
+                .setFirstLine("first line")
+                .setSecondLine("Second line")
+                .build();
+        customer.setAddress(address);
+        thrown.expect(DataIntegrityViolationException.class);
+        customerDAO.create(customer);
+    }
+
+    @Test
+    public void nullNameNotAllowed() {
+        Customer customer = new Customer();
+        customer.setName(null);
+        customer.setSurname("Doe");
+        Address address = new Address.Builder()
+                .setCity("city")
+                .setCode("code")
+                .setCountry("country")
+                .setFirstLine("first line")
+                .setSecondLine("Second line")
+                .build();
+        customer.setAddress(address);
+        thrown.expect(DataIntegrityViolationException.class);
+        customerDAO.create(customer);
+    }
+
+    @Test
+    public void dogsSet() {
+        Customer customer = new Customer();
+        Dog d1 = new Dog();
+        d1.setName("Woofie");
+        d1.setHobbies("barking");
+
+        Dog d2 = new Dog();
+        d2.setName("Fifi");
+
+        customer.setName("John");
+        customer.setSurname("Doe");
+        Address address = new Address.Builder()
+                .setCity("city")
+                .setCode("code")
+                .setCountry("country")
+                .setFirstLine("first line")
+                .setSecondLine("Second line")
+                .build();
+        customer.setAddress(address);
+        customer.addDog(d1);
+        customer.addDog(d2);
+        customerDAO.create(customer);
+
+        Customer found = customerDAO.findById(customer.getId());
+
+        Assert.assertEquals(found.getDogs().size(), 2);
+
+        assertTrue(found.getDogs().contains(d2));
+        assertTrue(found.getDogs().contains(d1));
     }
 }
