@@ -3,10 +3,13 @@ package org.woofenterprise.dogs.dao;
 import java.util.List;
 import javax.inject.Inject;
 import static org.junit.Assert.*;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.woofenterprise.dogs.DogsPersistenceApplication;
@@ -28,6 +31,9 @@ public class DogDAOTest {
     private DogDAO dogDAO;
     @Inject
     private CustomerDAO customerDAO;
+    
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void create() {
@@ -50,6 +56,17 @@ public class DogDAOTest {
         d.setOwner(customer);
         dogDAO.create(d);
         assertNotNull(d.getId());
+    }
+    
+    @Test
+    public void createWithNullOwner() {
+        Dog d = new Dog();
+        d.setName("Woofie");
+        d.setHobbies("barking");
+        d.setOwner(null);
+        
+        thrown.expect(DataIntegrityViolationException.class);
+        dogDAO.create(d);
     }
 
     @Test
