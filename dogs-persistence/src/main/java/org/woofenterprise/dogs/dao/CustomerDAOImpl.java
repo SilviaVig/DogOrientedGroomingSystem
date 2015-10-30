@@ -4,35 +4,47 @@ import org.springframework.stereotype.Repository;
 import org.woofenterprise.dogs.entity.Customer;
 
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
- * @author Silvia.Vigasova
+ * @author michal.babel
  */
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
+    
+    @PersistenceContext
+    EntityManager em;
+    
     @Override
     public Customer findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return em.find(Customer.class, id);
     }
 
     @Override
     public void create(Customer customer) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        em.persist(customer);
     }
 
     @Override
     public void delete(Customer customer) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        em.remove(customer);
     }
 
     @Override
     public List<Customer> findAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return em.createQuery("select c from Customer c", Customer.class).getResultList();
     }
 
     @Override
     public void update(Customer customer) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        /*Customer toUpdate = findById(customer.getId());
+        toUpdate.setAddress(customer.getAddress());
+        toUpdate.setName(customer.getName());
+        toUpdate.setSurname(customer.getSurname());
+        toUpdate.setPhoneNumber(customer.getPhoneNumber());
+        em.merge(toUpdate);*/
+        em.merge(customer);
     }
 }
