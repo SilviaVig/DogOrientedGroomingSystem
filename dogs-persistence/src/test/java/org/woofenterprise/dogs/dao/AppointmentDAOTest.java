@@ -9,7 +9,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.woofenterprise.dogs.DogsPersistenceApplication;
 import org.woofenterprise.dogs.entity.Appointment;
-import org.woofenterprise.dogs.utils.Address;
 
 import javax.inject.Inject;
 
@@ -52,28 +51,22 @@ public class AppointmentDAOTest {
     public void createEntities() {
         exampleCustomer = new Customer();
         exampleCustomer.setName("John");
-        exampleCustomer.setSurname("Doe");
-        Address address =  new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        exampleCustomer.setAddress(address);
+        exampleCustomer.setSurname("Doe");        
+        exampleCustomer.setAddressCity("city");
+        exampleCustomer.setAddressPostalCode("code");
+        exampleCustomer.setAddressCountry("country");
+        exampleCustomer.setAddressFirstLine("first line");
+        exampleCustomer.setAddressSecondLine("Second line");
         customerDAO.create(exampleCustomer);
         
         exampleCustomer2 = new Customer();
         exampleCustomer2.setName("Jane");
         exampleCustomer2.setSurname("Doe");
-        Address address2 =  new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        exampleCustomer2.setAddress(address2);
+        exampleCustomer2.setAddressCity("city");
+        exampleCustomer2.setAddressPostalCode("code");
+        exampleCustomer2.setAddressCountry("country");
+        exampleCustomer2.setAddressFirstLine("first line");
+        exampleCustomer2.setAddressSecondLine("Second line");
         customerDAO.create(exampleCustomer2);
         
         exampleDog = new Dog();
@@ -88,8 +81,8 @@ public class AppointmentDAOTest {
         exampleDog2.setOwner(exampleCustomer2);
         dogDAO.create(exampleDog2);
     }
-    
 
+    
     @Test
     public void create() {
         Appointment appointment = new Appointment();
@@ -214,7 +207,7 @@ public class AppointmentDAOTest {
         Appointment result = appointmentDAO.findById(appointment.getId());
         assertTrue(result.getProcedures().contains(Procedure.WASHING));
         Appointment result2 = appointmentDAO.findById(appointment2.getId());
-        assertEquals(appointment2, result2);        
+        assertEquals(appointment2, result2);      
     }
 
     @Test

@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import org.woofenterprise.dogs.utils.Address;
 
 /**
  * Customer entity class.
@@ -27,8 +26,19 @@ public class Customer {
     @Column(nullable = false)
     private String surname;
 
-    @Column(nullable = false, length = 512)
-    private Address address;
+    @Column(nullable = false)
+    private String addressFirstLine;
+
+    private String addressSecondLine;
+
+    @Column(nullable = false)
+    private String addressCity;
+
+    @Column(nullable = false)
+    private String addressCountry;
+
+    @Column(nullable = false)
+    private String addressPostalCode;
 
     private String phoneNumber;
 
@@ -111,24 +121,6 @@ public class Customer {
     }
 
     /**
-     * Returns customers address.
-     *
-     * @return customers address
-     */
-    public Address getAddress() {
-        return address;
-    }
-
-    /**
-     * Sets customers address.
-     *
-     * @param address address to set
-     */
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    /**
      * Returns customers surname.
      *
      * @return customers surname
@@ -147,7 +139,98 @@ public class Customer {
     }
 
     /**
+     * Returns first line of customers address.
+     *
+     * @return first line of customers address.
+     */
+    public String getAddressFirstLine() {
+        return addressFirstLine;
+    }
+
+    /**
+     * Sets first line of customers address.
+     *
+     * @param addressFirstLine first line of customers address.
+     */
+    public void setAddressFirstLine(String addressFirstLine) {
+        this.addressFirstLine = addressFirstLine;
+    }
+
+    /**
+     * Returns second line of customers address. The second line is optional.
+     *
+     * @return second line of customers address
+     */
+    public String getAddressSecondLine() {
+        return addressSecondLine;
+    }
+
+    /**
+     * Sets the second line of customers address. The second line is optional.
+     *
+     * @param addressSecondLine second line of customers address
+     */
+    public void setAddressSecondLine(String addressSecondLine) {
+        this.addressSecondLine = addressSecondLine;
+    }
+
+    /**
+     * Returns city of customers address.
+     *
+     * @return city of customers address
+     */
+    public String getAddressCity() {
+        return addressCity;
+    }
+
+    /**
+     * Sets city of customers address.
+     *
+     * @param addressCity city of customers address
+     */
+    public void setAddressCity(String addressCity) {
+        this.addressCity = addressCity;
+    }
+
+    /**
+     * Returns country of customers address.
+     *
+     * @return country of customers address
+     */
+    public String getAddressCountry() {
+        return addressCountry;
+    }
+
+    /**
+     * Sets country of customers address.
+     *
+     * @param addressCountry country of customers address
+     */
+    public void setAddressCountry(String addressCountry) {
+        this.addressCountry = addressCountry;
+    }
+
+    /**
+     * Returns postal code of customers address.
+     *
+     * @return postal code of customers address
+     */
+    public String getAddressPostalCode() {
+        return addressPostalCode;
+    }
+
+    /**
+     * Sets postal code of customers address.
+     *
+     * @param addressPostalCode postal code of customers address
+     */
+    public void setAddressPostalCode(String addressPostalCode) {
+        this.addressPostalCode = addressPostalCode;
+    }
+
+    /**
      * Return set of customers appointments.
+     *
      * @return customers appointments
      */
     public Set<Appointment> getAppointments() {
@@ -156,6 +239,7 @@ public class Customer {
 
     /**
      * Adds appointment for customer.
+     *
      * @param appointment appointment to set
      */
     public void addAppointment(Appointment appointment) {
@@ -167,7 +251,11 @@ public class Customer {
         int hash = 5;
         hash = 53 * hash + Objects.hashCode(this.name);
         hash = 53 * hash + Objects.hashCode(this.surname);
-        hash = 53 * hash + Objects.hashCode(this.address);
+        hash = 53 * hash + Objects.hashCode(this.addressFirstLine);
+        hash = 53 * hash + Objects.hashCode(this.addressSecondLine);
+        hash = 53 * hash + Objects.hashCode(this.addressCity);
+        hash = 53 * hash + Objects.hashCode(this.addressCountry);
+        hash = 53 * hash + Objects.hashCode(this.addressPostalCode);
         hash = 53 * hash + Objects.hashCode(this.phoneNumber);
         return hash;
     }
@@ -187,7 +275,19 @@ public class Customer {
         if (!Objects.equals(this.surname, other.surname)) {
             return false;
         }
-        if (!Objects.equals(this.address, other.address)) {
+        if (!Objects.equals(this.addressFirstLine, other.addressFirstLine)) {
+            return false;
+        }
+        if (!Objects.equals(this.addressSecondLine, other.addressSecondLine)) {
+            return false;
+        }
+        if (!Objects.equals(this.addressCity, other.addressCity)) {
+            return false;
+        }
+        if (!Objects.equals(this.addressCountry, other.addressCountry)) {
+            return false;
+        }
+        if (!Objects.equals(this.addressPostalCode, other.addressPostalCode)) {
             return false;
         }
         if (!Objects.equals(this.phoneNumber, other.phoneNumber)) {
@@ -195,5 +295,7 @@ public class Customer {
         }
         return true;
     }
+    
+    
 
 }

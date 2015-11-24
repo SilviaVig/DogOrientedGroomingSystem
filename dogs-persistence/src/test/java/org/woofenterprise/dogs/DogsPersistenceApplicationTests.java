@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.woofenterprise.dogs.entity.Appointment;
 import org.woofenterprise.dogs.entity.Customer;
 import org.woofenterprise.dogs.entity.Dog;
-import org.woofenterprise.dogs.utils.Address;
 
 import java.util.Date;
 
@@ -33,7 +32,10 @@ public class DogsPersistenceApplicationTests {
         Customer c = new Customer();
         c.setName("Jane");
         c.setSurname("Smith");
-        c.setAddress(new Address.Builder().setFirstLine("5th Avenue").setCity("New York").setCode("12345").setCountry("USA").build());
+        c.setAddressFirstLine("5th Avenue");
+        c.setAddressCity("New York");
+        c.setAddressPostalCode("12345");
+        c.setAddressCountry("USA");
         em.persist(c);
 
         Dog d = new Dog();

@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.woofenterprise.dogs.DogsPersistenceApplication;
 import org.woofenterprise.dogs.entity.Customer;
 import org.woofenterprise.dogs.entity.Dog;
-import org.woofenterprise.dogs.utils.Address;
 
 /**
  * Test for {@link DogDAOImpl} class.
@@ -40,14 +39,11 @@ public class DogDAOTest {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname("Doe");
-        Address address =  new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        customer.setAddress(address);
+        customer.setAddressCity("city");
+        customer.setAddressPostalCode("code");
+        customer.setAddressCountry("country");
+        customer.setAddressFirstLine("first line");
+        customer.setAddressSecondLine("Second line");
         customerDAO.create(customer);
 
         Dog d = new Dog();
@@ -74,14 +70,11 @@ public class DogDAOTest {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname("Doe");
-        Address address =  new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        customer.setAddress(address);
+        customer.setAddressCity("city");
+        customer.setAddressPostalCode("code");
+        customer.setAddressCountry("country");
+        customer.setAddressFirstLine("first line");
+        customer.setAddressSecondLine("Second line");
         customerDAO.create(customer);
 
         Dog d1 = new Dog();
@@ -116,14 +109,11 @@ public class DogDAOTest {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname("Doe");
-        Address address =  new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        customer.setAddress(address);
+        customer.setAddressCity("city");
+        customer.setAddressPostalCode("code");
+        customer.setAddressCountry("country");
+        customer.setAddressFirstLine("first line");
+        customer.setAddressSecondLine("Second line");
         customerDAO.create(customer);
 
         Dog d1 = new Dog();
@@ -143,14 +133,11 @@ public class DogDAOTest {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname("Doe");
-        Address address =  new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        customer.setAddress(address);
+        customer.setAddressCity("city");
+        customer.setAddressPostalCode("code");
+        customer.setAddressCountry("country");
+        customer.setAddressFirstLine("first line");
+        customer.setAddressSecondLine("Second line");
         customerDAO.create(customer);
 
         Dog d1 = new Dog();
@@ -181,14 +168,11 @@ public class DogDAOTest {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname("Doe");
-        Address address =  new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        customer.setAddress(address);
+        customer.setAddressCity("city");
+        customer.setAddressPostalCode("code");
+        customer.setAddressCountry("country");
+        customer.setAddressFirstLine("first line");
+        customer.setAddressSecondLine("Second line");
         customerDAO.create(customer);
 
         Dog d1 = new Dog();

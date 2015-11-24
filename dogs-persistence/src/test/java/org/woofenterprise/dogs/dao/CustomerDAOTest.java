@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.woofenterprise.dogs.DogsPersistenceApplication;
 import org.woofenterprise.dogs.entity.Customer;
 import org.woofenterprise.dogs.entity.Dog;
-import org.woofenterprise.dogs.utils.Address;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -43,14 +42,11 @@ public class CustomerDAOTest {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname("Doe");
-        Address address = new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        customer.setAddress(address);
+        customer.setAddressCity("city");
+        customer.setAddressPostalCode("code");
+        customer.setAddressCountry("country");
+        customer.setAddressFirstLine("first line");
+        customer.setAddressSecondLine("Second line");
         customerDAO.create(customer);
         assertNotNull(customer.getId());
     }
@@ -60,27 +56,21 @@ public class CustomerDAOTest {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname("Doe");
-        Address address = new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        customer.setAddress(address);
+        customer.setAddressCity("city");
+        customer.setAddressPostalCode("code");
+        customer.setAddressCountry("country");
+        customer.setAddressFirstLine("first line");
+        customer.setAddressSecondLine("Second line");
         customerDAO.create(customer);
 
         Customer customer2 = new Customer();
         customer2.setName("Jane");
         customer2.setSurname("Smith");
-        Address address2 = new Address.Builder()
-                .setCity("city2")
-                .setCode("code2")
-                .setCountry("country2")
-                .setFirstLine("first line2")
-                .setSecondLine("Second line2")
-                .build();
-        customer2.setAddress(address2);
+        customer2.setAddressCity("city2");
+        customer2.setAddressPostalCode("code2");
+        customer2.setAddressCountry("country2");
+        customer2.setAddressFirstLine("first line2");
+        customer2.setAddressSecondLine("Second line2");
         customerDAO.create(customer2);
 
         List<Customer> result = customerDAO.findAll();
@@ -89,27 +79,23 @@ public class CustomerDAOTest {
         Customer rc = new Customer();
         rc.setName("John");
         rc.setSurname("Doe");
-        Address rcAddress = new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        rc.setAddress(rcAddress);
+        rc.setName("John");
+        rc.setSurname("Doe");
+        rc.setAddressCity("city");
+        rc.setAddressPostalCode("code");
+        rc.setAddressCountry("country");
+        rc.setAddressFirstLine("first line");
+        rc.setAddressSecondLine("Second line");
         customerDAO.create(rc);
 
         Customer rc2 = new Customer();
         rc2.setName("Jane");
         rc2.setSurname("Smith");
-        Address rcAddress2 = new Address.Builder()
-                .setCity("city2")
-                .setCode("code2")
-                .setCountry("country2")
-                .setFirstLine("first line2")
-                .setSecondLine("Second line2")
-                .build();
-        rc2.setAddress(rcAddress2);
+        rc2.setAddressCity("city2");
+        rc2.setAddressPostalCode("code2");
+        rc2.setAddressCountry("country2");
+        rc2.setAddressFirstLine("first line2");
+        rc2.setAddressSecondLine("Second line2");
         customerDAO.create(rc2);
 
         assertEquals(2, result.size());
@@ -122,14 +108,11 @@ public class CustomerDAOTest {
         Customer rc2 = new Customer();
         rc2.setName("Jane");
         rc2.setSurname("Smith");
-        Address rcAddress2 = new Address.Builder()
-                .setCity("city2")
-                .setCode("code2")
-                .setCountry("country2")
-                .setFirstLine("first line2")
-                .setSecondLine("Second line2")
-                .build();
-        rc2.setAddress(rcAddress2);
+        rc2.setAddressCity("city2");
+        rc2.setAddressPostalCode("code2");
+        rc2.setAddressCountry("country2");
+        rc2.setAddressFirstLine("first line2");
+        rc2.setAddressSecondLine("Second line2");
         customerDAO.create(rc2);
 
         Customer result = customerDAO.findById(rc2.getId());
@@ -144,27 +127,21 @@ public class CustomerDAOTest {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname("Doe");
-        Address address = new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        customer.setAddress(address);
+        customer.setAddressCity("city");
+        customer.setAddressPostalCode("code");
+        customer.setAddressCountry("country");
+        customer.setAddressFirstLine("first line");
+        customer.setAddressSecondLine("Second line");
         customerDAO.create(customer);
 
         Customer customer2 = new Customer();
         customer2.setName("Jane");
         customer2.setSurname("Smith");
-        Address address2 = new Address.Builder()
-                .setCity("city2")
-                .setCode("code2")
-                .setCountry("country2")
-                .setFirstLine("first line2")
-                .setSecondLine("Second line2")
-                .build();
-        customer2.setAddress(address2);
+        customer2.setAddressCity("city2");
+        customer2.setAddressPostalCode("code2");
+        customer2.setAddressCountry("country2");
+        customer2.setAddressFirstLine("first line2");
+        customer2.setAddressSecondLine("Second line2");
         customerDAO.create(customer2);
 
         customer2.setSurname("Doe");
@@ -181,27 +158,21 @@ public class CustomerDAOTest {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname("Doe");
-        Address address = new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        customer.setAddress(address);
+        customer.setAddressCity("city");
+        customer.setAddressPostalCode("code");
+        customer.setAddressCountry("country");
+        customer.setAddressFirstLine("first line");
+        customer.setAddressSecondLine("Second line");
         customerDAO.create(customer);
 
         Customer rc2 = new Customer();
         rc2.setName("Jane");
         rc2.setSurname("Smith");
-        Address rcAddress2 = new Address.Builder()
-                .setCity("city2")
-                .setCode("code2")
-                .setCountry("country2")
-                .setFirstLine("first line2")
-                .setSecondLine("Second line2")
-                .build();
-        rc2.setAddress(rcAddress2);
+        rc2.setAddressCity("city2");
+        rc2.setAddressPostalCode("code2");
+        rc2.setAddressCountry("country2");
+        rc2.setAddressFirstLine("first line2");
+        rc2.setAddressSecondLine("Second line2");
         customerDAO.create(rc2);
 
         List<Customer> result = customerDAO.findAll();
@@ -221,7 +192,11 @@ public class CustomerDAOTest {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname("Doe");
-        customer.setAddress(null);
+        customer.setAddressCity(null);
+        customer.setAddressPostalCode(null);
+        customer.setAddressCountry(null);
+        customer.setAddressFirstLine(null);
+        customer.setAddressSecondLine(null);
         thrown.expect(DataIntegrityViolationException.class);
         customerDAO.create(customer);
     }
@@ -231,14 +206,11 @@ public class CustomerDAOTest {
         Customer customer = new Customer();
         customer.setName("John");
         customer.setSurname(null);
-        Address address = new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        customer.setAddress(address);
+        customer.setAddressCity("city");
+        customer.setAddressPostalCode("code");
+        customer.setAddressCountry("country");
+        customer.setAddressFirstLine("first line");
+        customer.setAddressSecondLine("Second line");
         thrown.expect(DataIntegrityViolationException.class);
         customerDAO.create(customer);
     }
@@ -248,14 +220,11 @@ public class CustomerDAOTest {
         Customer customer = new Customer();
         customer.setName(null);
         customer.setSurname("Doe");
-        Address address = new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        customer.setAddress(address);
+        customer.setAddressCity("city");
+        customer.setAddressPostalCode("code");
+        customer.setAddressCountry("country");
+        customer.setAddressFirstLine("first line");
+        customer.setAddressSecondLine("Second line");
         thrown.expect(DataIntegrityViolationException.class);
         customerDAO.create(customer);
     }
@@ -272,21 +241,18 @@ public class CustomerDAOTest {
 
         customer.setName("John");
         customer.setSurname("Doe");
-        Address address = new Address.Builder()
-                .setCity("city")
-                .setCode("code")
-                .setCountry("country")
-                .setFirstLine("first line")
-                .setSecondLine("Second line")
-                .build();
-        customer.setAddress(address);
+        customer.setAddressCity("city");
+        customer.setAddressPostalCode("code");
+        customer.setAddressCountry("country");
+        customer.setAddressFirstLine("first line");
+        customer.setAddressSecondLine("Second line");
         customer.addDog(d1);
         customer.addDog(d2);
         customerDAO.create(customer);
 
         Customer found = customerDAO.findById(customer.getId());
 
-        Assert.assertEquals(found.getDogs().size(), 2);
+        Assert.assertEquals(2, found.getDogs().size());
 
         assertTrue(found.getDogs().contains(d2));
         assertTrue(found.getDogs().contains(d1));
