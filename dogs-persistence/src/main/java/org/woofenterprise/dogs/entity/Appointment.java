@@ -3,9 +3,7 @@ package org.woofenterprise.dogs.entity;
 import org.woofenterprise.dogs.utils.Procedure;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Appointment class representing appointment.
@@ -135,7 +133,7 @@ public class Appointment {
      * @return set of procedures
      */
     public Set<Procedure> getProcedures() {
-        return procedures;
+        return Collections.unmodifiableSet(procedures);
     }
 
     /**
@@ -158,19 +156,20 @@ public class Appointment {
 
         Appointment that = (Appointment) o;
 
-        if (!customer.equals(that.customer)) return false;
-        if (!dog.equals(that.dog)) return false;
-        if (!startTime.equals(that.startTime)) return false;
+        if (!Objects.equals(customer, that.customer)) return false;
+        if (!Objects.equals(dog, that.dog)) return false;
+        if (!Objects.equals(startTime, that.startTime)) return false;
+        if (!Objects.equals(endTime, that.endTime)) return false;
 
-        return endTime.equals(that.endTime);
+        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = customer.hashCode();
-        result = 31 * result + dog.hashCode();
-        result = 31 * result + startTime.hashCode();
-        result = 31 * result + endTime.hashCode();
+        int result = Objects.hashCode(customer);
+        result = 31 * result + Objects.hashCode(dog);
+        result = 31 * result + Objects.hashCode(startTime);
+        result = 31 * result + Objects.hashCode(endTime);
         return result;
     }
 }
