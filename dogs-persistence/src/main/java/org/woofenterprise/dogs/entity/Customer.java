@@ -27,6 +27,9 @@ public class Customer {
     private String surname;
 
     @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
     private String addressFirstLine;
 
     private String addressSecondLine;
@@ -102,6 +105,26 @@ public class Customer {
         this.dogs.add(dog);
     }
 
+    
+    /**
+     * Returns customers email.
+     *
+     * @return customers email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Sets customers email.
+     *
+     * @param email email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    
     /**
      * Returns customers phone number.
      *

@@ -11,6 +11,7 @@ import org.woofenterprise.dogs.DogsPersistenceApplication;
 import org.woofenterprise.dogs.entity.Appointment;
 
 import javax.inject.Inject;
+import org.apache.derby.impl.sql.execute.CreateConstraintConstantAction;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -22,6 +23,9 @@ import org.woofenterprise.dogs.entity.Customer;
 import org.woofenterprise.dogs.entity.Dog;
 import org.woofenterprise.dogs.utils.Procedure;
 
+import static org.woofenterprise.dogs.dao.utils.EntitiesFactory.createAppointment;
+import static org.woofenterprise.dogs.dao.utils.EntitiesFactory.createDog;
+import static org.woofenterprise.dogs.dao.utils.EntitiesFactory.createCustomer;
 /**
  * Test class for AppointmentDAO
  * 
@@ -49,35 +53,17 @@ public class AppointmentDAOTest {
         
     @Before
     public void createEntities() {
-        exampleCustomer = new Customer();
-        exampleCustomer.setName("John");
-        exampleCustomer.setSurname("Doe");        
-        exampleCustomer.setAddressCity("city");
-        exampleCustomer.setAddressPostalCode("code");
-        exampleCustomer.setAddressCountry("country");
-        exampleCustomer.setAddressFirstLine("first line");
-        exampleCustomer.setAddressSecondLine("Second line");
+        exampleCustomer = createCustomer();
         customerDAO.create(exampleCustomer);
         
-        exampleCustomer2 = new Customer();
-        exampleCustomer2.setName("Jane");
-        exampleCustomer2.setSurname("Doe");
-        exampleCustomer2.setAddressCity("city");
-        exampleCustomer2.setAddressPostalCode("code");
-        exampleCustomer2.setAddressCountry("country");
-        exampleCustomer2.setAddressFirstLine("first line");
-        exampleCustomer2.setAddressSecondLine("Second line");
+        exampleCustomer2 = createCustomer(1);
         customerDAO.create(exampleCustomer2);
         
-        exampleDog = new Dog();
-        exampleDog.setName("Woofie");
-        exampleDog.setHobbies("barking");
+        exampleDog = createDog();
         exampleDog.setOwner(exampleCustomer);
         dogDAO.create(exampleDog);
         
-        exampleDog2 = new Dog();
-        exampleDog2.setName("Fifi");
-        exampleDog2.setHobbies("barking");
+        exampleDog2 = createDog(1);
         exampleDog2.setOwner(exampleCustomer2);
         dogDAO.create(exampleDog2);
     }
@@ -85,65 +71,31 @@ public class AppointmentDAOTest {
     
     @Test
     public void create() {
-        Appointment appointment = new Appointment();
+        Appointment appointment = createAppointment();
         appointment.setCustomer(exampleCustomer);
         appointment.setDog(exampleDog);
-        Calendar startTime = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        Calendar endTime = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        startTime.set(2015, 0, 1, 10, 0);
-        endTime.set(2015, 0, 1, 12, 0);
-        appointment.setStartTime(startTime.getTime());
-        appointment.setEndTime(endTime.getTime());
-        appointment.addProcedure(Procedure.BRUSHING);
-        appointment.addProcedure(Procedure.CLAWS_CUTTING);
         appointmentDAO.create(appointment);
         assertNotNull(appointment.getId());        
     }
     
     @Test
     public void createWithNullDog() {
-        Appointment appointment = new Appointment();
+        Appointment appointment = createAppointment();
         appointment.setCustomer(exampleCustomer);
-        appointment.setDog(null);
-        Calendar startTime = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        Calendar endTime = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        startTime.set(2015, 0, 1, 10, 0);
-        endTime.set(2015, 0, 1, 12, 0);
-        appointment.setStartTime(startTime.getTime());
-        appointment.setEndTime(endTime.getTime());
-        appointment.addProcedure(Procedure.BRUSHING);
-        appointment.addProcedure(Procedure.CLAWS_CUTTING);
-        
         thrown.expect(DataIntegrityViolationException.class);
         appointmentDAO.create(appointment);
     }
     
     @Test
     public void findAll() {
-        Appointment appointment = new Appointment();
+        Appointment appointment = createAppointment();
         appointment.setCustomer(exampleCustomer);
         appointment.setDog(exampleDog);
-        Calendar startTime = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        Calendar endTime = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        startTime.set(2015, 0, 1, 10, 0);
-        endTime.set(2015, 0, 1, 12, 0);
-        appointment.setStartTime(startTime.getTime());
-        appointment.setEndTime(endTime.getTime());
-        appointment.addProcedure(Procedure.BRUSHING);
-        appointment.addProcedure(Procedure.CLAWS_CUTTING);
         appointmentDAO.create(appointment);
         
-        Appointment appointment2 = new Appointment();
+        Appointment appointment2 = createAppointment(1);
         appointment2.setCustomer(exampleCustomer2);
         appointment2.setDog(exampleDog2);
-        Calendar startTime2 = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        Calendar endTime2 = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        startTime.set(2015, 0, 1, 12, 0);
-        endTime.set(2015, 0, 1, 14, 0);
-        appointment2.setStartTime(startTime2.getTime());
-        appointment2.setEndTime(endTime2.getTime());
-        appointment2.addProcedure(Procedure.BRUSHING);
-        appointment2.addProcedure(Procedure.CLAWS_CUTTING);
         appointmentDAO.create(appointment2);
         
         List<Appointment> result = appointmentDAO.findAll();
@@ -154,17 +106,9 @@ public class AppointmentDAOTest {
 
     @Test
     public void findById() {
-        Appointment appointment = new Appointment();
+        Appointment appointment = createAppointment();
         appointment.setCustomer(exampleCustomer);
         appointment.setDog(exampleDog);
-        Calendar startTime = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        Calendar endTime = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        startTime.set(2015, 0, 1, 10, 0);
-        endTime.set(2015, 0, 1, 12, 0);
-        appointment.setStartTime(startTime.getTime());
-        appointment.setEndTime(endTime.getTime());
-        appointment.addProcedure(Procedure.BRUSHING);
-        appointment.addProcedure(Procedure.CLAWS_CUTTING);
         appointmentDAO.create(appointment);
         
         Appointment result = appointmentDAO.findById(appointment.getId());
@@ -174,30 +118,13 @@ public class AppointmentDAOTest {
     
     @Test
     public void update() {
-        Appointment appointment = new Appointment();
+        Appointment appointment = createAppointment();
         appointment.setCustomer(exampleCustomer);
         appointment.setDog(exampleDog);
-        Calendar startTime = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        Calendar endTime = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        startTime.set(2015, 0, 1, 10, 0);
-        endTime.set(2015, 0, 1, 12, 0);
-        appointment.setStartTime(startTime.getTime());
-        appointment.setEndTime(endTime.getTime());
-        appointment.addProcedure(Procedure.BRUSHING);
-        appointment.addProcedure(Procedure.CLAWS_CUTTING);
-        appointment.setCustomer(exampleCustomer);
         appointmentDAO.create(appointment);
         
-        Appointment appointment2 = new Appointment();
+        Appointment appointment2 = createAppointment(1);
         appointment2.setDog(exampleDog2);
-        Calendar startTime2 = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        Calendar endTime2 = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        startTime.set(2015, 0, 1, 12, 0);
-        endTime.set(2015, 0, 1, 14, 0);
-        appointment2.setStartTime(startTime2.getTime());
-        appointment2.setEndTime(endTime2.getTime());
-        appointment2.addProcedure(Procedure.BRUSHING);
-        appointment2.addProcedure(Procedure.CLAWS_CUTTING);
         appointment2.setCustomer(exampleCustomer2);
         appointmentDAO.create(appointment2);
         
@@ -212,31 +139,14 @@ public class AppointmentDAOTest {
 
     @Test
     public void delete() {
-        Appointment appointment = new Appointment();
+        Appointment appointment = createAppointment();
         appointment.setCustomer(exampleCustomer);
         appointment.setDog(exampleDog);
-        Calendar startTime = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        Calendar endTime = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        startTime.set(2015, 0, 1, 10, 0);
-        endTime.set(2015, 0, 1, 12, 0);
-        appointment.setStartTime(startTime.getTime());
-        appointment.setEndTime(endTime.getTime());
-        appointment.addProcedure(Procedure.BRUSHING);
-        appointment.addProcedure(Procedure.CLAWS_CUTTING);
-        appointment.setCustomer(exampleCustomer2);
         appointmentDAO.create(appointment);
         
-        Appointment appointment2 = new Appointment();
+        Appointment appointment2 = createAppointment(1);
         appointment2.setDog(exampleDog2);
-        Calendar startTime2 = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        Calendar endTime2 = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        startTime.set(2015, 0, 1, 12, 0);
-        endTime.set(2015, 0, 1, 14, 0);
         appointment2.setCustomer(exampleCustomer);
-        appointment2.setStartTime(startTime2.getTime());
-        appointment2.setEndTime(endTime2.getTime());
-        appointment2.addProcedure(Procedure.BRUSHING);
-        appointment2.addProcedure(Procedure.CLAWS_CUTTING);
         appointmentDAO.create(appointment2);
         
         List<Appointment> result = appointmentDAO.findAll();

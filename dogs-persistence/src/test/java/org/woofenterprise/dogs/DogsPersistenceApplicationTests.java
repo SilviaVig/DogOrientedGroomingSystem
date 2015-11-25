@@ -32,6 +32,7 @@ public class DogsPersistenceApplicationTests {
         Customer c = new Customer();
         c.setName("Jane");
         c.setSurname("Smith");
+        c.setEmail("Smith@woof.org");
         c.setAddressFirstLine("5th Avenue");
         c.setAddressCity("New York");
         c.setAddressPostalCode("12345");

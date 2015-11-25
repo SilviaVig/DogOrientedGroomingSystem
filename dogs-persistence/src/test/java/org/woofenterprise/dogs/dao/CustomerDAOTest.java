@@ -12,6 +12,9 @@ import org.woofenterprise.dogs.DogsPersistenceApplication;
 import org.woofenterprise.dogs.entity.Customer;
 import org.woofenterprise.dogs.entity.Dog;
 
+import static org.woofenterprise.dogs.dao.utils.EntitiesFactory.createDog;
+import static org.woofenterprise.dogs.dao.utils.EntitiesFactory.createCustomer;
+
 import javax.inject.Inject;
 import java.util.List;
 
@@ -39,38 +42,17 @@ public class CustomerDAOTest {
 
     @Test
     public void create() {
-        Customer customer = new Customer();
-        customer.setName("John");
-        customer.setSurname("Doe");
-        customer.setAddressCity("city");
-        customer.setAddressPostalCode("code");
-        customer.setAddressCountry("country");
-        customer.setAddressFirstLine("first line");
-        customer.setAddressSecondLine("Second line");
+        Customer customer = createCustomer();
         customerDAO.create(customer);
         assertNotNull(customer.getId());
     }
 
     @Test
     public void findAll() {
-        Customer customer = new Customer();
-        customer.setName("John");
-        customer.setSurname("Doe");
-        customer.setAddressCity("city");
-        customer.setAddressPostalCode("code");
-        customer.setAddressCountry("country");
-        customer.setAddressFirstLine("first line");
-        customer.setAddressSecondLine("Second line");
+        Customer customer = createCustomer();
         customerDAO.create(customer);
 
-        Customer customer2 = new Customer();
-        customer2.setName("Jane");
-        customer2.setSurname("Smith");
-        customer2.setAddressCity("city2");
-        customer2.setAddressPostalCode("code2");
-        customer2.setAddressCountry("country2");
-        customer2.setAddressFirstLine("first line2");
-        customer2.setAddressSecondLine("Second line2");
+        Customer customer2 = createCustomer(1);
         customerDAO.create(customer2);
 
         List<Customer> result = customerDAO.findAll();
@@ -82,14 +64,7 @@ public class CustomerDAOTest {
 
     @Test
     public void findById() {
-        Customer rc2 = new Customer();
-        rc2.setName("Jane");
-        rc2.setSurname("Smith");
-        rc2.setAddressCity("city2");
-        rc2.setAddressPostalCode("code2");
-        rc2.setAddressCountry("country2");
-        rc2.setAddressFirstLine("first line2");
-        rc2.setAddressSecondLine("Second line2");
+        Customer rc2 = createCustomer();
         customerDAO.create(rc2);
 
         Customer result = customerDAO.findById(rc2.getId());
@@ -101,24 +76,10 @@ public class CustomerDAOTest {
 
     @Test
     public void update() {
-        Customer customer = new Customer();
-        customer.setName("John");
-        customer.setSurname("Doe");
-        customer.setAddressCity("city");
-        customer.setAddressPostalCode("code");
-        customer.setAddressCountry("country");
-        customer.setAddressFirstLine("first line");
-        customer.setAddressSecondLine("Second line");
+        Customer customer = createCustomer();
         customerDAO.create(customer);
 
-        Customer customer2 = new Customer();
-        customer2.setName("Jane");
-        customer2.setSurname("Smith");
-        customer2.setAddressCity("city2");
-        customer2.setAddressPostalCode("code2");
-        customer2.setAddressCountry("country2");
-        customer2.setAddressFirstLine("first line2");
-        customer2.setAddressSecondLine("Second line2");
+        Customer customer2 = createCustomer(1);
         customerDAO.create(customer2);
 
         customer2.setSurname("Doe");
@@ -132,24 +93,10 @@ public class CustomerDAOTest {
 
     @Test
     public void delete() {
-        Customer customer = new Customer();
-        customer.setName("John");
-        customer.setSurname("Doe");
-        customer.setAddressCity("city");
-        customer.setAddressPostalCode("code");
-        customer.setAddressCountry("country");
-        customer.setAddressFirstLine("first line");
-        customer.setAddressSecondLine("Second line");
+        Customer customer = createCustomer();
         customerDAO.create(customer);
 
-        Customer rc2 = new Customer();
-        rc2.setName("Jane");
-        rc2.setSurname("Smith");
-        rc2.setAddressCity("city2");
-        rc2.setAddressPostalCode("code2");
-        rc2.setAddressCountry("country2");
-        rc2.setAddressFirstLine("first line2");
-        rc2.setAddressSecondLine("Second line2");
+        Customer rc2 = createCustomer(1);
         customerDAO.create(rc2);
 
         List<Customer> result = customerDAO.findAll();
@@ -166,63 +113,33 @@ public class CustomerDAOTest {
 
     @Test
     public void nullAddressNotAllowed() {
-        Customer customer = new Customer();
-        customer.setName("John");
-        customer.setSurname("Doe");
+        Customer customer = createCustomer();
         customer.setAddressCity(null);
-        customer.setAddressPostalCode(null);
-        customer.setAddressCountry(null);
-        customer.setAddressFirstLine(null);
-        customer.setAddressSecondLine(null);
         thrown.expect(DataIntegrityViolationException.class);
         customerDAO.create(customer);
     }
 
     @Test
     public void nullSurnameNotAllowed() {
-        Customer customer = new Customer();
-        customer.setName("John");
+        Customer customer = createCustomer();
         customer.setSurname(null);
-        customer.setAddressCity("city");
-        customer.setAddressPostalCode("code");
-        customer.setAddressCountry("country");
-        customer.setAddressFirstLine("first line");
-        customer.setAddressSecondLine("Second line");
         thrown.expect(DataIntegrityViolationException.class);
         customerDAO.create(customer);
     }
 
     @Test
     public void nullNameNotAllowed() {
-        Customer customer = new Customer();
+        Customer customer = createCustomer();
         customer.setName(null);
-        customer.setSurname("Doe");
-        customer.setAddressCity("city");
-        customer.setAddressPostalCode("code");
-        customer.setAddressCountry("country");
-        customer.setAddressFirstLine("first line");
-        customer.setAddressSecondLine("Second line");
         thrown.expect(DataIntegrityViolationException.class);
         customerDAO.create(customer);
     }
 
     @Test
     public void dogsSet() {
-        Customer customer = new Customer();
-        Dog d1 = new Dog();
-        d1.setName("Woofie");
-        d1.setHobbies("barking");
-
-        Dog d2 = new Dog();
-        d2.setName("Fifi");
-
-        customer.setName("John");
-        customer.setSurname("Doe");
-        customer.setAddressCity("city");
-        customer.setAddressPostalCode("code");
-        customer.setAddressCountry("country");
-        customer.setAddressFirstLine("first line");
-        customer.setAddressSecondLine("Second line");
+        Customer customer = createCustomer();
+        Dog d1 = createDog();
+        Dog d2 = createDog(1);
         customer.addDog(d1);
         customer.addDog(d2);
         customerDAO.create(customer);
