@@ -75,32 +75,9 @@ public class CustomerDAOTest {
 
         List<Customer> result = customerDAO.findAll();
 
-
-        Customer rc = new Customer();
-        rc.setName("John");
-        rc.setSurname("Doe");
-        rc.setName("John");
-        rc.setSurname("Doe");
-        rc.setAddressCity("city");
-        rc.setAddressPostalCode("code");
-        rc.setAddressCountry("country");
-        rc.setAddressFirstLine("first line");
-        rc.setAddressSecondLine("Second line");
-        customerDAO.create(rc);
-
-        Customer rc2 = new Customer();
-        rc2.setName("Jane");
-        rc2.setSurname("Smith");
-        rc2.setAddressCity("city2");
-        rc2.setAddressPostalCode("code2");
-        rc2.setAddressCountry("country2");
-        rc2.setAddressFirstLine("first line2");
-        rc2.setAddressSecondLine("Second line2");
-        customerDAO.create(rc2);
-
         assertEquals(2, result.size());
-        assertTrue(result.contains(rc));
-        assertTrue(result.contains(rc2));
+        assertTrue(result.contains(customer));
+        assertTrue(result.contains(customer2));
     }
 
     @Test

@@ -156,20 +156,22 @@ public class Appointment {
 
         Appointment that = (Appointment) o;
 
-        if (!Objects.equals(customer, that.customer)) return false;
-        if (!Objects.equals(dog, that.dog)) return false;
-        if (!Objects.equals(startTime, that.startTime)) return false;
-        if (!Objects.equals(endTime, that.endTime)) return false;
-
-        return true;
+        if (this.id != null) {
+            return Objects.equals(this.id, that.id);
+        } else {
+            return this == that;
+        }
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hashCode(customer);
-        result = 31 * result + Objects.hashCode(dog);
-        result = 31 * result + Objects.hashCode(startTime);
-        result = 31 * result + Objects.hashCode(endTime);
-        return result;
+
+        int hash = 7;
+        if (this.id != null) {
+            hash = 13 * hash + Objects.hashCode(this.id);
+        } else {
+            hash = 13 * hash + System.identityHashCode(this);
+        }
+        return hash;
     }
 }

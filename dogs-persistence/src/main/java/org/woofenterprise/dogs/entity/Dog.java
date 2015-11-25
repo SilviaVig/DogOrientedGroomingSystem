@@ -105,7 +105,11 @@ public class Dog {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.name);
+        if (this.id != null) {
+            hash = 79 * hash + Objects.hashCode(this.id);
+        } else {
+            hash = 79 * hash + System.identityHashCode(this);
+        }
         return hash;
     }
 
@@ -118,13 +122,11 @@ public class Dog {
             return false;
         }
         final Dog other = (Dog) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
+        if (this.id != null) {
+            return Objects.equals(this.id, other.id);
+        } else {
+            return this == other;
         }
-        if (!Objects.equals(this.owner, other.owner)) {
-            return false;
-        }
-        return true;
     }
 
 }

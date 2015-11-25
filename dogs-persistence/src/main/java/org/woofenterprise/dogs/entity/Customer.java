@@ -249,14 +249,11 @@ public class Customer {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.name);
-        hash = 53 * hash + Objects.hashCode(this.surname);
-        hash = 53 * hash + Objects.hashCode(this.addressFirstLine);
-        hash = 53 * hash + Objects.hashCode(this.addressSecondLine);
-        hash = 53 * hash + Objects.hashCode(this.addressCity);
-        hash = 53 * hash + Objects.hashCode(this.addressCountry);
-        hash = 53 * hash + Objects.hashCode(this.addressPostalCode);
-        hash = 53 * hash + Objects.hashCode(this.phoneNumber);
+        if (this.id != null) {
+            hash = 53 * hash + Objects.hashCode(this.id);
+        } else {
+            hash = 53 * hash + System.identityHashCode(this);
+        }
         return hash;
     }
 
@@ -269,31 +266,11 @@ public class Customer {
             return false;
         }
         final Customer other = (Customer) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
+        if (this.id != null) {
+            return Objects.equals(this.id, other.id);
+        } else {
+            return this == other;
         }
-        if (!Objects.equals(this.surname, other.surname)) {
-            return false;
-        }
-        if (!Objects.equals(this.addressFirstLine, other.addressFirstLine)) {
-            return false;
-        }
-        if (!Objects.equals(this.addressSecondLine, other.addressSecondLine)) {
-            return false;
-        }
-        if (!Objects.equals(this.addressCity, other.addressCity)) {
-            return false;
-        }
-        if (!Objects.equals(this.addressCountry, other.addressCountry)) {
-            return false;
-        }
-        if (!Objects.equals(this.addressPostalCode, other.addressPostalCode)) {
-            return false;
-        }
-        if (!Objects.equals(this.phoneNumber, other.phoneNumber)) {
-            return false;
-        }
-        return true;
     }
     
     

@@ -90,18 +90,9 @@ public class DogDAOTest {
 
         List<Dog> result = dogDAO.findAll();
 
-        Dog rd1 = new Dog();
-        rd1.setName("Woofie");
-        rd1.setHobbies("barking");
-        rd1.setOwner(customer);
-
-        Dog rd2 = new Dog();
-        rd2.setName("Fifi");
-        rd2.setOwner(customer);
-
         assertEquals(2, result.size());
-        assertTrue(result.contains(rd1));
-        assertTrue(result.contains(rd2));
+        assertTrue(result.contains(d1));
+        assertTrue(result.contains(d2));
     }
 
     @Test
