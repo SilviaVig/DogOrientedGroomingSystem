@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import org.springframework.dao.DataAccessException;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,6 +72,31 @@ public class CustomerDAOTest {
 
         assertNotNull(result);
         assertEquals(rc2.getName(), result.getName());
+    }
+
+    @Test
+    public void findByEmail() {
+        Customer rc2 = createCustomer();
+        final String email = "customer@example.com";
+        rc2.setEmail(email);
+        customerDAO.create(rc2);
+
+        Customer result = customerDAO.findByEmail(email);
+
+        assertNotNull(result);
+        assertEquals(rc2.getName(), result.getName());
+    }
+
+    @Test
+    public void findByEmailNotFound() {
+        Customer rc2 = createCustomer();
+        final String email = "customer@example.com";
+        rc2.setEmail(email);
+        customerDAO.create(rc2);
+
+        thrown.expect(DataAccessException.class);
+        Customer result = customerDAO.findByEmail("another.email@example.com");
+
     }
 
 

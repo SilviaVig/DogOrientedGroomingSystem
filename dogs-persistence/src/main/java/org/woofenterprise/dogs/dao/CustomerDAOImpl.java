@@ -41,4 +41,11 @@ public class CustomerDAOImpl implements CustomerDAO {
     public void update(Customer customer) {
         em.merge(customer);
     }
+
+    @Override
+    public Customer findByEmail(String email) {
+       return em.createQuery("select c from Customer c where c.email = :email", Customer.class)
+               .setParameter("email", email)
+               .getSingleResult();
+    }
 }

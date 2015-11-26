@@ -15,6 +15,14 @@ public interface CustomerDAO {
      * @return customer entity with specified id
      */
     public Customer findById(Long id);
+    
+    /**
+     * Returns customer with specified email address.
+     *
+     * @param email customers email
+     * @return customer entity with specified email address.
+     */
+    public Customer findByEmail(String email);
 
     /**
      * Persists customer entity.
