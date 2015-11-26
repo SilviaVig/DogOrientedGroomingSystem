@@ -15,7 +15,7 @@ public interface CustomerFacade {
     
     Long createCustomer(CustomerDTO customerDTO);
     
-    void deleteCustomer(CustomerDTO customerDTO);
+    void deleteCustomer(Long customerId);
 
     Collection<CustomerDTO> getAllCustomers();
     
