@@ -14,9 +14,7 @@ public interface CustomerService {
 
     Long createCustomer(Customer customer);
 
-    void deleteCustomer(Customer customer);
+    void deleteCustomer(Long customerId);
 
     Collection<Customer> getAllCustomers();
-
-    void addDog(Long customerId, Long dogId);
 }

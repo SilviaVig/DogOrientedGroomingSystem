@@ -19,5 +19,4 @@ public interface CustomerFacade {
 
     Collection<CustomerDTO> getAllCustomers();
     
-    void addDog(Long customerId, Long dogId);
 }

@@ -16,6 +16,4 @@ public interface DogService {
 
     Collection<Dog> getAllDogs();
     
-    Collection<Dog> getAllDogsForCustomer(Long id);
-
 }
