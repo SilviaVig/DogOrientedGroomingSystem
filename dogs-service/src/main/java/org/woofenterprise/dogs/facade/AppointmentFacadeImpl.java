@@ -32,4 +32,9 @@ public class AppointmentFacadeImpl implements AppointmentFacade {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public Long calculateAppointmentDuration(AppointmentDTO appointmentDTO) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

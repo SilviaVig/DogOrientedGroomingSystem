@@ -19,4 +19,5 @@ public interface AppointmentFacade {
 
     Collection<AppointmentDTO> getAllAppointments();
     
+    Long calculateAppointmentDuration(AppointmentDTO appointmentDTO);
 }
