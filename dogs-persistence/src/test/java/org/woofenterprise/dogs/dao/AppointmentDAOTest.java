@@ -1,8 +1,6 @@
 package org.woofenterprise.dogs.dao;
 
-import java.util.Calendar;
 import java.util.List;
-import java.util.TimeZone;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -11,7 +9,6 @@ import org.woofenterprise.dogs.DogsPersistenceApplication;
 import org.woofenterprise.dogs.entity.Appointment;
 
 import javax.inject.Inject;
-import org.apache.derby.impl.sql.execute.CreateConstraintConstantAction;
 
 import static org.junit.Assert.*;
 import org.junit.Before;

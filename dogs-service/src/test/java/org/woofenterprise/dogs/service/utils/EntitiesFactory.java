@@ -14,19 +14,19 @@ import org.woofenterprise.dogs.utils.Procedure;
  * @author michal.babel@embedit.cz
  */
 public class EntitiesFactory {
-    
+
     public static Customer createCustomer() {
         return createCustomer(0);
     }
-    
+
     public static Dog createDog() {
         return createDog(0);
     }
-    
+
     public static Appointment createAppointment() {
         return createAppointment(0);
     }
-    
+
     public static Customer createCustomer(long seed) {
         Faker faker = new Faker(new Random(seed));
         Customer result = new Customer();
@@ -40,7 +40,7 @@ public class EntitiesFactory {
         result.setPhoneNumber(faker.phoneNumber().phoneNumber());
         return result;
     }
-    
+
     public static Dog createDog(long seed) {
         Faker faker = new Faker(new Random(seed));
         Dog result = new Dog();
@@ -48,7 +48,7 @@ public class EntitiesFactory {
         result.setHobbies(faker.lorem().sentence(4));
         return result;
     }
-    
+
     public static Appointment createAppointment(long seed) {
         Faker faker = new Faker(new Random(seed));
         Appointment result = new Appointment();
@@ -60,5 +60,5 @@ public class EntitiesFactory {
         result.addProcedure(Procedure.CLAWS_CUTTING);
         return result;
     }
-    
+
 }
