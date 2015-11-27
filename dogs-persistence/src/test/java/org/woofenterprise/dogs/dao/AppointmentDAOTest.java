@@ -1,5 +1,6 @@
 package org.woofenterprise.dogs.dao;
 
+import java.util.Date;
 import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +38,10 @@ public class AppointmentDAOTest {
     private Customer exampleCustomer2;
     private Dog exampleDog;
     private Dog exampleDog2;
-    
+    private long today;
+    private long tomorrow;
+    private long yesterday;
+
     @Inject
     private CustomerDAO customerDAO;
     @Inject
@@ -50,6 +54,10 @@ public class AppointmentDAOTest {
         
     @Before
     public void createEntities() {
+        today = 1 * 365 * 24 * 60 * 60;
+        tomorrow = 60 * 60 * 24 + today;
+        yesterday = today - 60 * 60 * 24 ;
+        
         exampleCustomer = createCustomer();
         customerDAO.create(exampleCustomer);
         
@@ -157,5 +165,49 @@ public class AppointmentDAOTest {
         assertEquals(1, result2.size());
         assertFalse(result2.contains(appointment));
         assertTrue(result2.contains(appointment2));
+    }
+    
+    @Test
+    public void getAppointmentsForRange() {
+        Date start1 = new Date(today);
+        Date end1 = new Date(today + 60 * 60 * 3);
+        Date start2 = new Date(today + 60 * 60 * 2);
+        Date end2 = new Date(today + 60 * 60 * 5);
+        Date start3 = new Date(tomorrow);
+        Date end3 = new Date(tomorrow + 60 * 60 * 3);
+        Date start4 = new Date(yesterday);
+        Date end4 = new Date(yesterday + 60 * 60 * 5);
+
+        Appointment appointment1 = new Appointment();
+        appointment1.setCustomer(exampleCustomer);
+        appointment1.setDog(exampleDog);
+        appointment1.setStartTime(start1);
+        appointment1.setEndTime(end1);
+        appointmentDAO.create(appointment1);
+        
+        Appointment appointment2 = new Appointment();
+        appointment2.setCustomer(exampleCustomer);
+        appointment2.setDog(exampleDog);
+        appointment2.setStartTime(start2);
+        appointment2.setEndTime(end2);
+        appointmentDAO.create(appointment2);
+        
+        Appointment appointment3 = new Appointment();
+        appointment3.setCustomer(exampleCustomer);
+        appointment3.setDog(exampleDog);
+        appointment3.setStartTime(start3);
+        appointment3.setEndTime(end3);
+        appointmentDAO.create(appointment3);
+        
+        Appointment appointment4 = new Appointment();
+        appointment4.setCustomer(exampleCustomer);
+        appointment4.setDog(exampleDog);
+        appointment4.setStartTime(start4);
+        appointment4.setEndTime(end4);
+        appointmentDAO.create(appointment4);
+        
+        assertEquals(2, appointmentDAO.findAllAppointmentsForRange(start1, end2).size());
+        assertEquals(1, appointmentDAO.findAllAppointmentsAfter(start3).size());
+        assertEquals(1, appointmentDAO.findAllAppointmentsBefore(start4).size());
     }
 }
