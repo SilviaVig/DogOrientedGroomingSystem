@@ -1,6 +1,8 @@
 package org.woofenterprise.dogs.service;
 
 import java.util.Collection;
+import java.util.Date;
+
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -28,7 +30,7 @@ public class AppointmentServiceImplTest extends BaseTestCase {
     @Test
     public void testCreate() {
         Appointment a = createAppointment();
-        Long resultId = appointmentService.createAppointment(a);
+        appointmentService.createAppointment(a);
         verify(appointmentDAO).create(a);
     }
 
@@ -45,7 +47,7 @@ public class AppointmentServiceImplTest extends BaseTestCase {
         Appointment appointment = createAppointment();
         appointment.setId(id);
         when(appointmentDAO.findById(id)).thenReturn(appointment);
-        appointmentService.cancelAppointment(id);
+        appointmentService.cancelAppointment(appointment);
         verify(appointmentDAO).findById(id);
         verify(appointmentDAO).delete(appointment);
     }
