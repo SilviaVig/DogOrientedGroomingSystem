@@ -68,9 +68,11 @@ public class CustomerFacadeImplTest extends BaseTestCase {
 
     @Test
     public void testDelete() {
-        Long id = 5L;
-        customerFacade.deleteCustomer(id);
-        verify(customerService).deleteCustomer(id);
+        CustomerDTO customerDTO = mock(CustomerDTO.class);
+        Customer customer = mock(Customer.class);
+        when(beanMappingService.map(customerDTO, Customer.class)).thenReturn(customer);
+        customerFacade.deleteCustomer(customerDTO);
+        verify(customerService).deleteCustomer(customer);
     }
 
     @Test

@@ -36,8 +36,9 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public void deleteCustomer(Long customerId) {
-        customerService.deleteCustomer(customerId);
+    public void deleteCustomer(CustomerDTO customerDTO) {
+        Customer c = beanMappingService.map(customerDTO, Customer.class);
+        customerService.deleteCustomer(c);
     }
 
     @Override
