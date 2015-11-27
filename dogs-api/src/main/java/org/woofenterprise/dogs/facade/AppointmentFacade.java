@@ -10,40 +10,46 @@ import java.util.Collection;
 public interface AppointmentFacade {
 
     /**
+     * Finds appointments by given id.
      *
-     * @param appointment
-     * @return
+     * @param appointmentId id of appointment to find
+     * @return Appointment converted to DTO object
      */
-    AppointmentDTO findAppointmentById(Long appointment);
+    AppointmentDTO findAppointmentById(Long appointmentId);
 
     /**
+     * Retrieves all appointments scheduled for today.
      *
-     * @return
+     * @return all appointments scheduled for today converted to DTO objects
      */
     Collection<AppointmentDTO> findAllAppointmentsForToday();
 
     /**
+     * Creates appointment entity from DTO object.
      *
-     * @param appointmentDTO
+     * @param appointmentDTO appointment to create
      */
     void createAppointment(AppointmentDTO appointmentDTO);
 
     /**
+     * Cancels given appointment.
      *
-     * @param appointmentDTO
+     * @param appointmentDTO appointment to cancel.
      */
     void cancelAppointment(AppointmentDTO appointmentDTO);
 
     /**
+     * Retrieves all appintments.
      *
-     * @return
+     * @return all appointments converted to DTO objects
      */
     Collection<AppointmentDTO> getAllAppointments();
-    
+
     /**
+     * Calculates appointment duration.
      *
-     * @param appointmentDTO
-     * @return
+     * @param appointmentDTO appointment to be calculated
+     * @return calculated duration
      */
     Long calculateAppointmentDuration(AppointmentDTO appointmentDTO);
 }

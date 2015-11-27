@@ -10,35 +10,40 @@ import java.util.Collection;
 public interface CustomerFacade {
 
     /**
+     * Finds Customer by id.
      *
-     * @param customerId
-     * @return
+     * @param customerId customer id
+     * @return customer converted to DTO object
      */
     CustomerDTO findCustomerById(Long customerId);
 
     /**
+     * Finds customer by email.
      *
-     * @param email
-     * @return
+     * @param email customer email
+     * @return customer converted to DTO object
      */
     CustomerDTO findCustomerByEmail(String email);
-    
+
     /**
+     * Creates customer.
      *
-     * @param customerDTO
+     * @param customerDTO customer to create.
      */
     void createCustomer(CustomerDTO customerDTO);
-    
+
     /**
+     * Deletes customer.
      *
-     * @param customerDTO
+     * @param customerDTO customer to delete.
      */
     void deleteCustomer(CustomerDTO customerDTO);
 
     /**
+     * Retrieves all customers.
      *
-     * @return
+     * @return collection of customers converted to DTO objects.
      */
     Collection<CustomerDTO> getAllCustomers();
-    
+
 }
