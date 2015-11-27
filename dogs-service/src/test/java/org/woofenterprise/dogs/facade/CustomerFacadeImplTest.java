@@ -14,6 +14,7 @@ import static org.mockito.Mockito.when;
 import org.woofenterprice.dogs.dto.CustomerDTO;
 import org.woofenterprise.dogs.entity.Customer;
 import org.woofenterprise.dogs.entity.Dog;
+import org.woofenterprise.dogs.service.BeanMappingService;
 import org.woofenterprise.dogs.service.CustomerService;
 import org.woofenterprise.dogs.service.DogService;
 import org.woofenterprise.dogs.service.utils.BaseTestCase;
@@ -27,6 +28,8 @@ public class CustomerFacadeImplTest extends BaseTestCase {
 
     @Mock
     private CustomerService customerService;
+    @Mock
+    private BeanMappingService beanMappingService;
     @Mock
     private DogService dogService;
 
@@ -44,6 +47,7 @@ public class CustomerFacadeImplTest extends BaseTestCase {
     public void testCreate() {
         Customer customer = createCustomer();
         CustomerDTO customerDTO = mapper.map(customer, CustomerDTO.class);
+        when(beanMappingService.map(customerDTO, Customer.class)).thenReturn(customer);
         Long resultId = customerFacade.createCustomer(customerDTO);
         verify(customerService).createCustomer(customer);
     }
@@ -65,14 +69,8 @@ public class CustomerFacadeImplTest extends BaseTestCase {
     @Test
     public void testDelete() {
         Long id = 5L;
-        Customer preparedCustomer = mock(Customer.class);
-        Dog preparedDog = mock(Dog.class);
-        when(preparedDog.getId()).thenReturn(id);
-        when(preparedCustomer.getDogs()).thenReturn(new HashSet<Dog>(Arrays.asList(preparedDog)));
-        when(customerService.findCustomerById(id)).thenReturn(preparedCustomer);
         customerFacade.deleteCustomer(id);
         verify(customerService).deleteCustomer(id);
-        verify(dogService).deleteDog(id);
     }
 
     @Test
