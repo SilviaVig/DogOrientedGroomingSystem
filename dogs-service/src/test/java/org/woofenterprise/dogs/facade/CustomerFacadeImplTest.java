@@ -1,15 +1,21 @@
 package org.woofenterprise.dogs.facade;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.junit.Test;
 import org.junit.Before;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.woofenterprice.dogs.dto.CustomerDTO;
 import org.woofenterprise.dogs.entity.Customer;
+import org.woofenterprise.dogs.entity.Dog;
 import org.woofenterprise.dogs.service.CustomerService;
+import org.woofenterprise.dogs.service.DogService;
 import org.woofenterprise.dogs.service.utils.BaseTestCase;
 import static org.woofenterprise.dogs.service.utils.EntitiesFactory.createCustomer;
 
@@ -21,6 +27,8 @@ public class CustomerFacadeImplTest extends BaseTestCase {
 
     @Mock
     private CustomerService customerService;
+    @Mock
+    private DogService dogService;
 
     @InjectMocks
     private CustomerFacadeImpl customerFacade;
@@ -57,8 +65,14 @@ public class CustomerFacadeImplTest extends BaseTestCase {
     @Test
     public void testDelete() {
         Long id = 5L;
+        Customer preparedCustomer = mock(Customer.class);
+        Dog preparedDog = mock(Dog.class);
+        when(preparedDog.getId()).thenReturn(id);
+        when(preparedCustomer.getDogs()).thenReturn(new HashSet<Dog>(Arrays.asList(preparedDog)));
+        when(customerService.findCustomerById(id)).thenReturn(preparedCustomer);
         customerFacade.deleteCustomer(id);
         verify(customerService).deleteCustomer(id);
+        verify(dogService).deleteDog(id);
     }
 
     @Test

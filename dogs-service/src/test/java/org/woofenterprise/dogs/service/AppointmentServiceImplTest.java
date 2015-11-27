@@ -55,4 +55,6 @@ public class AppointmentServiceImplTest extends BaseTestCase {
         Collection<Appointment> result = appointmentService.getAllAppointments();
         verify(appointmentDAO).findAll();
     }
+    
+    // TODO: otestovat metody z DAO
 }

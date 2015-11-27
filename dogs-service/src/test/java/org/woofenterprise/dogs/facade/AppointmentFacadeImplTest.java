@@ -56,6 +56,8 @@ public class AppointmentFacadeImplTest extends BaseTestCase {
         verify(appointmentService).findAppointmentById(id);
     }
 
+    //TODO: test na today
+    
     @Test
     public void testCancel() {
         Long id = 5L;
