@@ -9,14 +9,36 @@ import java.util.Collection;
  */
 public interface CustomerFacade {
 
+    /**
+     *
+     * @param customerId
+     * @return
+     */
     CustomerDTO findCustomerById(Long customerId);
 
+    /**
+     *
+     * @param email
+     * @return
+     */
     CustomerDTO findCustomerByEmail(String email);
     
+    /**
+     *
+     * @param customerDTO
+     */
     void createCustomer(CustomerDTO customerDTO);
     
+    /**
+     *
+     * @param customerDTO
+     */
     void deleteCustomer(CustomerDTO customerDTO);
 
+    /**
+     *
+     * @return
+     */
     Collection<CustomerDTO> getAllCustomers();
     
 }

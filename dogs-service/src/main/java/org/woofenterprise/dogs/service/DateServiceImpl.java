@@ -3,7 +3,10 @@ package org.woofenterprise.dogs.service;
 import java.util.Date;
 import org.springframework.stereotype.Service;
 
-
+/**
+ *
+ * @author Michal.Babel
+ */
 @Service
 public class DateServiceImpl implements DateService {
 

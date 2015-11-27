@@ -31,90 +31,178 @@ public class CustomerDTO {
 
     private Set<AppointmentDTO> appointments = new HashSet<>();
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSurname() {
         return surname;
     }
 
+    /**
+     *
+     * @param surname
+     */
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAddressFirstLine() {
         return addressFirstLine;
     }
 
+    /**
+     *
+     * @param addressFirstLine
+     */
     public void setAddressFirstLine(String addressFirstLine) {
         this.addressFirstLine = addressFirstLine;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAddressSecondLine() {
         return addressSecondLine;
     }
 
+    /**
+     *
+     * @param addressSecondLine
+     */
     public void setAddressSecondLine(String addressSecondLine) {
         this.addressSecondLine = addressSecondLine;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAddressCity() {
         return addressCity;
     }
 
+    /**
+     *
+     * @param addressCity
+     */
     public void setAddressCity(String addressCity) {
         this.addressCity = addressCity;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAddressCountry() {
         return addressCountry;
     }
 
+    /**
+     *
+     * @param addressCountry
+     */
     public void setAddressCountry(String addressCountry) {
         this.addressCountry = addressCountry;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAddressPostalCode() {
         return addressPostalCode;
     }
 
+    /**
+     *
+     * @param addressPostalCode
+     */
     public void setAddressPostalCode(String addressPostalCode) {
         this.addressPostalCode = addressPostalCode;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+    /**
+     *
+     * @param phoneNumber
+     */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<DogDTO> getDogs() {
         return dogs;
     }
 
+    /**
+     *
+     * @param dogs
+     */
     public void setDogs(Set<DogDTO> dogs) {
         this.dogs = dogs;
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<AppointmentDTO> getAppointments() {
         return appointments;
     }
 
+    /**
+     *
+     * @param appointments
+     */
     public void setAppointments(Set<AppointmentDTO> appointments) {
         this.appointments = appointments;
     }

@@ -4,6 +4,10 @@ import java.util.Collection;
 import org.springframework.stereotype.Service;
 import org.woofenterprise.dogs.entity.Customer;
 
+/**
+ *
+ * @author Michal.Babel
+ */
 @Service
 public class CustomerServiceImpl implements CustomerService {
 

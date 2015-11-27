@@ -5,7 +5,10 @@ import java.util.Collection;
 import javax.inject.Inject;
 import org.dozer.Mapper;
 
-
+/**
+ *
+ * @author Michal.Babel
+ */
 public class BeanMappingServiceImpl implements BeanMappingService {
     
     @Inject

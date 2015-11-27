@@ -13,6 +13,10 @@ import java.util.Date;
  */
 public interface DateService {
     
+    /**
+     *
+     * @return
+     */
     public Date getToday();
     
 }

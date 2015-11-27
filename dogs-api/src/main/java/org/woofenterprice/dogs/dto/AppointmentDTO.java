@@ -24,50 +24,98 @@ public class AppointmentDTO {
 
     private Set<Procedure> procedures = new HashSet<>();
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public CustomerDTO getCustomer() {
         return customer;
     }
 
+    /**
+     *
+     * @param customer
+     */
     public void setCustomer(CustomerDTO customer) {
         this.customer = customer;
     }
 
+    /**
+     *
+     * @return
+     */
     public DogDTO getDog() {
         return dog;
     }
 
+    /**
+     *
+     * @param dog
+     */
     public void setDog(DogDTO dog) {
         this.dog = dog;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getStartTime() {
         return startTime;
     }
 
+    /**
+     *
+     * @param startTime
+     */
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getEndTime() {
         return endTime;
     }
 
+    /**
+     *
+     * @param endTime
+     */
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<Procedure> getProcedures() {
         return procedures;
     }
 
+    /**
+     *
+     * @param procedures
+     */
     public void setProcedures(Set<Procedure> procedures) {
         this.procedures = procedures;
     }

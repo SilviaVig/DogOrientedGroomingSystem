@@ -11,18 +11,34 @@ public class AddProcedureDTO {
     private Long appointmentId;
     private Procedure procedure;
 
+    /**
+     *
+     * @return
+     */
     public Long getAppointmentId() {
         return appointmentId;
     }
 
+    /**
+     *
+     * @param appointmentId
+     */
     public void setAppointmentId(Long appointmentId) {
         this.appointmentId = appointmentId;
     }
 
+    /**
+     *
+     * @return
+     */
     public Procedure getProcedure() {
         return procedure;
     }
 
+    /**
+     *
+     * @param procedure
+     */
     public void setProcedure(Procedure procedure) {
         this.procedure = procedure;
     }

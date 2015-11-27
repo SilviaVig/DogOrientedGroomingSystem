@@ -15,34 +15,66 @@ public class DogDTO {
     
     private CustomerDTO owner;
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getHobbies() {
         return hobbies;
     }
 
+    /**
+     *
+     * @param hobbies
+     */
     public void setHobbies(String hobbies) {
         this.hobbies = hobbies;
     }
 
+    /**
+     *
+     * @return
+     */
     public CustomerDTO getOwner() {
         return owner;
     }
 
+    /**
+     *
+     * @param owner
+     */
     public void setOwner(CustomerDTO owner) {
         this.owner = owner;
     }
