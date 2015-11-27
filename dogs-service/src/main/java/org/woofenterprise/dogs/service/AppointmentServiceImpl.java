@@ -1,8 +1,10 @@
 package org.woofenterprise.dogs.service;
 
 import java.util.Collection;
+import java.util.Date;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
+import org.woofenterprise.dogs.dao.AppointmentDAO;
 import org.woofenterprise.dogs.entity.Appointment;
 
 @Service
@@ -11,29 +13,42 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Inject
     DateService dateService;
     
+    @Inject
+    AppointmentDAO appointmentDAO;
+    
     @Override
-    public Appointment findAppointmentById(Long appointment) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Appointment findAppointmentById(Long appointmentId) {
+        return appointmentDAO.findById(appointmentId);
     }
 
     @Override
-    public Collection<Appointment> getAllAppointmentsForToday() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void createAppointment(Appointment appointment) {
+        appointmentDAO.create(appointment);
     }
 
     @Override
-    public Long createAppointment(Appointment appointmentDTO) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void cancelAppointment(Long appointmentId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void cancelAppointment(Appointment appointment) {
+       appointmentDAO.delete(appointment);
     }
 
     @Override
     public Collection<Appointment> getAllAppointments() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return appointmentDAO.findAll();
+    }
+
+    @Override
+    public Collection<Appointment> getAllAppointmentsForRange(Date startTime, Date endTime) {
+       return appointmentDAO.findAllAppointmentsForRange(startTime, endTime);
+    }
+
+    @Override
+    public Collection<Appointment> getAllAppointmentsBefore(Date time) {
+        return appointmentDAO.findAllAppointmentsBefore(time);
+    }
+
+    @Override
+    public Collection<Appointment> getAllAppointmentsAfter(Date time) {
+        return appointmentDAO.findAllAppointmentsAfter(time);
     }
 
 }

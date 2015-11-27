@@ -18,5 +18,9 @@ public interface AppointmentService {
 
     Collection<Appointment> getAllAppointments();
 
-    //TODO: pridat metody z DAO
+    Collection<Appointment> getAllAppointmentsForRange(Date startTime, Date endTime);
+    
+    Collection<Appointment> getAllAppointmentsBefore(Date time);
+    
+    Collection<Appointment> getAllAppointmentsAfter(Date time);
 }

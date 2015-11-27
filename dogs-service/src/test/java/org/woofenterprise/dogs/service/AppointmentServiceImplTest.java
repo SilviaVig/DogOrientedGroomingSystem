@@ -58,5 +58,22 @@ public class AppointmentServiceImplTest extends BaseTestCase {
         verify(appointmentDAO).findAll();
     }
     
-    // TODO: otestovat metody z DAO
+    @Test
+    public void testGetAppointmentsForRange() {
+        Date time = dateService.getToday();
+        Collection<Appointment> result = appointmentService.getAllAppointmentsForRange(time, time);
+        verify(appointmentDAO).findAllAppointmentsForRange(time, time);
+    } 
+    @Test
+    public void testGetAppointmentsAfter() {
+        Date time = dateService.getToday();
+        Collection<Appointment> result = appointmentService.getAllAppointmentsAfter(time);
+        verify(appointmentDAO).findAllAppointmentsAfter(time);
+    }
+    @Test
+    public void testGetAppointmentsBefore() {
+        Date time = dateService.getToday();
+        Collection<Appointment> result = appointmentService.getAllAppointmentsBefore(time);
+        verify(appointmentDAO).findAllAppointmentsBefore(time);
+    }
 }
