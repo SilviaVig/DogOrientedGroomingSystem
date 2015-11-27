@@ -4,8 +4,8 @@ import java.util.Collection;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import org.woofenterprise.dogs.dao.CustomerDAO;
 import org.woofenterprise.dogs.entity.Customer;
 import org.woofenterprise.dogs.service.utils.BaseTestCase;
@@ -47,11 +47,8 @@ public class CustomerServiceImplTest extends BaseTestCase {
     @Test
     public void testDelete() {
         Long id = 5L;
-        Customer customer = createCustomer();
-        customer.setId(id);
-        when(customerDAO.findById(id)).thenReturn(customer);
-        customerService.deleteCustomer(id);
-        verify(customerDAO).findById(id);
+        Customer customer = mock(Customer.class);
+        customerService.deleteCustomer(customer);
         verify(customerDAO).delete(customer);
     }
 

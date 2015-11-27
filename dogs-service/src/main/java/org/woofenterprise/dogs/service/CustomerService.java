@@ -14,7 +14,7 @@ public interface CustomerService {
 
     Long createCustomer(Customer customer);
 
-    void deleteCustomer(Long customerId);
+    void deleteCustomer(Customer customer);
 
     Collection<Customer> getAllCustomers();
 }
