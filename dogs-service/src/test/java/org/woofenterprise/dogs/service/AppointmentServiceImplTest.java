@@ -41,12 +41,8 @@ public class AppointmentServiceImplTest extends BaseTestCase {
 
     @Test
     public void testCancel() {
-        Long id = 5L;
         Appointment appointment = mock(Appointment.class);
-        appointment.setId(id);
-        when(appointmentDAO.findById(id)).thenReturn(appointment);
         appointmentService.cancelAppointment(appointment);
-        verify(appointmentDAO).findById(id);
         verify(appointmentDAO).delete(appointment);
     }
 
