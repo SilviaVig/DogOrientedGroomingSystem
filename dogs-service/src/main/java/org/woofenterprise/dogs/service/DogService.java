@@ -21,13 +21,13 @@ public interface DogService {
      * @param dog
      * @return
      */
-    Long createDog(Dog dog);
+    void createDog(Dog dog);
 
     /**
      *
-     * @param dogId
+     * @param dog
      */
-    void deleteDog(Long dogId);
+    void deleteDog(Dog dog);
 
     /**
      *

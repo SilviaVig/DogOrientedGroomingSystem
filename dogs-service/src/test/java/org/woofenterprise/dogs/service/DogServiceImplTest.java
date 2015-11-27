@@ -26,25 +26,23 @@ public class DogServiceImplTest extends BaseTestCase {
     @Test
     public void testCreate() {
         Dog d = mock(Dog.class);
-        Long resultId = dogService.createDog(d);
+        dogService.createDog(d);
         verify(dogDAO).create(d);
     }
 
     @Test
     public void testFindById() {
         Long id = 5L;
+        Dog dog = mock(Dog.class);
+        when(dogDAO.findById(id)).thenReturn(dog);
         Dog returnedDog = dogService.findDogById(id);
         verify(dogDAO).findById(id);
     }
 
     @Test
     public void testDelete() {
-        Long id = 5L;
         Dog dog = mock(Dog.class);
-        when(dog.getId()).thenReturn(id);
-        when(dogDAO.findById(id)).thenReturn(dog);
-        dogService.deleteDog(id);
-        verify(dogDAO).findById(id);
+        dogService.deleteDog(dog);
         verify(dogDAO).delete(dog);
     }
 
