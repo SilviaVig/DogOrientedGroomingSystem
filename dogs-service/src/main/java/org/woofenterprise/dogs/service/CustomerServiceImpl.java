@@ -1,39 +1,44 @@
 package org.woofenterprise.dogs.service;
 
 import java.util.Collection;
+
 import org.springframework.stereotype.Service;
+import org.woofenterprise.dogs.dao.CustomerDAO;
 import org.woofenterprise.dogs.entity.Customer;
 
+import javax.inject.Inject;
+
 /**
- *
- * @author Michal.Babel
+ * @author Silvia Vigasova
  */
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
+    @Inject
+    private CustomerDAO customerDAO;
+
     @Override
     public Customer findCustomerById(Long customerId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return customerDAO.findById(customerId);
     }
 
     @Override
     public Customer findCustomerByEmail(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return customerDAO.findByEmail(email);
     }
 
     @Override
     public void createCustomer(Customer customer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        customerDAO.create(customer);
     }
 
     @Override
     public void deleteCustomer(Customer customer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        customerDAO.delete(customer);
     }
 
     @Override
     public Collection<Customer> getAllCustomers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return customerDAO.findAll();
     }
-
 }
