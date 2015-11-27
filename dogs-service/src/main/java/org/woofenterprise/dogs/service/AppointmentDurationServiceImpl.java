@@ -1,5 +1,6 @@
 package org.woofenterprise.dogs.service;
 
+import java.util.Collection;
 import org.springframework.stereotype.Service;
 import org.woofenterprise.dogs.utils.Procedure;
 
@@ -13,7 +14,7 @@ import static org.woofenterprise.dogs.utils.Procedure.*;
 @Service
 public class AppointmentDurationServiceImpl implements AppointmentDurationService {
     @Override
-    public long getDurationForProcedures(List<Procedure> procedures) {
+    public long getDurationForProcedures(Collection<Procedure> procedures) {
         long result = 0;
         for (Procedure procedure : procedures) {
             result += getTimeForProcedure(procedure);
@@ -39,7 +40,7 @@ public class AppointmentDurationServiceImpl implements AppointmentDurationServic
         }
     }
 
-    private long getTimeDeltaForDependentProcedures(List<Procedure> procedures) {
+    private long getTimeDeltaForDependentProcedures(Collection<Procedure> procedures) {
         long delta = 0;
         if (procedures.contains(BRUSHING) && procedures.contains(WASHING)) {
             delta -= 10;
