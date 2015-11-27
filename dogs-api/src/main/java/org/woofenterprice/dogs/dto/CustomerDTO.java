@@ -6,9 +6,11 @@ import java.util.Set;
 
 /**
  * DTO for Customer entity.
+ *
  * @author michal.babel@embedit.cz
  */
 public class CustomerDTO {
+
     private Long id;
 
     private String name;
@@ -32,176 +34,198 @@ public class CustomerDTO {
     private Set<AppointmentDTO> appointments = new HashSet<>();
 
     /**
+     * Returns id of referenced entity.
      *
-     * @return
+     * @return id of referenced entity
      */
     public Long getId() {
         return id;
     }
 
     /**
+     * Sets the id of referenced entity.
      *
-     * @param id
+     * @param id id of referenced entity.
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
+     * Returns customers first name.
      *
-     * @return
+     * @return customers first name
      */
     public String getName() {
         return name;
     }
 
     /**
+     * Sets customers first name.
      *
-     * @param name
+     * @param name customers first name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
+     * Returns customers last name.
      *
-     * @return
+     * @return customers last name
      */
     public String getSurname() {
         return surname;
     }
 
     /**
+     * Sets customers last name.
      *
-     * @param surname
+     * @param surname customers last name
      */
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
     /**
+     * Return first line of customers address.
      *
-     * @return
+     * @return first line of customers address
      */
     public String getAddressFirstLine() {
         return addressFirstLine;
     }
 
     /**
+     * Sets first line of customers address.
      *
-     * @param addressFirstLine
+     * @param addressFirstLine first line of customers address
      */
     public void setAddressFirstLine(String addressFirstLine) {
         this.addressFirstLine = addressFirstLine;
     }
 
     /**
+     * Returns second line of customers address.
      *
-     * @return
+     * @return second line of customers address
      */
     public String getAddressSecondLine() {
         return addressSecondLine;
     }
 
     /**
+     * Sets second line of customers address.
      *
-     * @param addressSecondLine
+     * @param addressSecondLine second line of customers address
      */
     public void setAddressSecondLine(String addressSecondLine) {
         this.addressSecondLine = addressSecondLine;
     }
 
     /**
+     * Returns customers city.
      *
-     * @return
+     * @return customers city
      */
     public String getAddressCity() {
         return addressCity;
     }
 
     /**
+     * Sets customers city.
      *
-     * @param addressCity
+     * @param addressCity customers city
      */
     public void setAddressCity(String addressCity) {
         this.addressCity = addressCity;
     }
 
     /**
+     * Returns customers country.
      *
-     * @return
+     * @return customers country
      */
     public String getAddressCountry() {
         return addressCountry;
     }
 
     /**
+     * Sets customers country.
      *
-     * @param addressCountry
+     * @param addressCountry customers country
      */
     public void setAddressCountry(String addressCountry) {
         this.addressCountry = addressCountry;
     }
 
     /**
+     * Returns customers postal code.
      *
-     * @return
+     * @return customers postal code
      */
     public String getAddressPostalCode() {
         return addressPostalCode;
     }
 
     /**
+     * Sets customers postal code.
      *
-     * @param addressPostalCode
+     * @param addressPostalCode customers postal code
      */
     public void setAddressPostalCode(String addressPostalCode) {
         this.addressPostalCode = addressPostalCode;
     }
 
     /**
+     * Returns customers phone number.
      *
-     * @return
+     * @return customers phone number
      */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     /**
+     * Sets customers phone number
      *
-     * @param phoneNumber
+     * @param phoneNumber customers phone number
      */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
     /**
+     * Returns customers dogs.
      *
-     * @return
+     * @return customers dogs.
      */
     public Set<DogDTO> getDogs() {
         return dogs;
     }
 
     /**
+     * Sets customers dogs.
      *
-     * @param dogs
+     * @param dogs customers dogs
      */
     public void setDogs(Set<DogDTO> dogs) {
         this.dogs = dogs;
     }
 
     /**
+     * Returns customers appointments.
      *
-     * @return
+     * @return customers dogs.
      */
     public Set<AppointmentDTO> getAppointments() {
         return appointments;
     }
 
     /**
+     * Sets customers appointments.
      *
-     * @param appointments
+     * @param appointments customers appointments.
      */
     public void setAppointments(Set<AppointmentDTO> appointments) {
         this.appointments = appointments;
@@ -233,7 +257,5 @@ public class CustomerDTO {
             return this == other;
         }
     }
-    
-    
-    
+
 }
