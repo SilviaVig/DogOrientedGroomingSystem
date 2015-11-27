@@ -32,11 +32,15 @@ public class AppointmentFacadeImplTest extends BaseTestCase {
     
     @Mock
     private AppointmentDurationService durationService;
+    
+    @Mock
+    private DateService dateService;
 
     @InjectMocks
     private AppointmentFacadeImpl appointmentFacade;
 
     private Mapper mapper;
+    private long day = 24 * 60 * 60;
 
     @Before
     public void initDozer() {
@@ -58,7 +62,12 @@ public class AppointmentFacadeImplTest extends BaseTestCase {
         verify(appointmentService).findAppointmentById(id);
     }
 
-    //TODO: test na today
+    @Test 
+    public void testFindAppointmentsForToday() {
+        appointmentFacade.findAllAppointmentsForToday();
+        Date tomorrow = new Date(dateService.getToday().getTime() + day);
+        verify(appointmentService).getAllAppointmentsForRange(dateService.getToday(), tomorrow);
+    }
     
     @Test
     public void testCancel() {
