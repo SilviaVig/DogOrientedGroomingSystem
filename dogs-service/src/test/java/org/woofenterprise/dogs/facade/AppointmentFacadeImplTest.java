@@ -54,6 +54,7 @@ public class AppointmentFacadeImplTest extends BaseTestCase {
 
     @Test
     public void testCreate() {
+        Appointment appointment = mock(Appointment.class);
         AppointmentDTO appointmentDTO = mock(AppointmentDTO.class);
         when(beanMappingService.map(appointmentDTO, Appointment.class)).thenReturn(appointment);
         appointmentFacade.createAppointment(appointmentDTO);
@@ -92,12 +93,11 @@ public class AppointmentFacadeImplTest extends BaseTestCase {
 
     @Test
     public void testCalculateDuration() {
-        Appointment appointment = createAppointment();
+        Appointment appointment = mock(Appointment.class);
         AppointmentDTO appointmentDTO = mapper.map(appointment, AppointmentDTO.class);
         
         Long expected = 50L;
         
-        when( durationService.getDurationForProcedures( (List<Procedure>) any() ) ).thenReturn(expected);        
         when( durationService.getDurationForProcedures( (Collection<Procedure>) any() ) ).thenReturn(expected);        
         Long duration = appointmentFacade.calculateAppointmentDuration(appointmentDTO);        
         assertEquals(expected, duration);

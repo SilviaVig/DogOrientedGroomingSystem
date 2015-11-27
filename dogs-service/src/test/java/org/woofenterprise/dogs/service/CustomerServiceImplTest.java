@@ -9,7 +9,6 @@ import static org.mockito.Mockito.verify;
 import org.woofenterprise.dogs.dao.CustomerDAO;
 import org.woofenterprise.dogs.entity.Customer;
 import org.woofenterprise.dogs.service.utils.BaseTestCase;
-import static org.woofenterprise.dogs.service.utils.EntitiesFactory.createCustomer;
 
 /**
  *
@@ -25,7 +24,7 @@ public class CustomerServiceImplTest extends BaseTestCase {
 
     @Test
     public void testCreate() {
-        Customer c = createCustomer();
+        Customer c = mock(Customer.class);
         customerService.createCustomer(c);
         verify(customerDAO).create(c);
     }

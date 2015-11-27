@@ -27,7 +27,7 @@ public class AppointmentServiceImplTest extends BaseTestCase {
 
     @Test
     public void testCreate() {
-        Appointment a = createAppointment();
+        Appointment a = mock(Appointment.class);
         appointmentService.createAppointment(a);
         verify(appointmentDAO).create(a);
     }
@@ -42,7 +42,7 @@ public class AppointmentServiceImplTest extends BaseTestCase {
     @Test
     public void testCancel() {
         Long id = 5L;
-        Appointment appointment = createAppointment();
+        Appointment appointment = mock(Appointment.class);
         appointment.setId(id);
         when(appointmentDAO.findById(id)).thenReturn(appointment);
         appointmentService.cancelAppointment(appointment);
