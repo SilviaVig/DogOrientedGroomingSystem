@@ -8,14 +8,15 @@ package org.woofenterprise.dogs.service;
 import java.util.Date;
 
 /**
- *
+ * Service for getting needed dates.
+ * 
  * @author michal.babel@embedit.cz
  */
 public interface DateService {
     
     /**
-     *
-     * @return
+     * Retrieves "today's" midnight.
+     * @return "today's"  midnight
      */
     public Date getToday();
     

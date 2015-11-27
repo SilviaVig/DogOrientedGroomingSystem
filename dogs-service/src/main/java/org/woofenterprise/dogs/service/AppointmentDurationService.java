@@ -4,6 +4,8 @@ import java.util.Collection;
 import org.woofenterprise.dogs.utils.Procedure;
 
 /**
+ * Service for calculating the duration of Appointment.
+ * 
  * @author Silvia.Vigasova
  */
 public interface AppointmentDurationService {

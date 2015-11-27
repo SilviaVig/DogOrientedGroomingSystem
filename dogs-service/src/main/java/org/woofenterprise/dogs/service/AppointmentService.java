@@ -6,54 +6,55 @@ import java.util.Collection;
 import java.util.Date;
 
 /**
+ * An interface that defines a service access to the {@link Appointment} entity.
  * Created by Silvia.Vigasova on 25.11.2015.
  */
 public interface AppointmentService {
     
     /**
-     *
-     * @param appointment
-     * @return
+     * Find appointment with specific id.
+     * @param appointmentId appointment id
+     * @return Appointment entity with given id
      */
-    Appointment findAppointmentById(Long appointment);
+    Appointment findAppointmentById(Long appointmentId);
 
     /**
-     *
-     * @param appointment
+     * Creates appointment .
+     * @param appointment appointment to creaate
      */
     void createAppointment(Appointment appointment);
 
     /**
-     *
-     * @param appointment
+     * Cancels given appointment.
+     * @param appointment appointment to cancel
      */
     void cancelAppointment(Appointment appointment);
 
     /**
-     *
-     * @return
+     * Retrieves all appointments.
+     * @return all apointments
      */
     Collection<Appointment> getAllAppointments();
 
     /**
-     *
-     * @param startTime
-     * @param endTime
-     * @return
+     * Retrieves all appointments with start time in specific range.
+     * @param startTime starting border
+     * @param endTime ending border
+     * @return appointments with starting time between startTime and endTime
      */
     Collection<Appointment> getAllAppointmentsForRange(Date startTime, Date endTime);
     
     /**
-     *
-     * @param time
-     * @return
+     * Retrieves all appointments that starts before specific time.
+     * @param time ending border
+     * @return appointments with starting time before time.
      */
     Collection<Appointment> getAllAppointmentsBefore(Date time);
     
     /**
-     *
-     * @param time
-     * @return
+     * Retrieves all appointments that starts after specific time.
+     * @param time starting border
+     * @return appointments with starting time after time
      */
     Collection<Appointment> getAllAppointmentsAfter(Date time);
 }

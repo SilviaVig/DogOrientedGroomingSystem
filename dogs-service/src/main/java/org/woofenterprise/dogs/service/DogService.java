@@ -5,33 +5,34 @@ import org.woofenterprise.dogs.entity.Dog;
 import java.util.Collection;
 
 /**
- * Created by Silvia.Vigasova on 25.11.2015.
+ * An interface that defines a service access to the {@link Dog} entity.
+ * 
+ * @author Silvia.Vigasova 
  */
 public interface DogService {
 
     /**
-     *
-     * @param dogId
-     * @return
+     * Find dog with specific id.
+     * @param dogId id of dog to find
+     * @return Dog entity with specific nid
      */
     Dog findDogById(Long dogId);
 
     /**
-     *
-     * @param dog
-     * @return
+     * Creates Dog.
+     * @param dog dog to  create
      */
     void createDog(Dog dog);
 
     /**
-     *
-     * @param dog
+     * Deletes dog.
+     * @param dog dog to delete
      */
     void deleteDog(Dog dog);
 
     /**
-     *
-     * @return
+     * Retrieves all dogs.
+     * @return all dogs
      */
     Collection<Dog> getAllDogs();
     
