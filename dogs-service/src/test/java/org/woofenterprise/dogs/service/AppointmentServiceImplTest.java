@@ -6,12 +6,12 @@ import java.util.Date;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.woofenterprise.dogs.dao.AppointmentDAO;
 import org.woofenterprise.dogs.entity.Appointment;
 import org.woofenterprise.dogs.service.utils.BaseTestCase;
-import static org.woofenterprise.dogs.service.utils.EntitiesFactory.*;
 
 /**
  *
@@ -19,8 +19,6 @@ import static org.woofenterprise.dogs.service.utils.EntitiesFactory.*;
  */
 public class AppointmentServiceImplTest extends BaseTestCase {
 
-    @Mock
-    private DateService dateService;
     @Mock
     private AppointmentDAO appointmentDAO;
 
@@ -60,19 +58,19 @@ public class AppointmentServiceImplTest extends BaseTestCase {
     
     @Test
     public void testGetAppointmentsForRange() {
-        Date time = dateService.getToday();
+        Date time = mock(Date.class);
         Collection<Appointment> result = appointmentService.getAllAppointmentsForRange(time, time);
         verify(appointmentDAO).findAllAppointmentsForRange(time, time);
     } 
     @Test
     public void testGetAppointmentsAfter() {
-        Date time = dateService.getToday();
+        Date time = mock(Date.class);
         Collection<Appointment> result = appointmentService.getAllAppointmentsAfter(time);
         verify(appointmentDAO).findAllAppointmentsAfter(time);
     }
     @Test
     public void testGetAppointmentsBefore() {
-        Date time = dateService.getToday();
+        Date time = mock(Date.class);
         Collection<Appointment> result = appointmentService.getAllAppointmentsBefore(time);
         verify(appointmentDAO).findAllAppointmentsBefore(time);
     }
