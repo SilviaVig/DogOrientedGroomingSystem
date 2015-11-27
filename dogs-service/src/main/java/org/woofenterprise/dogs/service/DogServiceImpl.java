@@ -1,30 +1,39 @@
 package org.woofenterprise.dogs.service;
 
 import java.util.Collection;
+
 import org.springframework.stereotype.Service;
+import org.woofenterprise.dogs.dao.DogDAO;
 import org.woofenterprise.dogs.entity.Dog;
 
+import javax.inject.Inject;
+
+/**
+ * @author Silvia.Vigasova 
+ */
 @Service
 public class DogServiceImpl implements DogService {
 
+    @Inject
+    private DogDAO dogDAO;
+
     @Override
     public Dog findDogById(Long dogId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dogDAO.findById(dogId);
     }
 
     @Override
-    public Long createDog(Dog dog) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void createDog(Dog dog) {
+        dogDAO.create(dog);
     }
 
     @Override
-    public void deleteDog(Long dogId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteDog(Dog dog) {
+        dogDAO.delete(dog);
     }
 
     @Override
     public Collection<Dog> getAllDogs() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dogDAO.findAll();
     }
-
 }
