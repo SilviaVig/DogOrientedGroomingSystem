@@ -48,7 +48,7 @@ public class CustomerFacadeImplTest extends BaseTestCase {
         Customer customer = createCustomer();
         CustomerDTO customerDTO = mapper.map(customer, CustomerDTO.class);
         when(beanMappingService.map(customerDTO, Customer.class)).thenReturn(customer);
-        Long resultId = customerFacade.createCustomer(customerDTO);
+        customerFacade.createCustomer(customerDTO);
         verify(customerService).createCustomer(customer);
     }
 

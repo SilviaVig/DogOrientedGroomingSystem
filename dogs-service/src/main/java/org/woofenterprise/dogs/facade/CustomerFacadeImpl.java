@@ -30,9 +30,9 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public Long createCustomer(CustomerDTO customerDTO) {
+    public void createCustomer(CustomerDTO customerDTO) {
         Customer c = beanMappingService.map(customerDTO, Customer.class);
-        return customerService.createCustomer(c);
+        customerService.createCustomer(c);
     }
 
     @Override

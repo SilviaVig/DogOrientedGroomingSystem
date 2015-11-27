@@ -13,7 +13,7 @@ public interface CustomerFacade {
 
     CustomerDTO findCustomerByEmail(String email);
     
-    Long createCustomer(CustomerDTO customerDTO);
+    void createCustomer(CustomerDTO customerDTO);
     
     void deleteCustomer(CustomerDTO customerDTO);
 

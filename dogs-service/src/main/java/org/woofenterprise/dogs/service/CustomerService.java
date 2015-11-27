@@ -12,7 +12,7 @@ public interface CustomerService {
 
     Customer findCustomerByEmail(String email);
 
-    Long createCustomer(Customer customer);
+    void createCustomer(Customer customer);
 
     void deleteCustomer(Customer customer);
 

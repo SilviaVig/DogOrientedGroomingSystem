@@ -26,7 +26,7 @@ public class CustomerServiceImplTest extends BaseTestCase {
     @Test
     public void testCreate() {
         Customer c = createCustomer();
-        Long resultId = customerService.createCustomer(c);
+        customerService.createCustomer(c);
         verify(customerDAO).create(c);
     }
 

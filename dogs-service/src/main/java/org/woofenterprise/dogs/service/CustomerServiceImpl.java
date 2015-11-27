@@ -18,7 +18,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Long createCustomer(Customer customer) {
+    public void createCustomer(Customer customer) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
