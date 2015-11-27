@@ -3,12 +3,14 @@ package org.woofenterprise.dogs.facade;
 import java.util.Collection;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.woofenterprice.dogs.dto.CustomerDTO;
 import org.woofenterprise.dogs.service.BeanMappingService;
 import org.woofenterprise.dogs.service.CustomerService;
 import org.woofenterprise.dogs.entity.Customer;
 
 @Service
+@Transactional
 public class CustomerFacadeImpl implements CustomerFacade {
     
     @Inject

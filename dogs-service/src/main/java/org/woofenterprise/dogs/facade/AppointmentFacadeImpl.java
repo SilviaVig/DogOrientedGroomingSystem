@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.woofenterprice.dogs.dto.AppointmentDTO;
 import org.woofenterprise.dogs.entity.Appointment;
 import org.woofenterprise.dogs.service.AppointmentDurationService;
@@ -13,6 +14,7 @@ import org.woofenterprise.dogs.service.BeanMappingService;
 import org.woofenterprise.dogs.service.DateService;
 
 @Service
+@Transactional
 public class AppointmentFacadeImpl implements AppointmentFacade {
     
     @Inject
