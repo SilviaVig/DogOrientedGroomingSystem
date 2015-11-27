@@ -13,9 +13,9 @@ public interface AppointmentFacade {
 
     Collection<AppointmentDTO> findAllAppointmentsForToday();
 
-    Long createAppointment(AppointmentDTO appointmentDTO);
+    void createAppointment(AppointmentDTO appointmentDTO);
 
-    void cancelAppointment(Long appointmentId);
+    void cancelAppointment(AppointmentDTO appointmentDTO);
 
     Collection<AppointmentDTO> getAllAppointments();
     

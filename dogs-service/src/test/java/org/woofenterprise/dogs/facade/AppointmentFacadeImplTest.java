@@ -1,5 +1,6 @@
 package org.woofenterprise.dogs.facade;
 
+import java.util.Date;
 import java.util.List;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -15,6 +16,7 @@ import org.woofenterprice.dogs.dto.AppointmentDTO;
 import org.woofenterprise.dogs.entity.Appointment;
 import org.woofenterprise.dogs.service.AppointmentDurationService;
 import org.woofenterprise.dogs.service.AppointmentService;
+import org.woofenterprise.dogs.service.DateService;
 import org.woofenterprise.dogs.service.utils.BaseTestCase;
 import static org.woofenterprise.dogs.service.utils.EntitiesFactory.createAppointment;
 import org.woofenterprise.dogs.utils.Procedure;
@@ -45,7 +47,7 @@ public class AppointmentFacadeImplTest extends BaseTestCase {
     public void testCreate() {
         Appointment appointment = createAppointment();
         AppointmentDTO appointmentDTO = mapper.map(appointment, AppointmentDTO.class);
-        Long resultId = appointmentFacade.createAppointment(appointmentDTO);
+        appointmentFacade.createAppointment(appointmentDTO);
         verify(appointmentService).createAppointment(appointment);
     }
 
@@ -60,9 +62,10 @@ public class AppointmentFacadeImplTest extends BaseTestCase {
     
     @Test
     public void testCancel() {
-        Long id = 5L;
-        appointmentFacade.cancelAppointment(id);
-        verify(appointmentService).cancelAppointment(id);
+        Appointment appointment = createAppointment();
+        AppointmentDTO appointmentDTO = mapper.map(appointment, AppointmentDTO.class);
+        appointmentFacade.cancelAppointment(appointmentDTO);
+        verify(appointmentService).cancelAppointment(appointment);
     }
 
     @Test
