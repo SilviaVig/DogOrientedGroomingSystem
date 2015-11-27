@@ -4,6 +4,7 @@ import java.util.Objects;
 
 /**
  * DTO for Dog entity.
+ * 
  * @author michal.babel@embedit.cz
  */
 public class DogDTO {
@@ -14,66 +15,74 @@ public class DogDTO {
     private String hobbies;
     
     private CustomerDTO owner;
-
+    
     /**
+     * Returns id of referenced entity.
      *
-     * @return
+     * @return id of referenced entity
      */
     public Long getId() {
         return id;
     }
 
     /**
+     * Sets the id of referenced entity.
      *
-     * @param id
+     * @param id id of referenced entity.
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
+     * Returns dogs name.
      *
-     * @return
+     * @return dogs name
      */
     public String getName() {
         return name;
     }
 
     /**
+     * Sets dogs name.
      *
-     * @param name
+     * @param name dogs name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
+     * Returns dogs hobbies.
      *
-     * @return
+     * @return dogs hobbies
      */
     public String getHobbies() {
         return hobbies;
     }
 
     /**
+     * Sets dogs hobbies.
      *
-     * @param hobbies
+     * @param hobbies dogs hobbies
      */
     public void setHobbies(String hobbies) {
         this.hobbies = hobbies;
     }
 
     /**
-     *
-     * @return
+     * Returns dogs owner.
+     * 
+     * @return customer owning this dog
      */
     public CustomerDTO getOwner() {
         return owner;
     }
 
     /**
-     *
-     * @param owner
+     * Sets dogs owner.
+     * 
+     * @param owner customer which will take care of this dog
      */
     public void setOwner(CustomerDTO owner) {
         this.owner = owner;
