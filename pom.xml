@@ -84,5 +84,6 @@
         <module>dogs-persistence</module>
         <module>dogs-api</module>
         <module>dogs-service</module>
+        <module>dogs-rest</module>
     </modules>
 </project>
