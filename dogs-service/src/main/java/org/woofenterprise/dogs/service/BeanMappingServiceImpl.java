@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.inject.Inject;
 import org.dozer.Mapper;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Michal.Babel
  */
+@Service
 public class BeanMappingServiceImpl implements BeanMappingService {
     
     @Inject
