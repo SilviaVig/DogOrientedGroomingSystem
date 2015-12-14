@@ -23,8 +23,7 @@ public class HelloWorldController {
     CustomerFacade facade;
     
     @RequestMapping("/world")
-    @ResponseBody
     public String world() {
-        return "Hello World!" + facade.getAllCustomers().toString();
+        return "hello/world";
     }
 }
