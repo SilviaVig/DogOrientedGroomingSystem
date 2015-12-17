@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.woofenterprise.dogs.config.PersistenceConfiguration;
 import org.woofenterprise.dogs.entity.Appointment;
 import org.woofenterprise.dogs.entity.Customer;
 import org.woofenterprise.dogs.entity.Dog;
@@ -14,7 +15,7 @@ import org.woofenterprise.dogs.entity.Dog;
 import java.util.Date;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = DogsPersistenceApplication.class)
+@SpringApplicationConfiguration(classes = PersistenceConfiguration.class)
 public class DogsPersistenceApplicationTests {
 
     @Inject

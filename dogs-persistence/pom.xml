@@ -4,7 +4,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dogs-persistence</artifactId>
-    <packaging>jar</packaging>
 
     <name>dogs-persistence</name>
     <description>Persistence for DOGS.</description>
@@ -39,13 +38,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-	
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+
 </project>

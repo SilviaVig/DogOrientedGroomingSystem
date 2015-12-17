@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.woofenterprise.dogs.web.config;
+package org.woofenterprise.dogs.config;
 
 import javax.servlet.Filter;
 import org.springframework.web.filter.CharacterEncodingFilter;

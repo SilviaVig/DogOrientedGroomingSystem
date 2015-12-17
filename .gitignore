@@ -71,3 +71,4 @@ pom.xml.tag
 mvnw
 mvnw.cmd
 /dogs-persistence/lib/
+*.log

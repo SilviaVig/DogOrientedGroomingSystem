@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.woofenterprise.dogs.web.config;
+package org.woofenterprise.dogs.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 @EnableWebMvc
 @Configuration
-@Import({DogsConfiguration.class})
+@Import({WebConfiguration.class})
 @ComponentScan(basePackages = "org.woofenterprise.dogs.web.controllers")
 public class SpringMvcConfig {
     

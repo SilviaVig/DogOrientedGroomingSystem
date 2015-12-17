@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.woofenterprise.dogs.DogsPersistenceApplication;
+import org.woofenterprise.dogs.config.PersistenceConfiguration;
 import org.woofenterprise.dogs.entity.Appointment;
 
 import javax.inject.Inject;
@@ -30,7 +30,7 @@ import static org.woofenterprise.dogs.dao.utils.EntitiesFactory.createCustomer;
  * @author michal.babel
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = DogsPersistenceApplication.class)
+@SpringApplicationConfiguration(classes = PersistenceConfiguration.class)
 @Transactional
 public class AppointmentDAOTest {
 
