@@ -72,3 +72,4 @@ mvnw
 mvnw.cmd
 /dogs-persistence/lib/
 *.log
+dogs-web/src/main/webapp/META-INF/context.xml
