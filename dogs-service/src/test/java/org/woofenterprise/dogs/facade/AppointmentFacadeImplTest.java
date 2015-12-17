@@ -14,7 +14,7 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import org.woofenterprice.dogs.dto.AppointmentDTO;
+import org.woofenterprise.dogs.dto.AppointmentDTO;
 import org.woofenterprise.dogs.entity.Appointment;
 import org.woofenterprise.dogs.service.AppointmentDurationService;
 import org.woofenterprise.dogs.service.AppointmentService;

@@ -2,9 +2,8 @@ package org.woofenterprise.dogs.facade;
 
 import java.util.Collection;
 import javax.inject.Inject;
-import org.woofenterprice.dogs.dto.DogDTO;
+import org.woofenterprise.dogs.dto.DogDTO;
 import org.woofenterprise.dogs.entity.Dog;
-import org.woofenterprise.dogs.facade.DogFacade;
 import org.woofenterprise.dogs.service.BeanMappingService;
 import org.woofenterprise.dogs.service.DogService;
 

@@ -1,6 +1,6 @@
 package org.woofenterprise.dogs.facade;
 
-import org.woofenterprice.dogs.dto.AppointmentDTO;
+import org.woofenterprise.dogs.dto.AppointmentDTO;
 
 import java.util.Collection;
 

@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import org.woofenterprice.dogs.dto.CustomerDTO;
+import org.woofenterprise.dogs.dto.CustomerDTO;
 import org.woofenterprise.dogs.entity.Customer;
 import org.woofenterprise.dogs.service.BeanMappingService;
 import org.woofenterprise.dogs.service.CustomerService;

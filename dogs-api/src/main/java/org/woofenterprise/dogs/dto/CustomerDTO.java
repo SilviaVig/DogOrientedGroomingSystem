@@ -1,4 +1,4 @@
-package org.woofenterprice.dogs.dto;
+package org.woofenterprise.dogs.dto;
 
 import java.util.HashSet;
 import java.util.Objects;

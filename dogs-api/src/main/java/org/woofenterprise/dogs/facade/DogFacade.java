@@ -1,7 +1,7 @@
 package org.woofenterprise.dogs.facade;
 
 import java.util.Collection;
-import org.woofenterprice.dogs.dto.DogDTO;
+import org.woofenterprise.dogs.dto.DogDTO;
 
 /**
  *
