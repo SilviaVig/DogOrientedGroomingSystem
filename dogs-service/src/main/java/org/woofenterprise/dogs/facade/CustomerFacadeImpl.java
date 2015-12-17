@@ -22,13 +22,13 @@ public class CustomerFacadeImpl implements CustomerFacade {
     @Override
     public CustomerDTO findCustomerById(Long customerId) {
         Customer c = customerService.findCustomerById(customerId);
-        return beanMappingService.map(c, CustomerDTO.class);
+        return (c == null) ? null : beanMappingService.map(c, CustomerDTO.class);
     }
 
     @Override
     public CustomerDTO findCustomerByEmail(String email) {
         Customer c = customerService.findCustomerByEmail(email);
-        return beanMappingService.map(c, CustomerDTO.class);
+        return (c == null) ? null : beanMappingService.map(c, CustomerDTO.class);
     }
 
     @Override

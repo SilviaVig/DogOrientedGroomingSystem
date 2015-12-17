@@ -32,7 +32,7 @@ public class AppointmentFacadeImpl implements AppointmentFacade {
     @Override
     public AppointmentDTO findAppointmentById(Long appointment) {
         Appointment a = appointmentService.findAppointmentById(appointment);
-        return beanMappingService.map(a, AppointmentDTO.class);
+        return (a == null) ? null : beanMappingService.map(a, AppointmentDTO.class);
     }
 
     @Override

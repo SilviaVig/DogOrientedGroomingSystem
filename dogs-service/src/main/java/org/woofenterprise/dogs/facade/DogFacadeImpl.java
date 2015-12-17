@@ -23,7 +23,7 @@ public class DogFacadeImpl implements DogFacade {
     @Override
     public DogDTO findDogById(Long dogId) {
         Dog d = dogService.findDogById(dogId);
-        return beanMappingService.map(d, DogDTO.class);
+        return (d == null) ? null : beanMappingService.map(d, DogDTO.class);
     }
 
     @Override
