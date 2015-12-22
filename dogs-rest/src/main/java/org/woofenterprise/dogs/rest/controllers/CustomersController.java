@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.woofenterprise.dogs.dto.ChangeEmailDTO;
 import org.woofenterprise.dogs.dto.CustomerCreateDTO;
 import org.woofenterprise.dogs.dto.CustomerDTO;
 import org.woofenterprise.dogs.facade.CustomerFacade;
@@ -44,8 +45,8 @@ public class CustomersController {
      * http://localhost:8080/pa165/rest/customers/1
      *
      * @param id identifier for a Customer
-     * @return CustomerDTO
-     * @throws ResourceNotFoundException
+     * @return CustomerDTO returned customer
+     * @throws ResourceNotFoundException if the customer with given id does not exist
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final CustomerDTO getCustomer(@PathVariable("id") long id) throws Exception {
@@ -64,11 +65,11 @@ public class CustomersController {
      * http://localhost:8080/pa165/rest/customers/email/neco@neco.cz
      *
      * @param email email of a Customer
-     * @return CustomerDTO
-     * @throws ResourceNotFoundException
+     * @return CustomerDTO returned customer
+     * @throws ResourceNotFoundException if the cusotmer with given email does not exist
      */
     @RequestMapping(value = "/email/{email}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final CustomerDTO getCustomerByEmail(@PathVariable("email") String email) throws Exception {
+    public final CustomerDTO getCustomerByEmail(@PathVariable("email") String email) throws ResourceNotFoundException {
         logger.debug("rest getCustomer({})", email);
         CustomerDTO customerDTO = customerFacade.findCustomerByEmail(email);
         if (customerDTO != null) {
@@ -84,10 +85,10 @@ public class CustomersController {
      * http://localhost:8080/pa165/rest/customers/1
      *
      * @param id identifier for Customer
-     * @throws ResourceNotFoundException
+     * @throws ResourceNotFoundException if the customer does not exist
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final void deleteCustomer(@PathVariable("id") long id) throws Exception {
+    public final void deleteCustomer(@PathVariable("id") long id) throws ResourceNotFoundException {
         logger.debug("rest deleteCustomer({})", id);
         try {
             CustomerDTO customerDTO = customerFacade.findCustomerById(id);
@@ -106,16 +107,31 @@ public class CustomersController {
      *
      * @param customer CustomerCreateDTO with required fields for creation
      * @return the created customer CustomerDTO
-     * @throws ResourceAlreadyExistsException
+     * @throws ResourceAlreadyExistsException if the customer already exists
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public final CustomerDTO createCustomer(@RequestBody CustomerCreateDTO customer) throws Exception {
+    public final CustomerDTO createCustomer(@RequestBody CustomerCreateDTO customer) throws ResourceAlreadyExistsException {
         try {
             Long id = customerFacade.createCustomer(customer);
             return customerFacade.findCustomerById(id);
         } catch (Exception ex) {
             throw new ResourceAlreadyExistsException();
         }
+    }
+
+    /**
+     * Update the email of a customer by PUT method curl -X PUT -i -H
+     * "Content-Type: application/json" --data '{"email":"neco@neco.cz"}'
+     * http://localhost:8080/pa165/rest/customers/1
+     *
+     * @param id       id of customer to update
+     * @param newEmail new email
+     * @return the updated customer CustomerDTO
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public final CustomerDTO changeEmail(@PathVariable("id") long id, @RequestBody ChangeEmailDTO newEmail) {
+        return customerFacade.changeEmail(id, newEmail.getNewEmail());
     }
 }

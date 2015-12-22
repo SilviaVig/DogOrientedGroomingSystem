@@ -42,4 +42,11 @@ public interface CustomerService {
      * @return all customers
      */
     Collection<Customer> getAllCustomers();
+
+    /**
+     * Updates email of a customer.
+     * @param id id of a customemr
+     * @param email new email
+     */
+    Customer changeEmail(Long id, String email);
 }

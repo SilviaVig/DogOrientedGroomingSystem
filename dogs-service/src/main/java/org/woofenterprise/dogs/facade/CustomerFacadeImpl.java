@@ -2,6 +2,7 @@ package org.woofenterprise.dogs.facade;
 
 import java.util.Collection;
 import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.woofenterprise.dogs.dto.CustomerCreateDTO;
@@ -50,5 +51,11 @@ public class CustomerFacadeImpl implements CustomerFacade {
         Collection<Customer> customers = customerService.getAllCustomers();
         return beanMappingService.map(customers, CustomerDTO.class);
     }
-    
+
+    @Override
+    public CustomerDTO changeEmail(Long customerId, String newEmail) {
+        Customer customer = customerService.changeEmail(customerId, newEmail);
+        return beanMappingService.map(customer, CustomerDTO.class);
+    }
+
 }

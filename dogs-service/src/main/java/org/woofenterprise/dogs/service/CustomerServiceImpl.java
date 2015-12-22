@@ -41,4 +41,11 @@ public class CustomerServiceImpl implements CustomerService {
     public Collection<Customer> getAllCustomers() {
         return customerDAO.findAll();
     }
+
+    @Override
+    public Customer changeEmail(Long customerId, String email) {
+        Customer customer = customerDAO.findById(customerId);
+        customer.setEmail(email);
+        return customerDAO.update(customer);
+    }
 }

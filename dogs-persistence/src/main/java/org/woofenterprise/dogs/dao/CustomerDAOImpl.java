@@ -39,8 +39,8 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public void update(Customer customer) {
-        em.merge(customer);
+    public Customer update(Customer customer) {
+        return em.merge(customer);
     }
 
     @Override

@@ -6,7 +6,7 @@ import org.woofenterprise.dogs.dto.CustomerDTO;
 import java.util.Collection;
 
 /**
- * Created by Silvia.Vigasova on 25.11.2015.
+ * @author Silvia.Vigasova
  */
 public interface CustomerFacade {
 
@@ -46,5 +46,12 @@ public interface CustomerFacade {
      * @return collection of customers converted to DTO objects.
      */
     Collection<CustomerDTO> getAllCustomers();
+
+    /**
+     * Changes email for customer with specified id.
+     * @param customerId id of customer
+     * @param email new email
+     */
+    CustomerDTO changeEmail(Long customerId, String email);
 
 }

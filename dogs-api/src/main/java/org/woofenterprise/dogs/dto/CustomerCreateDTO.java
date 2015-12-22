@@ -8,7 +8,6 @@ import java.util.Objects;
  */
 public class CustomerCreateDTO {
 
-    private Long id;
     private String name;
     private String surname;
     private String email;
@@ -16,24 +15,6 @@ public class CustomerCreateDTO {
     private String addressCity;
     private String addressCountry;
     private String addressPostalCode;
-
-    /**
-     * Returns customers Id.
-     *
-     * @return customers id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Sets customers id.
-     *
-     * @param id id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      * Returns customers name.
@@ -162,30 +143,33 @@ public class CustomerCreateDTO {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 5;
-        if (this.id != null) {
-            hash = 53 * hash + Objects.hashCode(this.id);
-        } else {
-            hash = 53 * hash + System.identityHashCode(this);
-        }
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CustomerCreateDTO that = (CustomerCreateDTO) o;
+
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (addressFirstLine != null ? !addressFirstLine.equals(that.addressFirstLine) : that.addressFirstLine != null)
+            return false;
+        if (addressCity != null ? !addressCity.equals(that.addressCity) : that.addressCity != null) return false;
+        if (addressCountry != null ? !addressCountry.equals(that.addressCountry) : that.addressCountry != null)
+            return false;
+        return addressPostalCode != null ? addressPostalCode.equals(that.addressPostalCode) : that.addressPostalCode == null;
+
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof CustomerCreateDTO)) {
-            return false;
-        }
-        final CustomerCreateDTO other = (CustomerCreateDTO) obj;
-        if (this.id != null) {
-            return Objects.equals(this.id, other.id);
-        } else {
-            return this == other;
-        }
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (addressFirstLine != null ? addressFirstLine.hashCode() : 0);
+        result = 31 * result + (addressCity != null ? addressCity.hashCode() : 0);
+        result = 31 * result + (addressCountry != null ? addressCountry.hashCode() : 0);
+        result = 31 * result + (addressPostalCode != null ? addressPostalCode.hashCode() : 0);
+        return result;
     }
-
 }

@@ -43,7 +43,7 @@ public interface CustomerDAO {
      *
      * @param customer customer to update
      */
-    public void update(Customer customer);
+    public Customer update(Customer customer);
     
     /**
      * Retrieves all persisted customers.
