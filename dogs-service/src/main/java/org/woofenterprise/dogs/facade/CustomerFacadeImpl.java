@@ -4,6 +4,7 @@ import java.util.Collection;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.woofenterprise.dogs.dto.CustomerCreateDTO;
 import org.woofenterprise.dogs.dto.CustomerDTO;
 import org.woofenterprise.dogs.service.BeanMappingService;
 import org.woofenterprise.dogs.service.CustomerService;
@@ -32,9 +33,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public void createCustomer(CustomerDTO customerDTO) {
-        Customer c = beanMappingService.map(customerDTO, Customer.class);
+    public Long createCustomer(CustomerCreateDTO customerCreateDTO) {
+        Customer c = beanMappingService.map(customerCreateDTO, Customer.class);
         customerService.createCustomer(c);
+        return c.getId();
     }
 
     @Override

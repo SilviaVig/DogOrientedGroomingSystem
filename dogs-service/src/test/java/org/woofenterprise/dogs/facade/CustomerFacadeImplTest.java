@@ -9,6 +9,8 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import org.woofenterprise.dogs.dto.CustomerCreateDTO;
 import org.woofenterprise.dogs.dto.CustomerDTO;
 import org.woofenterprise.dogs.entity.Customer;
 import org.woofenterprise.dogs.service.BeanMappingService;
@@ -42,9 +44,9 @@ public class CustomerFacadeImplTest extends BaseTestCase {
     @Test
     public void testCreate() {
         Customer customer = mock(Customer.class);
-        CustomerDTO customerDTO = mock(CustomerDTO.class);
-        when(beanMappingService.map(customerDTO, Customer.class)).thenReturn(customer);
-        customerFacade.createCustomer(customerDTO);
+        CustomerCreateDTO customerCreateDTO = mock(CustomerCreateDTO.class);
+        when(beanMappingService.map(customerCreateDTO, Customer.class)).thenReturn(customer);
+        customerFacade.createCustomer(customerCreateDTO);
         verify(customerService).createCustomer(customer);
     }
 

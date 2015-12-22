@@ -29,7 +29,7 @@ public interface CustomerService {
      *  Creates Customer.
      * @param customer customer to create
      */
-    void createCustomer(Customer customer);
+    Customer createCustomer(Customer customer);
 
     /**
      * Deletes Customer.

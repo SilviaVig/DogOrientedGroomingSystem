@@ -29,7 +29,7 @@ public interface CustomerDAO {
      *
      * @param customer customer to persist
      */
-    public void create(Customer customer);
+    public Customer create(Customer customer);
 
     /**
      * Removes a persisted customer.

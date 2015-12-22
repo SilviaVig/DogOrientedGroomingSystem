@@ -1,5 +1,6 @@
 package org.woofenterprise.dogs.facade;
 
+import org.woofenterprise.dogs.dto.CustomerCreateDTO;
 import org.woofenterprise.dogs.dto.CustomerDTO;
 
 import java.util.Collection;
@@ -30,7 +31,7 @@ public interface CustomerFacade {
      *
      * @param customerDTO customer to create.
      */
-    void createCustomer(CustomerDTO customerDTO);
+    Long createCustomer(CustomerCreateDTO customerDTO);
 
     /**
      * Deletes customer.

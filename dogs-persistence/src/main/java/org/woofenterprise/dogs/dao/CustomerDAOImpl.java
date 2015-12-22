@@ -23,8 +23,9 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public void create(Customer customer) {
+    public Customer create(Customer customer) {
         em.persist(customer);
+        return customer;
     }
 
     @Override
