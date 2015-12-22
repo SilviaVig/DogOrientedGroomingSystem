@@ -100,8 +100,8 @@ public class CustomersController {
     /**
      * Create a new Customer by POST method
      * curl -X POST -i -H "Content-Type: application/json" --data
-     * '{"name":"Feri","surname":"Mrkvicka", "email":"feri.mrkvicka@neco.com", "addressFirstLine":"bla",
-     * "addressCity":"Tramtaria", "addressCountry":"Narnia", "addressPostalCode":"62400"}'
+     * '{"name":"Feri","surname":"Mrkvicka","email":"feri.mrkvicka@neco.com","addressFirstLine":"bla",
+     * "addressCity":"Tramtaria","addressCountry":"Narnia","addressPostalCode":"62400"}'
      * http://localhost:8080/pa165/rest/customers/create
      *
      * @param customer CustomerCreateDTO with required fields for creation
