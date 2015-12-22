@@ -1,5 +1,6 @@
 package org.woofenterprise.dogs.dto;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -29,8 +30,10 @@ public class CustomerDTO {
 
     private String phoneNumber;
 
+    @JsonManagedReference
     private Set<DogDTO> dogs = new HashSet<>();
 
+    @JsonManagedReference
     private Set<AppointmentDTO> appointments = new HashSet<>();
 
     /**

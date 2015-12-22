@@ -1,5 +1,7 @@
 package org.woofenterprise.dogs.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -16,6 +18,7 @@ public class AppointmentDTO {
 
     private Long id;
 
+    @JsonBackReference
     private CustomerDTO customer;
 
     private DogDTO dog;

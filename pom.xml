@@ -75,5 +75,6 @@
         <module>dogs-service</module>
         <module>dogs-rest</module>
         <module>dogs-web</module>
+        <module>dogs-sample-data</module>
     </modules>
 </project>

@@ -1,5 +1,7 @@
 package org.woofenterprise.dogs.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
 
 /**
@@ -14,6 +16,7 @@ public class DogDTO {
 
     private String hobbies;
     
+    @JsonBackReference
     private CustomerDTO owner;
     
     /**
