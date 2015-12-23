@@ -70,7 +70,8 @@ h1, h2, h3 {
   cursor: pointer;
   text-decoration: none;
   border: 0;
-  border-radius: 5px; }
+  border-radius: 5px;
+  white-space: nowrap; }
   .btn:hover {
     background: #6E45AC;
     /* Old browsers */
@@ -127,10 +128,12 @@ table {
   table tbody tr:hover td {
     background: #dcd1ec; }
 
-dl dt {
+dt, label {
   font-weight: bold;
   font-size: 0.8em; }
-dl dd {
+
+dd, input, select {
+  display: block;
   margin: 0 0 1em; }
 
 .alert {

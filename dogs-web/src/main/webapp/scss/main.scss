@@ -89,6 +89,7 @@ h1,h2,h3 {
     text-decoration: none;
     border: 0;
     border-radius: 5px;
+    white-space: nowrap;
     
     &:hover {
         @include linearGradient($accent-color, darken($accent-color, 10%));
@@ -137,15 +138,15 @@ table {
     }
 }
 
-dl {
-    dt {
-        font-weight: bold;
-        font-size: 0.8em;
-    }
-    dd {
-        margin: 0 0 1em;
-    }
+dt, label {
+    font-weight: bold;
+    font-size: 0.8em;
 }
+dd, input, select {
+    display: block;
+    margin: 0 0 1em;
+}
+
 
 .alert {
     

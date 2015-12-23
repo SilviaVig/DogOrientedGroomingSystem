@@ -8,15 +8,15 @@
 <my:pagetemplate title="Dogs">
     <jsp:attribute name="body">   
         
-        <p><my:a href="/dogs/new" class="btn" >Create new dog</my:a></p>
+        <p><my:a href="/customers/" class="btn" >Create new dog</my:a></p>
         
         <table>
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th width="50%">Name</th>
-                    <th width="50%">Owner</th>
-                    <th colspan="2">Actions</th>
+                    <th width="30%">Name</th>
+                    <th width="30%">Owner</th>
+                    <th width="30%" colspan="3">Actions</th>
                 </tr>
             </thead>
             
@@ -28,6 +28,9 @@
                         <td><my:a href="/customers/view/${dog.owner.id}"><c:out value="${dog.owner.name} ${dog.owner.surname}"/></my:a></td>
                         <td>
                             <my:a href="/dogs/view/${dog.id}" class="btn">View</my:a>
+                        </td>
+                        <td>
+                            <my:a href="/appointments/new/dog/${dog.id}" class="btn">Create Appointment</my:a>
                         </td>
                         <td>
                             <form method="post" action="${pageContext.request.contextPath}/dogs/delete/${dog.id}">

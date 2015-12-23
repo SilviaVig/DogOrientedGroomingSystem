@@ -8,7 +8,7 @@
 <my:pagetemplate title="Appointments">
     <jsp:attribute name="body">   
         
-        <p><my:a href="/appointments/new" class="btn" >Create new appointment</my:a></p>
+        <p><my:a href="/dogs/" class="btn" >Create new appointment</my:a></p>
         
         <table>
             <thead>

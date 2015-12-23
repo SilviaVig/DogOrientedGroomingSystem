@@ -9,7 +9,6 @@
     <jsp:attribute name="body">   
         
         <form class="inline" method="post" action="${pageContext.request.contextPath}/appointments/delete/${appointment.id}">
-            <my:a href="/appointments/edit/${appointment.id}" class="btn" >Edit appointment</my:a>
             <button type="submit" class="btn">Delete appointment</button>
         </form>
         

@@ -118,8 +118,8 @@ public class Dog {
      * @param appointment appointment to set
      */
     public void addAppointment(Appointment appointment) {
-        this.appointments.add(appointment);
         appointment.setDog(this);
+        this.appointments.add(appointment);
     }
 
     @Override

@@ -6,12 +6,16 @@ import java.util.Date;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.woofenterprise.dogs.dto.AppointmentCreateDTO;
 import org.woofenterprise.dogs.dto.AppointmentDTO;
 import org.woofenterprise.dogs.entity.Appointment;
+import org.woofenterprise.dogs.entity.Dog;
 import org.woofenterprise.dogs.service.AppointmentDurationService;
 import org.woofenterprise.dogs.service.AppointmentService;
 import org.woofenterprise.dogs.service.BeanMappingService;
 import org.woofenterprise.dogs.service.DateService;
+import org.woofenterprise.dogs.service.DogService;
+import org.woofenterprise.dogs.utils.Procedure;
 
 @Service
 @Transactional
@@ -19,6 +23,9 @@ public class AppointmentFacadeImpl implements AppointmentFacade {
     
     @Inject
     AppointmentService appointmentService;
+    
+    @Inject
+    DogService dogService;
     
     @Inject
     DateService dateService;
@@ -47,9 +54,15 @@ public class AppointmentFacadeImpl implements AppointmentFacade {
     }
 
     @Override
-    public void createAppointment(AppointmentDTO appointmentDTO) {
-        Appointment a = beanMappingService.map(appointmentDTO, Appointment.class);
+    public AppointmentDTO createAppointment(AppointmentCreateDTO appointmentCreateDTO) {
+        Dog d = dogService.findDogById(appointmentCreateDTO.getDogId());
+        Appointment a = beanMappingService.map(appointmentCreateDTO, Appointment.class);
+        for (Procedure p : appointmentCreateDTO.getProcedures()) {
+            a.addProcedure(p);
+        }
+        d.addAppointment(a);
         appointmentService.createAppointment(a);
+        return beanMappingService.map(a, AppointmentDTO.class);
     }
 
     @Override
