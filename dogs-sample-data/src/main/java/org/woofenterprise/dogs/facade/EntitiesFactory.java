@@ -33,7 +33,7 @@ class EntitiesFactory {
         result.setName(faker.name().firstName());
         result.setSurname(faker.name().lastName());
         result.setEmail(faker.internet().emailAddress());
-        result.setAddressCity(faker.address().citySuffix());
+        result.setAddressCity(faker.address().city());
         result.setAddressCountry(faker.address().country());
         result.setAddressFirstLine(faker.address().streetAddress(false));
         result.setAddressPostalCode(faker.address().zipCode());
