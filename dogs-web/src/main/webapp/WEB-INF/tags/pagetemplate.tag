@@ -73,7 +73,7 @@
 
     <!-- footer -->
     <footer class="footer">
-        <p>&copy;&nbsp;<%=java.time.Year.now().toString()%>&nbsp;WoofEnterprise</p>
+        <p>&copy;&nbsp;<%=java.util.Calendar.getInstance().get(java.util.Calendar.YEAR)%>&nbsp;WoofEnterprise</p>
     </footer>
 </div>
 </body>
