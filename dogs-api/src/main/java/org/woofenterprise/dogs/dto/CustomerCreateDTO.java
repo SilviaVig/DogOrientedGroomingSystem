@@ -12,9 +12,11 @@ public class CustomerCreateDTO {
     private String surname;
     private String email;
     private String addressFirstLine;
+    private String addressSecondLine;
     private String addressCity;
     private String addressCountry;
     private String addressPostalCode;
+    private String phoneNumber;
 
     /**
      * Returns customers name.
@@ -140,6 +142,42 @@ public class CustomerCreateDTO {
      */
     public void setAddressPostalCode(String addressPostalCode) {
         this.addressPostalCode = addressPostalCode;
+    }
+
+    /**
+     * Returns second line of customers address.
+     *
+     * @return second line of address
+     */
+    public String getAddressSecondLine() {
+        return addressSecondLine;
+    }
+
+    /**
+     * Sets second line of address.
+     *
+     * @param addressSecondLine second line of address.
+     */
+    public void setAddressSecondLine(String addressSecondLine) {
+        this.addressSecondLine = addressSecondLine;
+    }
+
+    /**
+     * Returns phone number of customer.
+     *
+     * @return phone number of customer.
+     */
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    /**
+     * Sets phone number of customer.
+     *
+     * @param phoneNumber phone number to set
+     */
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
