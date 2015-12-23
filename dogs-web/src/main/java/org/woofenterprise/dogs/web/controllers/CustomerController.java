@@ -17,6 +17,7 @@ import org.woofenterprise.dogs.dto.CustomerDTO;
 import org.woofenterprise.dogs.facade.CustomerFacade;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import java.util.Collection;
 
 /**
@@ -53,6 +54,29 @@ public class CustomerController {
     public String view(@PathVariable long id, Model model) {
         model.addAttribute("customer", customerFacade.findCustomerById(id));
         return "customers/view";
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String create(Model model){
+        model.addAttribute("customerCreate", new CustomerCreateDTO());
+        return "customers/create";
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String create(@Valid @ModelAttribute("customerCreate") CustomerCreateDTO formBean, BindingResult bindingResult,
+                         Model model, UriComponentsBuilder uriBuilder){
+        log.error("create customer(formBean={})", formBean);
+
+        if (bindingResult.hasErrors()) {
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                log.trace("FieldError: {}", fe);
+            }
+            return "/customers/create";
+        }
+        Long id = customerFacade.createCustomer(formBean);
+
+        return "redirect:" + uriBuilder.path("/customers/").buildAndExpand(id).encode().toUriString();
     }
 
 }

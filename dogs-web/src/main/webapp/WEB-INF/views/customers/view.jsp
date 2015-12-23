@@ -23,7 +23,7 @@
             <dt>Adress</dt>
             <dd><c:out
                     value="${customer.addressFirstLine},
-                    ${customer.addressSecondLine == null ? customer.addressSecondLine : customer.addressSecondLine + \",\"}
+                    ${customer.addressSecondLine == null ? customer.addressSecondLine : customer.addressSecondLine.concat(\",\")}
                     ${customer.addressCity},
                     ${customer.addressCountry},
                     ${customer.addressPostalCode}"/>
