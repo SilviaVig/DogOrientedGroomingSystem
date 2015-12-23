@@ -12,7 +12,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
@@ -23,10 +25,20 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @Import({WebConfiguration.class})
 @ComponentScan(basePackages = "org.woofenterprise.dogs.web.controllers")
-public class SpringMvcConfig {
+public class SpringMvcConfig extends WebMvcConfigurerAdapter {
     
     
     final static Logger log = LoggerFactory.getLogger(SpringMvcConfig.class);
+    
+    
+    /**
+     * Enables default Tomcat servlet that serves static files.
+     */
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        log.debug("enabling default servlet for static files");
+        configurer.enable();
+    }
     
     /**
      * Provides mapping from view names to JSP pages in WEB-INF/jsp directory.

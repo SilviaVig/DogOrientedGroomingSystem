@@ -1,0 +1,134 @@
+body {
+  font: 16px/1.3 "Segoe UI", "Myriad Pro", sans-serif;
+  margin: 15px; }
+
+a {
+  color: #6E45AC; }
+  a:hover {
+    text-decoration: none;
+    color: #623e9a; }
+
+.container {
+  max-width: 60em;
+  margin: 0 auto; }
+
+header {
+  text-align: left;
+  border-bottom: 1px solid #6E45AC;
+  padding-bottom: 15px;
+  margin-bottom: 15px; }
+  header:after {
+    display: table;
+    clear: both;
+    content: "";
+    width: 1px;
+    height: 1px; }
+  header h1 {
+    float: left;
+    margin: 0; }
+    header h1 img {
+      height: 75px; }
+  header nav {
+    padding-top: 3em; }
+    header nav ul, header nav li {
+      display: inline; }
+    header nav a {
+      display: inline-block;
+      text-decoration: none;
+      padding: 5px 15px; }
+      header nav a:hover {
+        background: #dcd1ec; }
+
+h1, h2, h3 {
+  font-weight: lighter;
+  color: #6E45AC; }
+
+.btn {
+  display: inline-block;
+  padding: 6px 10px;
+  font: 12px/1 "Segoe UI", "Myriad Pro", sans-serif;
+  background: #8963c1;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #8963c1 0%, #6E45AC 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8963c1), color-stop(100%, #6E45AC));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #8963c1 0%, #6E45AC 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #8963c1 0%, #6E45AC 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #8963c1 0%, #6E45AC 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #8963c1 0%, #6E45AC 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 );
+  /* IE6-9 */
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  border: 0;
+  border-radius: 5px; }
+  .btn:hover {
+    background: #6E45AC;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #6E45AC 0%, #573688 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #6E45AC), color-stop(100%, #573688));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #6E45AC 0%, #573688 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #6E45AC 0%, #573688 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #6E45AC 0%, #573688 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #6E45AC 0%, #573688 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 );
+    /* IE6-9 */
+    color: #fff; }
+  .btn:active {
+    background: #573688;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #573688 0%, #6E45AC 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #573688), color-stop(100%, #6E45AC));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #573688 0%, #6E45AC 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #573688 0%, #6E45AC 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #573688 0%, #6E45AC 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #573688 0%, #6E45AC 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 );
+    /* IE6-9 */
+    color: #fff; }
+
+table {
+  border-spacing: 0;
+  width: 100%;
+  font-size: 0.9em; }
+  table thead th {
+    background: #6E45AC;
+    color: #fff;
+    text-align: left;
+    font-weight: normal;
+    padding: 3px 10px; }
+  table tbody td {
+    padding: 3px 10px; }
+    table tbody td a {
+      text-decoration: none; }
+  table tbody tr:nth-child(even) td {
+    background: #eaeaea; }
+  table tbody tr:hover td {
+    background: #dcd1ec; }
+
+footer {
+  text-align: center;
+  border-top: 1px solid #6E45AC;
+  padding-top: 15px;
+  margin-top: 15px;
+  color: #797979; }
+
+/*# sourceMappingURL=main.css.map */

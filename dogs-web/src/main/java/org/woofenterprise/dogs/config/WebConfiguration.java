@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Import;
  * @author michal
  */
 @Configuration
-@Import(FacadeConfiguration.class)
+@Import({FacadeConfiguration.class, SampleDataConfig.class})
 class WebConfiguration {
 
     @Bean

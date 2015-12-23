@@ -1,0 +1,142 @@
+$accent-color: #6E45AC;
+$margin: 15px;
+$font-family: "Segoe UI", "Myriad Pro", sans-serif;
+
+@mixin linearGradient($top, $bottom){
+    background: $top; /* Old browsers */
+    background: -moz-linear-gradient(top,  $top 0%, $bottom 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  $top 0%,$bottom 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  $top 0%,$bottom 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  $top 0%,$bottom 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  $top 0%,$bottom 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+body {
+    font: 16px/1.3 $font-family;
+    margin: $margin;
+}
+
+a {
+    color: $accent-color;
+    &:hover {
+        text-decoration: none;
+        color: darken($accent-color, 5%);
+    }
+}
+
+.container {
+    max-width: 60em;
+    margin: 0 auto;
+}
+
+header {
+    text-align: left;
+    border-bottom: 1px solid $accent-color;
+    padding-bottom: $margin;
+    margin-bottom: $margin;
+    
+    &:after {
+        display: table;
+        clear: both;
+        content: "";
+        width: 1px;
+        height: 1px;
+    }
+    
+    h1 {
+        float: left;
+        margin: 0;
+        img {
+            height: 75px;
+        }
+    }
+    nav {
+        padding-top: 3em;
+        ul, li {
+            display: inline;
+        }
+        
+        a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 5px 15px;
+            
+            &:hover {
+                background: lighten($accent-color, 40%);
+            }
+        }
+    }
+}
+
+h1,h2,h3 {
+    font-weight: lighter;
+    color: $accent-color;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 10px;
+    font: 12px/1 $font-family;
+    @include linearGradient(lighten($accent-color, 10%), $accent-color);
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    border: 0;
+    border-radius: 5px;
+    
+    &:hover {
+        @include linearGradient($accent-color, darken($accent-color, 10%));
+        color: #fff;
+    }
+    
+    &:active {
+        @include linearGradient(darken($accent-color, 10%), $accent-color);
+        color: #fff;
+        
+    }
+}
+
+table {
+    $table-margin: 3px 10px;
+    border-spacing: 0; 
+    width: 100%;
+    font-size: 0.9em;
+    
+    thead {
+        th {
+            background: $accent-color;
+            color: #fff;
+            text-align: left;
+            font-weight: normal;
+            padding: $table-margin;
+        }
+    }
+    
+    tbody {
+        td {
+            padding: $table-margin;
+            a {
+                text-decoration: none;
+            }
+        }
+        
+        
+        tr:nth-child(even) td  {
+            background: #eaeaea;
+        }
+        
+        tr:hover td {
+            background: lighten($accent-color, 40%);
+        }
+    }
+}
+
+footer {
+    text-align: center;
+    border-top: 1px solid $accent-color;
+    padding-top: $margin;
+    margin-top: $margin;
+    color: desaturate($accent-color, 100%);
+}
