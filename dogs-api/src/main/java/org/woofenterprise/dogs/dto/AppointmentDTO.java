@@ -19,8 +19,6 @@ public class AppointmentDTO {
     private Long id;
 
     @JsonBackReference
-    private CustomerDTO customer;
-
     private DogDTO dog;
 
     private Date startTime;
@@ -45,24 +43,6 @@ public class AppointmentDTO {
      */
     public void setId(Long id) {
         this.id = id;
-    }
-
-    /**
-     * Returns customer associated with the appointment.
-     *
-     * @return customer associated with the appointment
-     */
-    public CustomerDTO getCustomer() {
-        return customer;
-    }
-
-    /**
-     * Sets the customer for this appointment.
-     *
-     * @param customer the customer for this appointment
-     */
-    public void setCustomer(CustomerDTO customer) {
-        this.customer = customer;
     }
 
     /**

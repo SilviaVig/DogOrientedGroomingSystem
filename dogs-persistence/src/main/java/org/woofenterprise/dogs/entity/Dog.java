@@ -27,7 +27,7 @@ public class Dog {
     @JoinColumn(nullable = false)
     private Customer owner;
 
-    @OneToMany(mappedBy = "dog", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "dog", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Appointment> appointments = new HashSet<>();
 
     /**
@@ -119,6 +119,7 @@ public class Dog {
      */
     public void addAppointment(Appointment appointment) {
         this.appointments.add(appointment);
+        appointment.setDog(this);
     }
 
     @Override

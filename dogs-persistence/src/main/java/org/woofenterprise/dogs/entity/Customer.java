@@ -1,7 +1,13 @@
 package org.woofenterprise.dogs.entity;
 
 import java.util.*;
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * Customer entity class.
@@ -40,7 +46,7 @@ public class Customer {
 
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Dog> dogs = new HashSet<>();
 
     /**
@@ -94,8 +100,8 @@ public class Customer {
      * @param dog dog to add
      */
     public void addDog(Dog dog) {
-        dog.setOwner(this);
         this.dogs.add(dog);
+        dog.setOwner(this);
     }
 
     

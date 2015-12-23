@@ -40,7 +40,6 @@ public class SampleDataFacadeImpl implements SampleDataFacade {
             dogService.createDog(dog12);
 
             Appointment appointment1 = EntitiesFactory.createAppointment(seed+3);
-            appointment1.setCustomer(customer1);
             appointment1.setDog(dog11);
             appointmentService.createAppointment(appointment1);
         

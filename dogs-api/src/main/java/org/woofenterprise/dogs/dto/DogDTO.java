@@ -3,7 +3,6 @@ package org.woofenterprise.dogs.dto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -22,10 +21,10 @@ public class DogDTO {
     
     @JsonBackReference
     private CustomerDTO owner;
-
+    
     @JsonManagedReference
     private Set<AppointmentDTO> appointments = new HashSet<>();
-    
+
     /**
      * Returns id of referenced entity.
      *

@@ -46,7 +46,6 @@ public class DogsPersistenceApplicationTests {
         em.persist(d);
 
         Appointment a = new Appointment();
-        a.setCustomer(c);
         a.setDog(d);
         Date startDate = new Date(100);
         Date endDate = new Date(1000);

@@ -19,10 +19,6 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    private Customer customer;
-
-    @ManyToOne
-    @JoinColumn(nullable = false)
     private Dog dog;
 
     @Column(nullable = false)
@@ -54,24 +50,6 @@ public class Appointment {
      */
     public void setId(Long id) {
         this.id = id;
-    }
-
-    /**
-     * Returns customer that booked appointment.
-     *
-     * @return customer
-     */
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    /**
-     * Sets customer that booked this appointment.
-     *
-     * @param customer to set
-     */
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
 
     /**

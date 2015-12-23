@@ -77,7 +77,6 @@ public class AppointmentDAOTest {
     @Test
     public void create() {
         Appointment appointment = createAppointment();
-        appointment.setCustomer(exampleCustomer);
         appointment.setDog(exampleDog);
         appointmentDAO.create(appointment);
         assertNotNull(appointment.getId());        
@@ -86,7 +85,6 @@ public class AppointmentDAOTest {
     @Test
     public void createWithNullDog() {
         Appointment appointment = createAppointment();
-        appointment.setCustomer(exampleCustomer);
         thrown.expect(DataIntegrityViolationException.class);
         appointmentDAO.create(appointment);
     }
@@ -94,12 +92,10 @@ public class AppointmentDAOTest {
     @Test
     public void findAll() {
         Appointment appointment = createAppointment();
-        appointment.setCustomer(exampleCustomer);
         appointment.setDog(exampleDog);
         appointmentDAO.create(appointment);
         
         Appointment appointment2 = createAppointment(1);
-        appointment2.setCustomer(exampleCustomer2);
         appointment2.setDog(exampleDog2);
         appointmentDAO.create(appointment2);
         
@@ -112,7 +108,6 @@ public class AppointmentDAOTest {
     @Test
     public void findById() {
         Appointment appointment = createAppointment();
-        appointment.setCustomer(exampleCustomer);
         appointment.setDog(exampleDog);
         appointmentDAO.create(appointment);
         
@@ -124,13 +119,11 @@ public class AppointmentDAOTest {
     @Test
     public void update() {
         Appointment appointment = createAppointment();
-        appointment.setCustomer(exampleCustomer);
         appointment.setDog(exampleDog);
         appointmentDAO.create(appointment);
         
         Appointment appointment2 = createAppointment(1);
         appointment2.setDog(exampleDog2);
-        appointment2.setCustomer(exampleCustomer2);
         appointmentDAO.create(appointment2);
         
         appointment.addProcedure(Procedure.WASHING);
@@ -145,13 +138,11 @@ public class AppointmentDAOTest {
     @Test
     public void delete() {
         Appointment appointment = createAppointment();
-        appointment.setCustomer(exampleCustomer);
         appointment.setDog(exampleDog);
         appointmentDAO.create(appointment);
         
         Appointment appointment2 = createAppointment(1);
         appointment2.setDog(exampleDog2);
-        appointment2.setCustomer(exampleCustomer);
         appointmentDAO.create(appointment2);
         
         List<Appointment> result = appointmentDAO.findAll();
@@ -179,28 +170,24 @@ public class AppointmentDAOTest {
         Date end4 = new Date(yesterday + 60 * 60 * 5);
 
         Appointment appointment1 = new Appointment();
-        appointment1.setCustomer(exampleCustomer);
         appointment1.setDog(exampleDog);
         appointment1.setStartTime(start1);
         appointment1.setEndTime(end1);
         appointmentDAO.create(appointment1);
         
         Appointment appointment2 = new Appointment();
-        appointment2.setCustomer(exampleCustomer);
         appointment2.setDog(exampleDog);
         appointment2.setStartTime(start2);
         appointment2.setEndTime(end2);
         appointmentDAO.create(appointment2);
         
         Appointment appointment3 = new Appointment();
-        appointment3.setCustomer(exampleCustomer);
         appointment3.setDog(exampleDog);
         appointment3.setStartTime(start3);
         appointment3.setEndTime(end3);
         appointmentDAO.create(appointment3);
         
         Appointment appointment4 = new Appointment();
-        appointment4.setCustomer(exampleCustomer);
         appointment4.setDog(exampleDog);
         appointment4.setStartTime(start4);
         appointment4.setEndTime(end4);

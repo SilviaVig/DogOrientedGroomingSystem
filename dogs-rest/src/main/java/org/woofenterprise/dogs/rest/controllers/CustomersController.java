@@ -15,6 +15,7 @@ import org.woofenterprise.dogs.rest.exceptions.ResourceNotFoundException;
 
 import javax.inject.Inject;
 import java.util.Collection;
+import org.springframework.http.HttpStatus;
 
 /**
  * @author Silvia.Vigasova
@@ -87,7 +88,8 @@ public class CustomersController {
      * @param id identifier for Customer
      * @throws ResourceNotFoundException if the customer does not exist
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(value = HttpStatus.OK)
     public final void deleteCustomer(@PathVariable("id") long id) throws ResourceNotFoundException {
         logger.debug("rest deleteCustomer({})", id);
         try {

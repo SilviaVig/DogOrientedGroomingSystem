@@ -30,6 +30,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public void delete(Customer customer) {
+        customer = em.merge(customer);
         em.remove(customer);
     }
 
