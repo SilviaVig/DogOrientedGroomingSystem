@@ -50,14 +50,18 @@ class EntitiesFactory {
     }
     
     public static Appointment createAppointment(long seed) {
-        Faker faker = new Faker(new Random(seed));
+        Random random = new Random(seed);
+        Faker faker = new Faker(random);
         Appointment result = new Appointment();
         Date start = faker.date().future(3, TimeUnit.DAYS);
         Date end = faker.date().future(2, TimeUnit.HOURS, start);
         result.setStartTime(start);
         result.setEndTime(end);
-        result.addProcedure(Procedure.BRUSHING);
-        result.addProcedure(Procedure.CLAWS_CUTTING);
+        for (Procedure p : Procedure.values()) {
+            if (random.nextBoolean()) {
+                result.addProcedure(p);
+            }
+        }
         return result;
     }
     
