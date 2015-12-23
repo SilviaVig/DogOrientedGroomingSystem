@@ -26,6 +26,7 @@ public class DogDAOImpl implements DogDAO {
 
     @Override
     public void delete(Dog d) {
+        d = em.merge(d);
         em.remove(d);
     }
 

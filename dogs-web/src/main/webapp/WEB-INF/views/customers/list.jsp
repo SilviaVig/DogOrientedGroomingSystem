@@ -18,7 +18,7 @@
                 <th>Id</th>
                 <th width="50%">Name and surname</th>
                 <th width="50%">email</th>
-                <th colspan="2">Actions</th>
+                <th colspan="3">Actions</th>
             </tr>
             </thead>
 
@@ -30,6 +30,9 @@
                     <td><c:out value="${customer.email}"/></td>
                     <td>
                         <my:a href="/customers/view/${customer.id}" class="btn">View</my:a>
+                    </td>
+                    <td>
+                        <my:a href="/dogs/new/customer/${customer.id}" class="btn">Create Dog</my:a>
                     </td>
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/customers/delete/${customer.id}">

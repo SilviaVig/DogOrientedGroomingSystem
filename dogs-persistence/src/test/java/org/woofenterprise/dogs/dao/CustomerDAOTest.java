@@ -22,6 +22,8 @@ import static org.junit.Assert.*;
 import org.springframework.dao.DataAccessException;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.woofenterprise.dogs.dao.utils.EntitiesFactory;
+import org.woofenterprise.dogs.entity.Appointment;
 
 /**
  * Test class for CustomerDAO

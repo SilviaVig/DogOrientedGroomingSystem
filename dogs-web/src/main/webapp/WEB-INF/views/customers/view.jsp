@@ -30,11 +30,13 @@
             </dd>
             <dt>Phone</dt>
             <dd><c:out value="${customer.phoneNumber}"/></dd>
-            <dt>Dogs</dt>
+            <dt>Dogs <my:a href="/dogs/new/customer/${customer.id}" class="btn">Create Dog</my:a></dt>
             <dd>
+                <ul>
                 <c:forEach items="${customer.dogs}" var="dog">
-                    <li><c:out value="${dog.name}"/></li>
+                    <li><my:a href="/dogs/view/${dog.id}"><c:out value="${dog.name}"/></my:a></li>
                 </c:forEach>
+                </ul>
             </dd>
         </dl>       
     </jsp:attribute>

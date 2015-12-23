@@ -74,7 +74,6 @@
                 <form:errors path="phoneNumber" cssClass="help-block"/>
             </div>
         </div>
-        </div>
 
         <button class="btn btn-primary" type="submit">Create customer</button>
     </form:form>
