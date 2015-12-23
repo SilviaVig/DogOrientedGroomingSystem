@@ -18,6 +18,8 @@ public class CustomerDTO {
 
     private String surname;
 
+    private String email;
+
     private String addressFirstLine;
 
     private String addressSecondLine;
@@ -88,6 +90,24 @@ public class CustomerDTO {
      */
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    /**
+     * Returns email of a customer.
+     *
+     * @return email of customer
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Sets customers email.
+     *
+     * @param email email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
