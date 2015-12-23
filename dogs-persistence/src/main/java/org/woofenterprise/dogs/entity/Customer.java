@@ -1,12 +1,7 @@
 package org.woofenterprise.dogs.entity;
 
 import java.util.*;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 /**
  * Customer entity class.
@@ -45,11 +40,8 @@ public class Customer {
 
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.REMOVE)
     private Set<Dog> dogs = new HashSet<>();
-
-    @OneToMany(mappedBy = "customer")
-    private Set<Appointment> appointments = new HashSet<>();
 
     /**
      * Returns customers Id.
@@ -250,24 +242,6 @@ public class Customer {
      */
     public void setAddressPostalCode(String addressPostalCode) {
         this.addressPostalCode = addressPostalCode;
-    }
-
-    /**
-     * Return set of customers appointments.
-     *
-     * @return customers appointments
-     */
-    public Set<Appointment> getAppointments() {
-        return Collections.unmodifiableSet(appointments);
-    }
-
-    /**
-     * Adds appointment for customer.
-     *
-     * @param appointment appointment to set
-     */
-    public void addAppointment(Appointment appointment) {
-        this.appointments.add(appointment);
     }
 
     @Override

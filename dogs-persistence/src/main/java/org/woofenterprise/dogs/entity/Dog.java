@@ -1,13 +1,10 @@
 package org.woofenterprise.dogs.entity;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import java.util.Set;
+import javax.persistence.*;
 
 /**
  * Dog entity class representing a customers pet.
@@ -29,6 +26,9 @@ public class Dog {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Customer owner;
+
+    @OneToMany(mappedBy = "dog", cascade = CascadeType.REMOVE)
+    private Set<Appointment> appointments = new HashSet<>();
 
     /**
      * Returns entity id.
@@ -100,6 +100,25 @@ public class Dog {
      */
     public void setOwner(Customer owner) {
         this.owner = owner;
+    }
+
+
+    /**
+     * Return set of customers appointments.
+     *
+     * @return customers appointments
+     */
+    public Set<Appointment> getAppointments() {
+        return Collections.unmodifiableSet(appointments);
+    }
+
+    /**
+     * Adds appointment for customer.
+     *
+     * @param appointment appointment to set
+     */
+    public void addAppointment(Appointment appointment) {
+        this.appointments.add(appointment);
     }
 
     @Override

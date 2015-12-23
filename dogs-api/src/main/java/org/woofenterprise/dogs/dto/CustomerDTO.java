@@ -35,9 +35,6 @@ public class CustomerDTO {
     @JsonManagedReference
     private Set<DogDTO> dogs = new HashSet<>();
 
-    @JsonManagedReference
-    private Set<AppointmentDTO> appointments = new HashSet<>();
-
     /**
      * Returns id of referenced entity.
      *
@@ -234,24 +231,6 @@ public class CustomerDTO {
      */
     public void setDogs(Set<DogDTO> dogs) {
         this.dogs = dogs;
-    }
-
-    /**
-     * Returns customers appointments.
-     *
-     * @return customers dogs.
-     */
-    public Set<AppointmentDTO> getAppointments() {
-        return appointments;
-    }
-
-    /**
-     * Sets customers appointments.
-     *
-     * @param appointments customers appointments.
-     */
-    public void setAppointments(Set<AppointmentDTO> appointments) {
-        this.appointments = appointments;
     }
 
     @Override
