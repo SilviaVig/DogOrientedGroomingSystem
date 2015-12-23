@@ -29,6 +29,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
     @Override
     public void delete(Appointment appointment) {
+        appointment = em.merge(appointment);
         em.remove(appointment);
     }
 

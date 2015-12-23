@@ -39,6 +39,9 @@ header {
       header nav a:hover {
         background: #dcd1ec; }
 
+.procedures li {
+  text-transform: capitalize; }
+
 h1, h2, h3 {
   font-weight: lighter;
   color: #6E45AC; }
@@ -123,6 +126,21 @@ table {
     background: #eaeaea; }
   table tbody tr:hover td {
     background: #dcd1ec; }
+
+dl dt {
+  font-weight: bold;
+  font-size: 0.8em; }
+dl dd {
+  margin: 0 0 1em; }
+
+.alert {
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 15px 0; }
+  .alert-success {
+    background: #97E6A4; }
+  .alert-danger {
+    background: #D68787; }
 
 footer {
   text-align: center;

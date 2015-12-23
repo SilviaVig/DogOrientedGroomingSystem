@@ -70,6 +70,10 @@ header {
     }
 }
 
+.procedures li {
+    text-transform: capitalize;
+}
+
 h1,h2,h3 {
     font-weight: lighter;
     color: $accent-color;
@@ -130,6 +134,31 @@ table {
         tr:hover td {
             background: lighten($accent-color, 40%);
         }
+    }
+}
+
+dl {
+    dt {
+        font-weight: bold;
+        font-size: 0.8em;
+    }
+    dd {
+        margin: 0 0 1em;
+    }
+}
+
+.alert {
+    
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: $margin 0;
+    
+    &-success {
+        background: #97E6A4;
+    }
+    
+    &-danger {
+        background: #D68787;
     }
 }
 

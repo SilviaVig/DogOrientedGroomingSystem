@@ -25,7 +25,7 @@
                     <tr>
                         <td>${dog.id}</td>
                         <td><c:out value="${dog.name}"/></td>
-                        <td><my:a href="/customers/view/${dog.owner.id}">${dog.owner.id} &mdash; <c:out value="${dog.owner.name} ${dog.owner.surname}"/></my:a></td>
+                        <td><my:a href="/customers/view/${dog.owner.id}"><c:out value="${dog.owner.name} ${dog.owner.surname}"/></my:a></td>
                         <td>
                             <my:a href="/dogs/view/${dog.id}" class="btn">View</my:a>
                         </td>

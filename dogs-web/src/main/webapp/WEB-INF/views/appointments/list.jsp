@@ -26,8 +26,8 @@
                 <c:forEach items="${appointments}" var="appointment">
                     <tr>
                         <td>${appointment.id}</td>
-                        <td><my:a href="/customers/view/${appointment.customer.id}">${appointment.customer.id} &mdash; <c:out value="${appointment.customer.name} ${appointment.customer.surname}"/></my:a></td>
-                        <td><my:a href="/dogs/view/${appointment.dog.id}">${appointment.dog.id} &mdash; <c:out value="${appointment.dog.name}"/></my:a></td>
+                        <td><my:a href="/customers/view/${appointment.dog.owner.id}"><c:out value="${appointment.dog.owner.name} ${appointment.dog.owner.surname}"/></my:a></td>
+                        <td><my:a href="/dogs/view/${appointment.dog.id}"><c:out value="${appointment.dog.name}"/></my:a></td>
                         <td><fmt:formatDate value="${appointment.startTime}" pattern="yyyy-MM-dd HH:mm" /> </td>
                         <td><fmt:formatDate value="${appointment.endTime}" pattern="yyyy-MM-dd HH:mm" /> </td>
                         
