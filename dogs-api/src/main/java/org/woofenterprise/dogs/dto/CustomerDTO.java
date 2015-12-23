@@ -1,6 +1,7 @@
 package org.woofenterprise.dogs.dto;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -17,6 +18,8 @@ public class CustomerDTO {
     private String name;
 
     private String surname;
+
+    private String email;
 
     private String addressFirstLine;
 
@@ -85,6 +88,25 @@ public class CustomerDTO {
      */
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    /**
+     * Returns email of a customer.
+     *
+     * @return email of customer
+     */
+
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Sets customers email.
+     *
+     * @param email email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
