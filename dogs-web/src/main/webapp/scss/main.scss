@@ -123,6 +123,11 @@ table {
             text-align: left;
             font-weight: normal;
             padding: $table-margin;
+            cursor: pointer;
+            white-space: nowrap;
+            &.sorttable_nosort {
+                cursor: default;
+            }
         }
     }
     

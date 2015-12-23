@@ -6,13 +6,18 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <my:pagetemplate title="Welcome">
+    <jsp:attribute name="head">
+        <c:url value='/js/sorttable.js' var="sortableJs" scope="page"/>
+        <script src="${sortableJs}"></script>
+    </jsp:attribute>
+        
     <jsp:attribute name="body">   
         
         <p>Welcome to the <strong>Dog Oriented Grooming System</strong>!</p>
         
         <h2>Appointments for today</h2>
         
-        <table>
+        <table class="sortable">
             <thead>
                 <tr>
                     <th>Id</th>

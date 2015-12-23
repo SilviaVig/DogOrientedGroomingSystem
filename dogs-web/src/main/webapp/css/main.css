@@ -123,7 +123,11 @@ table {
     color: #fff;
     text-align: left;
     font-weight: normal;
-    padding: 3px 10px; }
+    padding: 3px 10px;
+    cursor: pointer;
+    white-space: nowrap; }
+    table thead th.sorttable_nosort {
+      cursor: default; }
   table tbody td {
     padding: 3px 10px; }
     table tbody td a {

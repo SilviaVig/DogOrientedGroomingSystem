@@ -6,17 +6,22 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <my:pagetemplate title="Dogs">
+    <jsp:attribute name="head">
+        <c:url value='/js/sorttable.js' var="sortableJs" scope="page"/>
+        <script src="${sortableJs}"></script>
+    </jsp:attribute>
+    
     <jsp:attribute name="body">   
         
         <p><span class="info">Showing <c:out value="${fn:length(dogs)}" /> records.</span> <my:a href="/customers/" class="btn" >Create new dog</my:a></p>
         
-        <table>
+        <table class="sortable">
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th width="30%">Name</th>
-                    <th width="30%">Owner</th>
-                    <th width="30%" colspan="3">Actions</th>
+                    <th width="40%">Name</th>
+                    <th width="40%">Owner</th>
+                    <th width="30%" colspan="3" class="sorttable_nosort">Actions</th>
                 </tr>
             </thead>
             
