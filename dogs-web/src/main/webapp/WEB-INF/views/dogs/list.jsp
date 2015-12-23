@@ -8,7 +8,7 @@
 <my:pagetemplate title="Dogs">
     <jsp:attribute name="body">   
         
-        <p><my:a href="/customers/" class="btn" >Create new dog</my:a></p>
+        <p><span class="info">Showing <c:out value="${fn:length(dogs)}" /> records.</span> <my:a href="/customers/" class="btn" >Create new dog</my:a></p>
         
         <table>
             <thead>
@@ -43,7 +43,7 @@
             
         </table>
         
-        <p><c:out value="${fn:length(dogs)}" /> records.</p>
+        
         
     </jsp:attribute>
 </my:pagetemplate>

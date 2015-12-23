@@ -8,7 +8,7 @@
 <my:pagetemplate title="Customers">
     <jsp:attribute name="body">
 
-        <p><my:a href="/customers/new" class="btn">Create new customer</my:a></p>
+        <p><span class="info">Showing <c:out value="${fn:length(customers)}" /> records.</span><my:a href="/customers/new" class="btn">Create new customer</my:a></p>
 
         <table>
             <thead>
@@ -38,6 +38,5 @@
             </c:forEach>
             </tbody>
         </table>
-        <p><c:out value="${fn:length(customers)}"/> records.</p>
     </jsp:attribute>
 </my:pagetemplate>

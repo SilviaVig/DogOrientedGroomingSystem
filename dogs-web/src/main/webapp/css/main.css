@@ -14,7 +14,7 @@ a {
 
 header {
   text-align: left;
-  border-bottom: 1px solid #6E45AC;
+  border-bottom: 1px solid #c0acde;
   padding-bottom: 15px;
   margin-bottom: 15px; }
   header:after {
@@ -46,6 +46,10 @@ h1, h2, h3 {
   font-weight: lighter;
   color: #6E45AC; }
 
+.info {
+  color: #aaa;
+  float: right; }
+
 .btn {
   display: inline-block;
   padding: 6px 10px;
@@ -71,7 +75,8 @@ h1, h2, h3 {
   text-decoration: none;
   border: 0;
   border-radius: 5px;
-  white-space: nowrap; }
+  white-space: nowrap;
+  vertical-align: baseline; }
   .btn:hover {
     background: #6E45AC;
     /* Old browsers */
@@ -146,9 +151,9 @@ dd, input, select {
     background: #D68787; }
 
 footer {
-  text-align: center;
-  border-top: 1px solid #6E45AC;
-  padding-top: 15px;
+  text-align: right;
+  border-top: 1px solid #c0acde;
+  font-size: 0.8em;
   margin-top: 15px;
   color: #797979; }
 
