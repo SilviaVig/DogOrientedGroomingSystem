@@ -58,4 +58,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
         return beanMappingService.map(customer, CustomerDTO.class);
     }
 
+    @Override
+    public void update(CustomerDTO customer) {
+        Customer c = beanMappingService.map(customer, Customer.class);
+        customerService.update(c);
+    }
+
 }

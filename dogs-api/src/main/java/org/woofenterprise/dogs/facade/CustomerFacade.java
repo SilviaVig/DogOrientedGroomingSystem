@@ -54,4 +54,5 @@ public interface CustomerFacade {
      */
     CustomerDTO changeEmail(Long customerId, String email);
 
+    void update(CustomerDTO  customerCreateDTO);
 }

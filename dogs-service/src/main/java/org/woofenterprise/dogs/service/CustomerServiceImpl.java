@@ -48,4 +48,8 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setEmail(email);
         return customerDAO.update(customer);
     }
+    @Override
+    public void update(Customer customer) {
+        customerDAO.update(customer);
+    }
 }

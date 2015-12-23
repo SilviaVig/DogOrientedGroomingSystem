@@ -63,20 +63,24 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("customerCreate") CustomerCreateDTO formBean, BindingResult bindingResult,
-                         Model model, UriComponentsBuilder uriBuilder){
-        log.error("create customer(formBean={})", formBean);
-
-        if (bindingResult.hasErrors()) {
-            for (FieldError fe : bindingResult.getFieldErrors()) {
-                model.addAttribute(fe.getField() + "_error", true);
-                log.trace("FieldError: {}", fe);
-            }
-            return "/customers/create";
-        }
-        Long id = customerFacade.createCustomer(formBean);
+    public String create(@Valid @ModelAttribute("customerCreate") CustomerCreateDTO customer, UriComponentsBuilder uriBuilder){
+        log.error("create customer(formBean={})", customer);
+        Long id = customerFacade.createCustomer(customer);
 
         return "redirect:" + uriBuilder.path("/customers/").buildAndExpand(id).encode().toUriString();
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String update(@PathVariable long id, Model model){
+        CustomerDTO customer = customerFacade.findCustomerById(id);
+        model.addAttribute("customer", customer);
+        return "customers/edit";
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    public String update(@PathVariable long id, @ModelAttribute("customer") CustomerDTO editedCustomer, UriComponentsBuilder uriBuilder){
+        customerFacade.update(editedCustomer);
+        return "redirect:" + uriBuilder.path("/customers/").build().encode().toUriString();
     }
 
 }

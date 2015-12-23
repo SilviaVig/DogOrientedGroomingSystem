@@ -49,4 +49,6 @@ public interface CustomerService {
      * @param email new email
      */
     Customer changeEmail(Long id, String email);
+
+    void update(Customer customer);
 }
