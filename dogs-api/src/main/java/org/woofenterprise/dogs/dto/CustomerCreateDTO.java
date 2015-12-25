@@ -1,21 +1,46 @@
 package org.woofenterprise.dogs.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
-import java.util.Objects;
 
 /**
  * Created by silvia.vigasova on 17.12.2015.
  */
 public class CustomerCreateDTO {
 
+    @NotNull(message = "Must be present.")
+    @Size(min=2, max=255)
     private String name;
+    
+    @NotNull(message = "Must be present.")
+    @Size(min=2, max=255)
     private String surname;
+    
+    @NotNull(message = "Must be present.")
+    @Size(min=2, max=255)
+    @Pattern(regexp = "^\\S+@\\S+$", message = "Must be an email address.")
     private String email;
+    
+    @NotNull(message = "Must be present.")
+    @Size(min=2, max=255)
     private String addressFirstLine;
     private String addressSecondLine;
+    
+    @NotNull(message = "Must be present.")
+    @Size(min=2, max=255)
     private String addressCity;
+    
+    @NotNull(message = "Must be present.")
+    @Size(min=2, max=255)
     private String addressCountry;
+    
+    @NotNull(message = "Must be present.")
+    @Size(min=2, max=255)
     private String addressPostalCode;
+    
+    @Pattern(regexp = "[0-9-()+ ]*", message = "Must contain only 0-9, (), +- or spaces")
     private String phoneNumber;
 
     /**

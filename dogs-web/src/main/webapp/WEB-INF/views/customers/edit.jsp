@@ -11,24 +11,69 @@
 
     <form:form method="POST" action="${pageContext.request.contextPath}/customers/edit/${customer.id}"
                modelAttribute="customer" cssClass="form-horizontal">
-        <form:label path="name">Name</form:label>
-        <form:input path="name" value="${customer.name}"/>
-        <form:label path="surname">Surname</form:label>
-        <form:input path="surname"/>
-        <form:label path="email" >Email</form:label>
-        <form:input path="email"/>
-        <form:label path="addressFirstLine">First line</form:label>
-        <form:input path="addressFirstLine"/>
-        <form:label path="addressSecondLine">Second line</form:label>
-        <form:input path="addressSecondLine"/>
-        <form:label path="addressCity">City</form:label>
-        <form:input path="addressCity"/>
-        <form:label path="addressCountry">Country</form:label>
-        <form:input path="addressCountry"/>
-        <form:label path="addressPostalCode">Postal code</form:label>
-        <form:input path="addressPostalCode"/>
-        <form:label path="phoneNumber">Phone Number</form:label>
-        <form:input path="phoneNumber"/>
+        
+        <label>Name 
+            <div class="input">
+                <form:input path="name" />
+                <form:errors cssClass="error"  path="name"/>
+            </div>
+        </label> 
+
+        <label>Surname 
+            <div class="input">
+                <form:input path="surname" />
+                <form:errors cssClass="error"  path="surname"/>
+            </div>
+        </label> 
+
+        <label>Email 
+            <div class="input">
+                <form:input path="email" />
+                <form:errors cssClass="error"  path="email"/>
+            </div>
+        </label> 
+
+        <label>First line 
+            <div class="input">
+                <form:input path="addressFirstLine" />
+                <form:errors cssClass="error"  path="addressFirstLine"/>
+            </div>
+        </label> 
+
+        <label>Second line 
+            <div class="input">
+                <form:input path="addressSecondLine" />
+                <form:errors cssClass="error"  path="addressSecondLine"/>
+            </div>
+        </label> 
+
+        <label>City 
+            <div class="input">
+                <form:input path="addressCity" />
+                <form:errors cssClass="error"  path="addressCity"/>
+            </div>
+        </label> 
+
+        <label>Country 
+            <div class="input">
+                <form:input path="addressCountry" />
+                <form:errors cssClass="error"  path="addressCountry"/>
+            </div>
+        </label> 
+
+        <label>Postal code 
+            <div class="input">
+                <form:input path="addressPostalCode" />
+                <form:errors cssClass="error"  path="addressPostalCode"/>
+            </div>
+        </label> 
+
+        <label>Phone Number 
+            <div class="input">
+                <form:input path="phoneNumber" />
+                <form:errors cssClass="error"  path="phoneNumber"/>
+            </div>
+        </label> 
 
         <button class="btn btn-primary" type="submit">Edit customer</button>
     </form:form>

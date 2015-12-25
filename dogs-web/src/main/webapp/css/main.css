@@ -31,7 +31,8 @@ header {
   header nav {
     padding-top: 3em; }
     header nav ul, header nav li {
-      display: inline; }
+      display: inline;
+      white-space: nowrap; }
     header nav a {
       display: inline-block;
       text-decoration: none;
@@ -149,7 +150,12 @@ dd, .input {
   display: inline-block; }
 
 span.error {
-  color: #D68787; }
+  display: inline-block;
+  padding-left: 2em;
+  text-indent: -1.6em;
+  color: #D68787;
+  vertical-align: top;
+  text-transform: uppercase; }
   span.error:before {
     content: "!";
     display: inline-block;
@@ -161,7 +167,8 @@ span.error {
     text-align: center;
     margin-right: 0.5em;
     font-size: 0.8em;
-    line-height: 1.5em; }
+    line-height: 1.5em;
+    text-indent: 0; }
 
 .alert {
   padding: 10px 20px;

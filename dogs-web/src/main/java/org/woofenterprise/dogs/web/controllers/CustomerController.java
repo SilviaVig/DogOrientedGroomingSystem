@@ -19,6 +19,7 @@ import org.woofenterprise.dogs.facade.CustomerFacade;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import java.util.Collection;
+import org.woofenterprise.dogs.utils.Procedure;
 
 /**
  * @author Silvia.Vigasova
@@ -63,11 +64,20 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("customerCreate") CustomerCreateDTO customer, UriComponentsBuilder uriBuilder){
+    public String create(Model model, @Valid @ModelAttribute("customerCreate") CustomerCreateDTO customer, BindingResult bindingResult, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes){
         log.error("create customer(formBean={})", customer);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("proceduresOptions", Procedure.values());
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                log.trace("FieldError: {}", fe);
+            }            
+            return "customers/create";
+        } 
+         
         Long id = customerFacade.createCustomer(customer);
-
-        return "redirect:" + uriBuilder.path("/customers/").buildAndExpand(id).encode().toUriString();
+        redirectAttributes.addFlashAttribute("alert_success", "Customer #" + id + " was created.");
+        return "redirect:" + uriBuilder.path("/customers/view/{id}").buildAndExpand(id).encode().toUriString();
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
@@ -78,8 +88,18 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String update(@PathVariable long id, @ModelAttribute("customer") CustomerDTO editedCustomer, UriComponentsBuilder uriBuilder){
+    public String update(Model model, @PathVariable long id, @Valid @ModelAttribute("customer") CustomerDTO editedCustomer, BindingResult bindingResult, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes){
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("proceduresOptions", Procedure.values());
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                log.trace("FieldError: {}", fe);
+            }            
+            return "customers/edit";
+        } 
+        
         customerFacade.update(editedCustomer);
+        redirectAttributes.addFlashAttribute("alert_success", "Customer #" + id + " was updated.");
         return "redirect:" + uriBuilder.path("/customers/").build().encode().toUriString();
     }
 
