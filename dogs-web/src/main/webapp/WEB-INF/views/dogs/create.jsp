@@ -9,7 +9,7 @@
 <my:pagetemplate title="New Dog">
     <jsp:attribute name="body">   
 
-        <form:form action="${pageContext.request.contextPath}${action}" method="POST" modelAttribute="dog">
+        <form:form action="${pageContext.request.contextPath}/dogs/create" method="POST" modelAttribute="dog">
             
             <dl>
             <dt>Customer</dt>
@@ -17,13 +17,21 @@
             
            
             <form:hidden path="owner.id" />
+            <form:hidden path="owner.name" />
+            <form:hidden path="owner.surname" />
             
             <label>Name 
+                <div class="input">
                 <form:input path="name"/>
+                <form:errors path="name" cssClass="error"/>
+                </div>
             </label>
             
             <label>Hobbies 
+                <div class="input">
                 <form:input path="hobbies"/>
+                <form:errors path="hobbies" cssClass="error"/>
+                </div>
             </label>
             
             

@@ -1,11 +1,12 @@
 package org.woofenterprise.dogs.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * DTO for Dog entity.
@@ -15,10 +16,15 @@ import java.util.Set;
 public class DogDTO {
     private Long id;
 
+    @NotNull
+    @Size(min=2, max=255)
     private String name;
 
+    @NotNull
+    @Size(min=2, max=255)
     private String hobbies;
     
+    @NotNull
     @JsonBackReference
     private CustomerDTO owner;
     

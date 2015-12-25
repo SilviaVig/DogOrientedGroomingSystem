@@ -9,24 +9,31 @@
 <my:pagetemplate title="Edit Dog">
     <jsp:attribute name="body">   
 
-        <form:form action="${pageContext.request.contextPath}${action}" method="POST" modelAttribute="dog">
+        <form:form action="${pageContext.request.contextPath}/dogs/update" method="POST" modelAttribute="dog">
             
-            <form:input type="hidden" path="id"  />
-            <form:input type="hidden" path="owner.id"/>
+            <form:hidden path="id"  />
+            <form:hidden path="owner.id"/>
+            <form:hidden path="owner.name" />
+            <form:hidden path="owner.surname" />
             
             <dl>
             <dt>Customer</dt>
             <dd><my:a href="/customers/view/${dog.owner.id}"> <c:out value="${dog.owner.name} ${dog.owner.surname}"/></my:a> </dd>
             
             <label>Name 
+                <div class="input">
                 <form:input path="name"/>
+                <form:errors path="name" cssClass="error"/>
+                </div>
             </label>
             
             <label>Hobbies 
+                <div class="input">
                 <form:input path="hobbies"/>
+                <form:errors path="hobbies" cssClass="error"/>
+                </div>
             </label>
-            
-            
+                
             <input type="submit" class="btn" value="Submit" />
             
         </form:form>

@@ -32,20 +32,23 @@ import org.woofenterprise.dogs.web.exceptions.ResourceNotFoundException;
 @Controller
 @RequestMapping("/dogs")
 public class DogsController {
-    
+
     @Inject
     DogFacade facade;
-    
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String list(Model model) {
+
+    @Inject
+    private CustomerFacade customerFacade;
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String listDogs(Model model) {
         Collection<DogDTO> dogs = facade.getAllDogs();
         model.addAttribute("dogs", dogs);
         return "dogs/list";
     }
-    
-    
+
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-    public String view(@PathVariable("id") long id, Model model) {
+    public String viewDog(
+            @PathVariable("id") long id, Model model) {
         DogDTO dog = facade.findDogById(id);
         if (dog == null) {
             throw new ResourceNotFoundException();
@@ -53,33 +56,34 @@ public class DogsController {
         model.addAttribute("dog", dog);
         return "dogs/view";
     }
-    
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    public String delete(@PathVariable("id") long id, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
+    public String deleteDog(@PathVariable("id") long id, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         try {
-            DogDTO dog = facade.findDogById(id);if (dog == null) {
+            DogDTO dog = facade.findDogById(id);
+            if (dog == null) {
                 throw new ResourceNotFoundException();
             }
             facade.deleteDog(dog);
-            redirectAttributes.addFlashAttribute("alert_success", "Dog #"+id+" was deleted.");
+            redirectAttributes.addFlashAttribute("alert_success", "Dog #" + id + " was deleted.");
         } catch (Exception ex) {
-            redirectAttributes.addFlashAttribute("alert_danger", "Dog #"+id+" was not deleted. " + ex.getLocalizedMessage());
+            redirectAttributes.addFlashAttribute("alert_danger", "Dog #" + id + " was not deleted. " + ex.getLocalizedMessage());
         }
-        
+
         return "redirect:" + uriBuilder.path("/dogs/").build().encode().toUriString();
     }
-    
-    @Inject 
-    private CustomerFacade customerFacade;
-    
+
     @RequestMapping(value = "/new/customer/{customerId}", method = RequestMethod.GET)
-    public String create(@PathVariable long customerId, Model model) {
-        
+    public String newDog(
+            Model model, 
+            @PathVariable long customerId
+    ) {
+
         CustomerDTO customer = customerFacade.findCustomerById(customerId);
         if (customer == null) {
             throw new ResourceNotFoundException();
         }
-        
+
         model.addAttribute("customer", customer);
         DogDTO dog = new DogDTO();
         dog.setOwner(customer);
@@ -87,48 +91,64 @@ public class DogsController {
         model.addAttribute("action", "/dogs/new");
         return "dogs/create";
     }
-    
-    @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute DogDTO dogDTO, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes, BindingResult bindingResult) {
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String createDog(
+            Model model, 
+            @Valid @ModelAttribute("dog") DogDTO dogDTO, 
+            BindingResult bindingResult, 
+            UriComponentsBuilder uriBuilder, 
+            RedirectAttributes redirectAttributes
+    ) {
         if (bindingResult.hasErrors()) {
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 model.addAttribute(fe.getField() + "_error", true);
-                log.trace("FieldError: {}", fe);
             }
-            return "/dogs/create";
+            return "dogs/create";
         }
-            
+
         dogDTO = facade.createDog(dogDTO);
         Long id = dogDTO.getId();
+        
+        redirectAttributes.addFlashAttribute("alert_success", "Dog #" + id + " was created.");
         return "redirect:" + uriBuilder.path("/dogs/view/{id}").buildAndExpand(id).encode().toUriString();
-       
     }
-    
+
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String edit(@PathVariable long id, Model model) {
+    public String editDog( 
+            Model model,
+            @PathVariable long id
+    ) {
         DogDTO dog = facade.findDogById(id);
         if (dog == null) {
             throw new ResourceNotFoundException();
         }
-        //model.addAttribute("customer", dog.getOwner());
+        
         model.addAttribute("dog", dog);
         model.addAttribute("action", "/dogs/edit");
         return "dogs/edit";
     }
-    
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String update(@Valid @ModelAttribute DogDTO dogDTO,  Model model, UriComponentsBuilder uriBuilder,RedirectAttributes redirectAttributes, BindingResult bindingResult) {
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String updateDog(
+            Model model, 
+            @Valid @ModelAttribute("dog") DogDTO dogDTO, 
+            BindingResult bindingResult, 
+            UriComponentsBuilder uriBuilder, 
+            RedirectAttributes redirectAttributes
+    ) {
         if (bindingResult.hasErrors()) {
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 model.addAttribute(fe.getField() + "_error", true);
-                log.trace("FieldError: {}", fe);
             }
             return "/dogs/edit";
-        } 
+        }
+        
         facade.updateDog(dogDTO);
         Long id = dogDTO.getId();
 
+        redirectAttributes.addFlashAttribute("alert_success", "Dog #" + id + " was updated.");
         return "redirect:" + uriBuilder.path("/dogs/view/{id}").buildAndExpand(id).encode().toUriString();
     }
-    
+
 }

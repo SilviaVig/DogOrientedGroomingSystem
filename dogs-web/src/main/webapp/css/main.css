@@ -141,9 +141,27 @@ dt, label {
   font-weight: bold;
   font-size: 0.8em; }
 
-dd, input, select {
+dd, .input {
   display: block;
   margin: 0 0 1em; }
+
+.input input, .input select {
+  display: inline-block; }
+
+span.error {
+  color: #D68787; }
+  span.error:before {
+    content: "!";
+    display: inline-block;
+    background: #D68787;
+    color: #fff;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 100%;
+    text-align: center;
+    margin-right: 0.5em;
+    font-size: 0.8em;
+    line-height: 1.5em; }
 
 .alert {
   padding: 10px 20px;
