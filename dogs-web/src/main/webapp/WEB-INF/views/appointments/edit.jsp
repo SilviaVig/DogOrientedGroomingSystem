@@ -8,11 +8,7 @@
 
 <my:pagetemplate title="Edit Appointment">
     <jsp:attribute name="body">   
-
-        <form:form action="${pageContext.request.contextPath}${action}" method="POST" modelAttribute="appointment">
-            
-            <form:hidden path="id" />
-            <form:hidden path="dog.id" />
+        <form:form action="${pageContext.request.contextPath}/appointments/edit" method="POST" modelAttribute="appointment">
             
             <dl>
             <dt>Customer</dt>
@@ -21,17 +17,21 @@
             <dt>Dog</dt>
             <dd><my:a href="/dogs/view/${appointment.dog.id}"> <c:out value="${appointment.dog.name}"/></my:a></dd>
             </dl>
-                       
-            <label>Time: 
-                <fmt:formatDate value="${appointment.startTime}" var="startDateString" pattern="yyyy-MM-dd HH:mm" />
-                <fmt:formatDate value="${appointment.endTime}" var="endTimeString" pattern="yyyy-MM-dd HH:mm" />
-                <form:input type="datetime" path="startTime" value="${startDateString}" placeholder="yyyy-mm-dd hh:mm" />
-                <form:input type="datetime" path="endTime"  value="${endTimeString}" placeholder="yyyy-mm-dd hh:mm" />
+            
+            <form:hidden path="id" />
+            <form:hidden path="dog.id" />
+            
+            <label>Start time: 
+                <form:input type="datetime" path="startTime" placeholder="yyyy-mm-dd hh:mm" />
             </label>
             
             <label>Procedures <form:select path="procedures" multiple="true"  size="${fn:length(proceduresOptions)}">
                     <form:options items="${proceduresOptions}" />
                 </form:select></label>
+            
+            <label>End time: 
+                <form:input type="datetime" path="endTime" placeholder="yyyy-mm-dd hh:mm" />
+            </label>
             
             <input type="submit" class="btn" value="Submit" />
             

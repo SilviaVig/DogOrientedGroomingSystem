@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
-import org.woofenterprise.dogs.dto.AppointmentCreateDTO;
+import org.woofenterprise.dogs.dto.AppointmentDTO;
 import org.woofenterprise.dogs.dto.AppointmentDTO;
 import org.woofenterprise.dogs.dto.DogDTO;
 import org.woofenterprise.dogs.facade.AppointmentFacade;
@@ -85,60 +85,54 @@ public class AppointmentsController {
             throw new ResourceNotFoundException();
         }
         
-        model.addAttribute("dog", dog);
+        AppointmentDTO appointmentDTO = new AppointmentDTO();
+        appointmentDTO.setDog(dog);
         model.addAttribute("proceduresOptions", Procedure.values());
-        AppointmentCreateDTO appointmentCreate = new AppointmentCreateDTO();
-        appointmentCreate.setDogId(dogId);
-        model.addAttribute("appointmentCreate", appointmentCreate);
+        model.addAttribute("appointment", appointmentDTO);
         return "appointments/calculate";
     }
     
     @RequestMapping(value = "/calculate", method = RequestMethod.POST)
-    public String calculate(@ModelAttribute AppointmentCreateDTO appointmentCreateDTO, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
+    public String calculate(@ModelAttribute AppointmentDTO appointmentDTO, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         
-        Long dogId = appointmentCreateDTO.getDogId();
+        Long dogId = appointmentDTO.getDog().getId();
         DogDTO dog = dogFacade.findDogById(dogId);
         if (dog == null) {
             throw new ResourceNotFoundException();
         }
+        appointmentDTO.setDog(dog);
         
-        AppointmentDTO appointmentDTO = new AppointmentDTO();
-        appointmentDTO.setProcedures(appointmentCreateDTO.getProcedures());
-        
-        Long duration = facade.calculateAppointmentDuration(appointmentDTO);
-                
-        Date endTime = new Date(appointmentCreateDTO.getStartTime().getTime() + duration * 60 * 1000);
-        redirectAttributes.addFlashAttribute("alert_success", "Time needed for specified procedures is " + duration + " minutes.");
-        appointmentCreateDTO.setEndTime(endTime);
+        Long duration = facade.calculateAppointmentDuration(appointmentDTO) * 60 * 1000; // in milisecond
+        Date endTime = new Date(appointmentDTO.getStartTime().getTime() + duration);        
+        appointmentDTO.setEndTime(endTime);
 
-        model.addAttribute("dog", dog);
         model.addAttribute("proceduresOptions", Procedure.values());
-        model.addAttribute("appointmentCreate", appointmentCreateDTO);
+        model.addAttribute("appointment", appointmentDTO);
+        
         return "appointments/calculated";
     }
     
     
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute AppointmentCreateDTO appointmentCreateDTO, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
+    public String create(@Valid @ModelAttribute AppointmentDTO appointmentDTO, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         try {
             
-            AppointmentDTO appointmentDTO = facade.createAppointment(appointmentCreateDTO);
+            appointmentDTO = facade.createAppointment(appointmentDTO);
             Long id = appointmentDTO.getId();
             
             return "redirect:" + uriBuilder.path("/appointments/view/{id}").buildAndExpand(id).encode().toUriString();
         }
         catch(Exception ex) {
-            Long dogId = appointmentCreateDTO.getDogId();
+            Long dogId = appointmentDTO.getDog().getId();
             DogDTO dog = dogFacade.findDogById(dogId);
             if (dog == null) {
                 throw new ResourceNotFoundException();
             }
-
-            model.addAttribute("dog", dog);
+            appointmentDTO.setDog(dog);
+            
+            model.addAttribute("appointment", appointmentDTO);
             model.addAttribute("proceduresOptions", Procedure.values());
-            AppointmentCreateDTO appointmentCreate = new AppointmentCreateDTO();
-            appointmentCreate.setDogId(dogId);
-            model.addAttribute("appointmentCreate", appointmentCreate);
+            
             redirectAttributes.addFlashAttribute("alert_danger", "Appointment was not created. " + ex.getLocalizedMessage());
             return "appointments/calculated";
         }
@@ -147,14 +141,13 @@ public class AppointmentsController {
     
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable long id, Model model) {
-        AppointmentDTO appointment = facade.findAppointmentById(id);
-        if (appointment == null) {
+        AppointmentDTO appointmentDTO = facade.findAppointmentById(id);
+        if (appointmentDTO == null) {
             throw new ResourceNotFoundException();
         }
-        //model.addAttribute("customer", dog.getOwner());
-        model.addAttribute("appointment", appointment);
+        
+        model.addAttribute("appointment", appointmentDTO);
         model.addAttribute("proceduresOptions", Procedure.values());
-        model.addAttribute("action", "/appointments/edit");
         return "appointments/edit";
     }
     

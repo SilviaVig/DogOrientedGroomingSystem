@@ -3,7 +3,6 @@ package org.woofenterprise.dogs.facade;
 import org.woofenterprise.dogs.dto.AppointmentDTO;
 
 import java.util.Collection;
-import org.woofenterprise.dogs.dto.AppointmentCreateDTO;
 
 /**
  * Created by Silvia.Vigasova on 25.11.2015.
@@ -30,7 +29,7 @@ public interface AppointmentFacade {
      *
      * @param appointmentDTO appointment to create
      */
-    AppointmentDTO createAppointment(AppointmentCreateDTO appointmentDTO);
+    AppointmentDTO createAppointment(AppointmentDTO appointmentDTO);
 
     /**
      * Cancels given appointment.

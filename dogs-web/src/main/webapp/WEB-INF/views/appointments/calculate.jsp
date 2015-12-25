@@ -8,17 +8,17 @@
 
 <my:pagetemplate title="New Appointment">
     <jsp:attribute name="body">   
-        <form:form action="${pageContext.request.contextPath}/appointments/calculate" method="POST" modelAttribute="appointmentCreate">
+        <form:form action="${pageContext.request.contextPath}/appointments/calculate" method="POST" modelAttribute="appointment">
             
             <dl>
             <dt>Customer</dt>
-            <dd><my:a href="/customers/view/${dog.owner.id}"> <c:out value="${dog.owner.name} ${dog.owner.surname}"/></my:a> </dd>
+            <dd><my:a href="/customers/view/${appointment.dog.owner.id}"> <c:out value="${appointment.dog.owner.name} ${appointment.dog.owner.surname}"/></my:a> </dd>
             
             <dt>Dog</dt>
-            <dd><my:a href="/dogs/view/${dog.id}"> <c:out value="${dog.name}"/></my:a></dd>
+            <dd><my:a href="/dogs/view/${appointment.dog.id}"> <c:out value="${appointment.dog.name}"/></my:a></dd>
             </dl>
            
-            <form:hidden path="dogId" />
+            <form:hidden path="dog.id" />
             
             <label>Start time: 
                 <form:input type="datetime" path="startTime" placeholder="yyyy-mm-dd hh:mm" />

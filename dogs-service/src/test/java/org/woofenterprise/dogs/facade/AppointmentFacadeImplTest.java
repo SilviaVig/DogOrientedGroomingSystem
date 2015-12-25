@@ -14,10 +14,8 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import org.woofenterprise.dogs.dto.AppointmentCreateDTO;
 import org.woofenterprise.dogs.dto.AppointmentDTO;
 import org.woofenterprise.dogs.entity.Appointment;
-import org.woofenterprise.dogs.entity.Dog;
 import org.woofenterprise.dogs.service.AppointmentDurationService;
 import org.woofenterprise.dogs.service.AppointmentService;
 import org.woofenterprise.dogs.service.DateService;
@@ -61,9 +59,8 @@ public class AppointmentFacadeImplTest extends BaseTestCase {
     @Test
     public void testCreate() {
         Appointment appointment = mock(Appointment.class);
-        AppointmentCreateDTO appointmentDTO = mock(AppointmentCreateDTO.class);
+        AppointmentDTO appointmentDTO = mock(AppointmentDTO.class);
         when(beanMappingService.map(appointmentDTO, Appointment.class)).thenReturn(appointment);
-        when(dogService.findDogById((Long) any())).thenReturn(mock(Dog.class));
         appointmentFacade.createAppointment(appointmentDTO);
         verify(appointmentService).createAppointment(appointment);
     }
