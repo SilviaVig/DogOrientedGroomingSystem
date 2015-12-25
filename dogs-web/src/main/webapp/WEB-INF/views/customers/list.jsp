@@ -14,7 +14,9 @@
     <jsp:attribute name="body">
 
         <p><span class="info">Showing <c:out value="${fn:length(customers)}" /> records.</span>
+            <c:if test="${sessionScope.authenticated eq 'admin'}">
             <my:a href="/customers/create" class="btn">Create new customer</my:a>
+            </c:if>
         </p>
 
         <table class="sortable">

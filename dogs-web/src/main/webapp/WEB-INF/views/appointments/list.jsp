@@ -13,7 +13,11 @@
         
     <jsp:attribute name="body">   
         
-        <p><span class="info"> Showing <c:out value="${fn:length(appointments)}" /> records.</span> <my:a href="/dogs/" class="btn" >Create new appointment</my:a> </p>
+        <p><span class="info"> Showing <c:out value="${fn:length(appointments)}" /> records.</span>
+            <c:if test="${sessionScope.authenticated eq 'admin'}">
+            <my:a href="/dogs/" class="btn" >Create new appointment</my:a>
+            </c:if>
+        </p>
         
         <table class="sortable">
             <thead>

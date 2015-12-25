@@ -22,8 +22,9 @@
             
             <dt>Owner</dt>
             <dd><my:a href="/customers/view/${dog.owner.id}"> <c:out value="${dog.owner.name} ${dog.owner.surname}"/></my:a> </dd>
-            
+            <c:if test="${sessionScope.authenticated eq 'admin'}">
             <dt>Appointments <my:a href="/appointments/new/dog/${dog.id}" class="btn">Create Appointment</my:a></dt>
+            </c:if>
             <dd>
                 <ul>
                 <c:forEach items="${dog.appointments}" var="appointment">
