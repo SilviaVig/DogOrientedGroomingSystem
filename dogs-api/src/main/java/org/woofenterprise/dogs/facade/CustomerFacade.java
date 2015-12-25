@@ -1,7 +1,9 @@
 package org.woofenterprise.dogs.facade;
 
+import org.woofenterprise.dogs.dto.CustomerAuthenticationDTO;
 import org.woofenterprise.dogs.dto.CustomerCreateDTO;
 import org.woofenterprise.dogs.dto.CustomerDTO;
+import org.woofenterprise.dogs.entity.Customer;
 
 import java.util.Collection;
 
@@ -55,4 +57,6 @@ public interface CustomerFacade {
     CustomerDTO changeEmail(Long customerId, String email);
 
     void update(CustomerDTO  customerCreateDTO);
+    boolean authenticate(CustomerAuthenticationDTO customerAuthenticationDTO);
+    boolean isAdmin(CustomerDTO customer);
 }

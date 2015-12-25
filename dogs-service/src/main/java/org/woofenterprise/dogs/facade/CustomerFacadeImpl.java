@@ -5,6 +5,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.woofenterprise.dogs.dto.CustomerAuthenticationDTO;
 import org.woofenterprise.dogs.dto.CustomerCreateDTO;
 import org.woofenterprise.dogs.dto.CustomerDTO;
 import org.woofenterprise.dogs.service.BeanMappingService;
@@ -62,6 +63,18 @@ public class CustomerFacadeImpl implements CustomerFacade {
     public void update(CustomerDTO customer) {
         Customer c = beanMappingService.map(customer, Customer.class);
         customerService.update(c);
+    }
+
+    @Override
+    public boolean authenticate(CustomerAuthenticationDTO customerAuthenticationDTO) {
+        return customerService.authenticate(customerService.findCustomerByEmail(
+                customerAuthenticationDTO.getEmail()), customerAuthenticationDTO.getPassword());
+    }
+
+    @Override
+    public boolean isAdmin(CustomerDTO customer) {
+        Customer c = beanMappingService.map(customer, Customer.class);
+        return customerService.isAdmin(c);
     }
 
 }

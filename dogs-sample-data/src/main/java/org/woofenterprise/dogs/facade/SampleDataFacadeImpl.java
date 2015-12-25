@@ -27,6 +27,9 @@ public class SampleDataFacadeImpl implements SampleDataFacade {
     @Override
     public void createSampleData() {
         
+        Customer admin = EntitiesFactory.createAdmin();
+        customerService.createCustomer(admin);
+
         for (long seed = 10; seed <100; seed+=10) {
             
             Customer customer1 = EntitiesFactory.createCustomer(seed);

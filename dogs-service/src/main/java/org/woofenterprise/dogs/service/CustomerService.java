@@ -2,6 +2,7 @@ package org.woofenterprise.dogs.service;
 
 import org.woofenterprise.dogs.entity.Customer;
 
+import java.math.BigInteger;
 import java.util.Collection;
 
 /**
@@ -51,4 +52,9 @@ public interface CustomerService {
     Customer changeEmail(Long id, String email);
 
     void update(Customer customer);
+
+    boolean authenticate(Customer customer, String password);
+
+    boolean isAdmin(Customer customer);
+
 }

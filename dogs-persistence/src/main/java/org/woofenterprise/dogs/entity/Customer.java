@@ -49,6 +49,9 @@ public class Customer {
     @OneToMany(mappedBy = "owner", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Dog> dogs = new HashSet<>();
 
+    private String passwordHash;
+    private Boolean admin;
+
     /**
      * Returns customers Id.
      *
@@ -248,6 +251,23 @@ public class Customer {
      */
     public void setAddressPostalCode(String addressPostalCode) {
         this.addressPostalCode = addressPostalCode;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
     @Override

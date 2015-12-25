@@ -33,6 +33,7 @@
                 <li><my:a href="/customers/">Customers</my:a></li>
                 <li><my:a href="/dogs/">Dogs</my:a></li>
                 <li><my:a href="/appointments/">Appointments</my:a></li>
+                <li><my:a href="/auth/login">Login</my:a></li>
             </ul>
         </nav>
     </header>
