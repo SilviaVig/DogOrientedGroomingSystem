@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.woofenterprise.dogs.dto.ChangeEmailDTO;
 import org.woofenterprise.dogs.dto.CustomerCreateDTO;
 import org.woofenterprise.dogs.dto.CustomerDTO;
 import org.woofenterprise.dogs.facade.CustomerFacade;
@@ -102,6 +101,7 @@ public class CustomersController {
 
     /**
      * Create a new Customer by POST method
+     * 
      * curl -X POST -i -H "Content-Type: application/json" --data
      * '{"name":"Feri","surname":"Mrkvicka","email":"feri.mrkvicka@neco.com","addressFirstLine":"bla",
      * "addressCity":"Tramtaria","addressCountry":"Narnia","addressPostalCode":"62400"}'
@@ -123,17 +123,31 @@ public class CustomersController {
     }
 
     /**
-     * Update the email of a customer by PUT method curl -X PUT -i -H
+     * Update customer by patch method 
+     * 
+     * curl -X PATCH -i -H
      * "Content-Type: application/json" --data '{"email":"neco@neco.cz"}'
      * http://localhost:8080/pa165/rest/customers/1
      *
      * @param id       id of customer to update
-     * @param newEmail new email
      * @return the updated customer CustomerDTO
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public final CustomerDTO changeEmail(@PathVariable("id") long id, @RequestBody ChangeEmailDTO newEmail) {
-        return customerFacade.changeEmail(id, newEmail.getNewEmail());
+    public final CustomerDTO updateCustomer(@PathVariable("id") long id, @RequestBody CustomerDTO newValues) {
+        
+        CustomerDTO current = customerFacade.findCustomerById(id);
+        if (newValues.getName()!=null) current.setName(newValues.getName());
+        if (newValues.getSurname()!=null) current.setSurname(newValues.getSurname());
+        if (newValues.getAddressCity()!=null) current.setAddressCity(newValues.getAddressCity());
+        if (newValues.getAddressCountry()!=null) current.setAddressCountry(newValues.getAddressCountry());
+        if (newValues.getAddressFirstLine()!=null) current.setAddressFirstLine(newValues.getAddressFirstLine());
+        if (newValues.getAddressPostalCode()!=null) current.setAddressPostalCode(newValues.getAddressPostalCode());
+        if (newValues.getAddressSecondLine()!=null) current.setAddressSecondLine(newValues.getAddressSecondLine());
+        if (newValues.getEmail()!=null) current.setEmail(newValues.getEmail());
+        if (newValues.getPhoneNumber()!=null) current.setPhoneNumber(newValues.getPhoneNumber());
+        
+        customerFacade.update(current);
+        return current;
     }
 }

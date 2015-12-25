@@ -39,7 +39,7 @@ curl -X POST -i -H "Content-Type: application/json" --data '{"name":"Feri","surn
 
 Update customers email
 ```
-curl -X PUT -i -H "Content-Type: application/json" --data '{"email":"neco@neco.cz"}' http://localhost:8080/pa165/rest/customers/1
+curl -X PATCH -i -H "Content-Type: application/json" --data '{"email":"neco@neco.cz"}' http://localhost:8080/pa165/rest/customers/1
 ```
 
 # Web 

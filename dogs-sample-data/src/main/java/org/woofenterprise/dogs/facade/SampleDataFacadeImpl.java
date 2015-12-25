@@ -29,8 +29,12 @@ public class SampleDataFacadeImpl implements SampleDataFacade {
         
         Customer admin = EntitiesFactory.createAdmin();
         customerService.createCustomer(admin);
+        
+        Customer user = EntitiesFactory.createCustomer(0);
+        user.setEmail("user@user.cz");
+        customerService.createCustomer(user);
 
-        for (long seed = 10; seed <100; seed+=10) {
+        for (long seed = 20; seed <100; seed+=10) {
             
             Customer customer1 = EntitiesFactory.createCustomer(seed);
             customerService.createCustomer(customer1);
