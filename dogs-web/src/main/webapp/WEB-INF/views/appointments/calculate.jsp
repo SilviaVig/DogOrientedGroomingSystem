@@ -6,19 +6,9 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<c:choose>
-    <c:when test="${empty appointmentsCreate.startTime}" >
-        <c:set var="title" value="New appointment" />
-    </c:when>
-    <c:otherwise>
-        <c:set var="title" value="Edit appointment" />
-    </c:otherwise>
-</c:choose>
-
-<my:pagetemplate title="${title}">
+<my:pagetemplate title="New Appointment">
     <jsp:attribute name="body">   
-
-        <form:form action="${pageContext.request.contextPath}${action}" method="POST" modelAttribute="appointmentCreate">
+        <form:form action="${pageContext.request.contextPath}/appointments/calculate" method="POST" modelAttribute="appointmentCreate">
             
             <dl>
             <dt>Customer</dt>
@@ -30,16 +20,16 @@
            
             <form:hidden path="dogId" />
             
-            <label>Time: 
+            <label>Start time: 
                 <form:input type="datetime" path="startTime" placeholder="yyyy-mm-dd hh:mm" />
-                <form:input type="datetime" path="endTime" placeholder="yyyy-mm-dd hh:mm" />
             </label>
             
             <label>Procedures <form:select path="procedures" multiple="true"  size="${fn:length(proceduresOptions)}">
                     <form:options items="${proceduresOptions}" />
                 </form:select></label>
             
-            <input type="submit" class="btn" value="Submit" />
+            
+            <input type="submit" class="btn" value="Calculate time needed" />
             
         </form:form>
         

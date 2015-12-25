@@ -7,6 +7,7 @@ package org.woofenterprise.dogs.web.controllers;
 
 import org.woofenterprise.dogs.web.exceptions.ResourceNotFoundException;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -89,12 +90,36 @@ public class AppointmentsController {
         AppointmentCreateDTO appointmentCreate = new AppointmentCreateDTO();
         appointmentCreate.setDogId(dogId);
         model.addAttribute("appointmentCreate", appointmentCreate);
-        model.addAttribute("action", "/appointments/new");
-        return "appointments/form";
+        return "appointments/calculate";
     }
     
+    @RequestMapping(value = "/calculate", method = RequestMethod.POST)
+    public String calculate(@ModelAttribute AppointmentCreateDTO appointmentCreateDTO, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
+        
+        Long dogId = appointmentCreateDTO.getDogId();
+        DogDTO dog = dogFacade.findDogById(dogId);
+        if (dog == null) {
+            throw new ResourceNotFoundException();
+        }
+        
+        AppointmentDTO appointmentDTO = new AppointmentDTO();
+        appointmentDTO.setProcedures(appointmentCreateDTO.getProcedures());
+        
+        Long duration = facade.calculateAppointmentDuration(appointmentDTO);
+                
+        Date endTime = new Date(appointmentCreateDTO.getStartTime().getTime() + duration * 60 * 1000);
+        redirectAttributes.addFlashAttribute("alert_success", "Time needed for specified procedures is " + duration + " minutes.");
+        appointmentCreateDTO.setEndTime(endTime);
+
+        model.addAttribute("dog", dog);
+        model.addAttribute("proceduresOptions", Procedure.values());
+        model.addAttribute("appointmentCreate", appointmentCreateDTO);
+        return "appointments/calculated";
+    }
+    
+    
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String create(@ModelAttribute AppointmentCreateDTO appointmentCreateDTO, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
+    public String create(@Valid @ModelAttribute AppointmentCreateDTO appointmentCreateDTO, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         try {
             
             AppointmentDTO appointmentDTO = facade.createAppointment(appointmentCreateDTO);
@@ -115,7 +140,7 @@ public class AppointmentsController {
             appointmentCreate.setDogId(dogId);
             model.addAttribute("appointmentCreate", appointmentCreate);
             redirectAttributes.addFlashAttribute("alert_danger", "Appointment was not created. " + ex.getLocalizedMessage());
-            return "appointments/form";
+            return "appointments/calculated";
         }
     }
     
