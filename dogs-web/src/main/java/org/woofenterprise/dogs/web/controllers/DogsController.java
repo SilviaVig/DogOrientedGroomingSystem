@@ -106,12 +106,17 @@ public class DogsController {
             }
             return "dogs/create";
         }
+        try{
+            dogDTO = facade.createDog(dogDTO);
+            Long id = dogDTO.getId();
 
-        dogDTO = facade.createDog(dogDTO);
-        Long id = dogDTO.getId();
-        
-        redirectAttributes.addFlashAttribute("alert_success", "Dog #" + id + " was created.");
-        return "redirect:" + uriBuilder.path("/dogs/view/{id}").buildAndExpand(id).encode().toUriString();
+            redirectAttributes.addFlashAttribute("alert_success", "Dog #" + id + " was created.");
+            return "redirect:" + uriBuilder.path("/dogs/view/{id}").buildAndExpand(id).encode().toUriString();
+        } catch (Exception e) {
+            log.warn("Exception wile creating: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("alert_danger", "Dog was not created.");
+            return "redirect:/";
+        }
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
@@ -144,11 +149,17 @@ public class DogsController {
             return "/dogs/edit";
         }
         
-        facade.updateDog(dogDTO);
         Long id = dogDTO.getId();
-
-        redirectAttributes.addFlashAttribute("alert_success", "Dog #" + id + " was updated.");
-        return "redirect:" + uriBuilder.path("/dogs/view/{id}").buildAndExpand(id).encode().toUriString();
+        try {
+            facade.updateDog(dogDTO);
+            redirectAttributes.addFlashAttribute("alert_success", "Dog #" + id + " was updated.");
+            return "redirect:" + uriBuilder.path("/dogs/view/{id}").buildAndExpand(id).encode().toUriString();
+        } catch (Exception e) {
+            log.warn("Exception wile updating: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("alert_danger", "Dog #" + id + " was not edited.");
+            return "redirect:/";
+        }
+        
     }
 
 }

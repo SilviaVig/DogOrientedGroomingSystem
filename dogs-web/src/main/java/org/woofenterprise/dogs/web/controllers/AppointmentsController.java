@@ -161,12 +161,17 @@ public class AppointmentsController {
             
             return "appointments/create";
         } 
-        
-        appointmentDTO = facade.createAppointment(appointmentDTO);
-        Long id = appointmentDTO.getId();
-        
-        redirectAttributes.addFlashAttribute("alert_success", "Appointment #" + id + " was created.");
-        return "redirect:" + uriBuilder.path("/appointments/view/{id}").buildAndExpand(id).encode().toUriString();        
+        try {
+            appointmentDTO = facade.createAppointment(appointmentDTO);
+            Long id = appointmentDTO.getId();
+
+            redirectAttributes.addFlashAttribute("alert_success", "Appointment #" + id + " was created.");
+            return "redirect:" + uriBuilder.path("/appointments/view/{id}").buildAndExpand(id).encode().toUriString();    
+        } catch (Exception e) {
+            log.warn("Exception wile creating: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("alert_danger", "Appointment was not created.");
+            return "redirect:/";
+        }
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
@@ -208,12 +213,17 @@ public class AppointmentsController {
             
             return "appointments/edit";
         } 
-        
-        facade.updateAppointment(appointmentDTO);
         Long id = appointmentDTO.getId();
+        try{
+            facade.updateAppointment(appointmentDTO);
 
-        redirectAttributes.addFlashAttribute("alert_success", "Appointment #" + id + " was edited.");
-        return "redirect:" + uriBuilder.path("/appointments/view/{id}").buildAndExpand(id).encode().toUriString();
+            redirectAttributes.addFlashAttribute("alert_success", "Appointment #" + id + " was edited.");
+            return "redirect:" + uriBuilder.path("/appointments/view/{id}").buildAndExpand(id).encode().toUriString();
+        } catch (Exception e) {
+            log.warn("Exception wile editing: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("alert_danger", "Appointment #" + id + " was not edited.");
+            return "redirect:/";
+        }
     }
     
 }

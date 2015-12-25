@@ -67,17 +67,21 @@ public class CustomerController {
     public String create(Model model, @Valid @ModelAttribute("customerCreate") CustomerCreateDTO customer, BindingResult bindingResult, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes){
         log.error("create customer(formBean={})", customer);
         if (bindingResult.hasErrors()) {
-            model.addAttribute("proceduresOptions", Procedure.values());
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 model.addAttribute(fe.getField() + "_error", true);
                 log.trace("FieldError: {}", fe);
             }            
             return "customers/create";
         } 
-         
-        Long id = customerFacade.createCustomer(customer);
-        redirectAttributes.addFlashAttribute("alert_success", "Customer #" + id + " was created.");
-        return "redirect:" + uriBuilder.path("/customers/view/{id}").buildAndExpand(id).encode().toUriString();
+        try { 
+            Long id = customerFacade.createCustomer(customer);
+            redirectAttributes.addFlashAttribute("alert_success", "Customer #" + id + " was created.");
+            return "redirect:" + uriBuilder.path("/customers/view/{id}").buildAndExpand(id).encode().toUriString();
+        } catch (Exception e) {
+            log.warn("Exception wile creating: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("alert_danger", "Customer was not created.");
+            return "redirect:/";
+        }
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
@@ -90,17 +94,21 @@ public class CustomerController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String update(Model model, @PathVariable long id, @Valid @ModelAttribute("customer") CustomerDTO editedCustomer, BindingResult bindingResult, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes){
         if (bindingResult.hasErrors()) {
-            model.addAttribute("proceduresOptions", Procedure.values());
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 model.addAttribute(fe.getField() + "_error", true);
                 log.trace("FieldError: {}", fe);
             }            
             return "customers/edit";
         } 
-        
-        customerFacade.update(editedCustomer);
-        redirectAttributes.addFlashAttribute("alert_success", "Customer #" + id + " was updated.");
-        return "redirect:" + uriBuilder.path("/customers/").build().encode().toUriString();
+        try {
+            customerFacade.update(editedCustomer);
+            redirectAttributes.addFlashAttribute("alert_success", "Customer #" + id + " was updated.");
+            return "redirect:" + uriBuilder.path("/customers/").build().encode().toUriString();
+        } catch (Exception e) {
+            log.warn("Exception wile updating: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("alert_danger", "Customer #" + id + " was not edited.");
+            return "redirect:" + uriBuilder.path("/customers/view/{id}").buildAndExpand(id).encode().toUriString();
+        }
     }
 
 }
