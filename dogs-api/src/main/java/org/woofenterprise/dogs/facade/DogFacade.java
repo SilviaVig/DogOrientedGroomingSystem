@@ -1,7 +1,6 @@
 package org.woofenterprise.dogs.facade;
 
 import java.util.Collection;
-import org.woofenterprise.dogs.dto.DogCreateDTO;
 import org.woofenterprise.dogs.dto.DogDTO;
 
 /**
@@ -23,7 +22,7 @@ public interface DogFacade {
      *
      * @param dogDTO dog to create.
      */
-    DogDTO createDog(DogCreateDTO dogDTO);
+    DogDTO createDog(DogDTO dogDTO);
 
     /**
      * Deletes dog.

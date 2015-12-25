@@ -9,14 +9,14 @@
 <my:pagetemplate title="New Dog">
     <jsp:attribute name="body">   
 
-        <form:form action="${pageContext.request.contextPath}${action}" method="POST" modelAttribute="dogCreate">
+        <form:form action="${pageContext.request.contextPath}${action}" method="POST" modelAttribute="dog">
             
             <dl>
             <dt>Customer</dt>
-            <dd><my:a href="/customers/view/${customer.id}"> <c:out value="${customer.name} ${customer.surname}"/></my:a> </dd>
+            <dd><my:a href="/customers/view/${dog.owner.id}"> <c:out value="${dog.owner.name} ${dog.owner.surname}"/></my:a> </dd>
             
            
-            <form:hidden path="ownerId" />
+            <form:hidden path="owner.id" />
             
             <label>Name 
                 <form:input path="name"/>

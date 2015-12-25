@@ -5,14 +5,11 @@ import org.dozer.Mapper;
 import org.junit.Test;
 import org.junit.Before;
 import org.mockito.InjectMocks;
-import static org.mockito.Matchers.any;
 import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import org.woofenterprise.dogs.dto.DogCreateDTO;
 import org.woofenterprise.dogs.dto.DogDTO;
-import org.woofenterprise.dogs.entity.Customer;
 import org.woofenterprise.dogs.entity.Dog;
 import org.woofenterprise.dogs.service.BeanMappingService;
 import org.woofenterprise.dogs.service.CustomerService;
@@ -45,9 +42,8 @@ public class DogFacadeImplTest extends BaseTestCase {
     @Test
     public void testCreate() {
         Dog dog = mock(Dog.class);
-        DogCreateDTO dogDTO = mock(DogCreateDTO.class);
+        DogDTO dogDTO = mock(DogDTO.class);
         when(beanMappingService.map(dogDTO, Dog.class)).thenReturn(dog);
-        when(customerService.findCustomerById((Long) any())).thenReturn(mock(Customer.class));
         dogFacade.createDog(dogDTO);
         verify(dogService).createDog(dog);
     }

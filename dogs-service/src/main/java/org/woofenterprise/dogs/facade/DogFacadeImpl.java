@@ -5,9 +5,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.woofenterprise.dogs.dto.DogCreateDTO;
 import org.woofenterprise.dogs.dto.DogDTO;
-import org.woofenterprise.dogs.entity.Customer;
 import org.woofenterprise.dogs.entity.Dog;
 import org.woofenterprise.dogs.service.BeanMappingService;
 import org.woofenterprise.dogs.service.CustomerService;
@@ -33,10 +31,8 @@ public class DogFacadeImpl implements DogFacade {
     }
 
     @Override
-    public DogDTO createDog(DogCreateDTO dogDTO) {
-        Customer c = customerService.findCustomerById(dogDTO.getOwnerId());
+    public DogDTO createDog(DogDTO dogDTO) {
         Dog d = beanMappingService.map(dogDTO, Dog.class);
-        c.addDog(d);
         dogService.createDog(d);
         return beanMappingService.map(d, DogDTO.class);
     }

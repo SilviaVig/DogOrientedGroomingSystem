@@ -18,14 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
-import org.woofenterprise.dogs.dto.DogCreateDTO;
-import org.woofenterprise.dogs.dto.DogDTO;
 import org.woofenterprise.dogs.dto.CustomerDTO;
-import org.woofenterprise.dogs.dto.DogCreateDTO;
 import org.woofenterprise.dogs.dto.DogDTO;
 import org.woofenterprise.dogs.facade.CustomerFacade;
 import org.woofenterprise.dogs.facade.DogFacade;
-import org.woofenterprise.dogs.utils.Procedure;
 import static org.woofenterprise.dogs.web.controllers.CustomerController.log;
 import org.woofenterprise.dogs.web.exceptions.ResourceNotFoundException;
 
@@ -85,15 +81,15 @@ public class DogsController {
         }
         
         model.addAttribute("customer", customer);
-        DogCreateDTO dogCreate = new DogCreateDTO();
-        dogCreate.setOwnerId(customerId);
-        model.addAttribute("dogCreate", dogCreate);
+        DogDTO dog = new DogDTO();
+        dog.setOwner(customer);
+        model.addAttribute("dog", dog);
         model.addAttribute("action", "/dogs/new");
         return "dogs/create";
     }
     
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute DogCreateDTO dogCreateDTO, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes, BindingResult bindingResult) {
+    public String create(@Valid @ModelAttribute DogDTO dogDTO, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 model.addAttribute(fe.getField() + "_error", true);
@@ -102,9 +98,8 @@ public class DogsController {
             return "/dogs/create";
         }
             
-        DogDTO dogDTO = facade.createDog(dogCreateDTO);
+        dogDTO = facade.createDog(dogDTO);
         Long id = dogDTO.getId();
-
         return "redirect:" + uriBuilder.path("/dogs/view/{id}").buildAndExpand(id).encode().toUriString();
        
     }
@@ -116,7 +111,7 @@ public class DogsController {
             throw new ResourceNotFoundException();
         }
         //model.addAttribute("customer", dog.getOwner());
-        model.addAttribute("dogCreate", dog);
+        model.addAttribute("dog", dog);
         model.addAttribute("action", "/dogs/edit");
         return "dogs/edit";
     }
