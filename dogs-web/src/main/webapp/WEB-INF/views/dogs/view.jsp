@@ -7,12 +7,12 @@
 
 <my:pagetemplate title="Dog #${dog.id}">
     <jsp:attribute name="body">   
-        
+        <c:if test="${sessionScope.authenticated eq 'admin'}">
         <form class="inline" method="post" action="${pageContext.request.contextPath}/dogs/delete/${dog.id}">
             <my:a href="/dogs/edit/${dog.id}" class="btn">Edit dog</my:a>
             <button type="submit" class="btn">Delete dog</button>
         </form>
-        
+        </c:if>
         <dl>
             <dt>Name</dt>
             <dd><c:out value="${dog.name}"/></dd>

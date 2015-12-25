@@ -40,7 +40,7 @@
                             <my:a href="/appointments/view/${appointment.id}" class="btn">View</my:a>
                         </td>
 
-                        <c:if test="${sessionScope.authenticated} == admin">
+                        <c:if test="${sessionScope.authenticated eq 'admin'}">
                         <td>
                             <form method="post" action="${pageContext.request.contextPath}/appointments/delete/${appointment.id}">
                                 <button type="submit" class="btn">Delete</button>

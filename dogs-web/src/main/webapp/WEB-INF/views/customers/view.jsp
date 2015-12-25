@@ -7,11 +7,12 @@
 
 <my:pagetemplate title="Customer #${customer.id}">
     <jsp:attribute name="body">   
-        
+        <c:if test="${sessionScope.authenticated eq 'admin'}">
         <form class="inline" method="post" action="${pageContext.request.contextPath}/customers/delete/${customer.id}">
             <my:a href="/customers/edit/${customer.id}" class="btn">Edit customer</my:a>
             <button type="submit" class="btn">Delete customer</button>
         </form>
+        </c:if>
         
         <dl>
             <dt>Name</dt>
@@ -20,7 +21,7 @@
             <dt>Email</dt>
             <dd><c:out value="${customer.email}"/></dd>
 
-            <dt>Adress</dt>
+            <dt>Address</dt>
             <dd><c:out
                     value="${customer.addressFirstLine},
                     ${customer.addressSecondLine == null ? customer.addressSecondLine : customer.addressSecondLine.concat(\",\")}

@@ -7,12 +7,12 @@
 
 <my:pagetemplate title="Appointment #${appointment.id}">
     <jsp:attribute name="body">   
-        
+        <c:if test="${sessionScope.authenticated eq 'admin'}">
         <form class="inline" method="post" action="${pageContext.request.contextPath}/appointments/delete/${appointment.id}">
             <my:a href="/appointments/edit/${appointment.id}" class="btn">Edit appointment</my:a>
             <button type="submit" class="btn">Delete appointment</button>
         </form>
-        
+        </c:if>
         <dl>
             <dt>Start date</dt>
             <dd><fmt:formatDate value="${appointment.startTime}" pattern="yyyy-MM-dd HH:mm" /> </dd>

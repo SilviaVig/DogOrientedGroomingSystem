@@ -28,18 +28,20 @@ public class AuthFilter implements Filter {
     public void doFilter(ServletRequest r, ServletResponse s, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) r;
         HttpServletResponse response = (HttpServletResponse) s;
+        
         String authenticated = (String) request.getSession().getAttribute("authenticated");
-        if (authenticated == null) {
-            response.sendRedirect("/pa165/auth/login");
+        boolean allow = false;
+        
+        if ("admin".equals(authenticated)) {
+            allow = true;
+        } 
+        if ("user".equals(authenticated) && request.getMethod().equals("GET")) {
+           allow = true;
         }
-        if (authenticated.equals("admin")) {
-
-        } else if (authenticated.equals("user")) {
-            if (!request.getMethod().equals("GET")) {
-                response.getWriter().println("<html><body><h1>401 Unauthorized</h1> You are not authorized to view this page.</body></html>");
-            }
-        } else {
-            response.sendRedirect("/pa165/auth/login");
+        
+        if (!allow) {
+            response.sendRedirect(request.getContextPath() + "/auth/login");
+            return;
         }
         chain.doFilter(request, response);
     }

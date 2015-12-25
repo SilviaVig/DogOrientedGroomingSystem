@@ -36,7 +36,7 @@
                     <td>
                         <my:a href="/customers/view/${customer.id}" class="btn">View</my:a>
                     </td>
-                    <c:if test="${sessionScope.authenticated} == admin">
+                    <c:if test="${sessionScope.authenticated eq 'admin'}">
                     <td>
                         <my:a href="/dogs/new/customer/${customer.id}" class="btn">Create Dog</my:a>
                     </td>
