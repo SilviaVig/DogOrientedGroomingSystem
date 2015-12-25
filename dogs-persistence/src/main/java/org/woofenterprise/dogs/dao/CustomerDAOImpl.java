@@ -5,6 +5,7 @@ import org.woofenterprise.dogs.entity.Customer;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -46,8 +47,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public Customer findByEmail(String email) {
-       return em.createQuery("select c from Customer c where c.email = :email", Customer.class)
-               .setParameter("email", email)
-               .getSingleResult();
+        try{
+        return em.createQuery("select c from Customer c where c.email = :email", Customer.class)
+                .setParameter("email", email)
+                .getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
+        }
     }
 }

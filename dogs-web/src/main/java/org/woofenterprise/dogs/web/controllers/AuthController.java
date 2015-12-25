@@ -41,7 +41,7 @@ public class AuthController {
     public String login(Model model, @Valid @ModelAttribute("customer") CustomerAuthenticationDTO customer, UriComponentsBuilder uriBuilder) {
         CustomerDTO c = customerFacade.findCustomerByEmail(customer.getEmail());
 
-        if (customer == null) {
+        if (c == null) {
             return "redirect:/";
         }
 

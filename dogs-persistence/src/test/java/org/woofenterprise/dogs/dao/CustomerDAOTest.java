@@ -96,9 +96,8 @@ public class CustomerDAOTest {
         rc2.setEmail(email);
         customerDAO.create(rc2);
 
-        thrown.expect(DataAccessException.class);
         Customer result = customerDAO.findByEmail("another.email@example.com");
-
+        assertNull(result);
     }
 
 
