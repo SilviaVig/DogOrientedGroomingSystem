@@ -48,13 +48,11 @@ public class AuthController {
         if (customerFacade.authenticate(customer)) {
             // authenticated
             if (customerFacade.isAdmin(c)) {
-                model.addAttribute("admin", c.getEmail());
+                session.setAttribute("authenticated", "admin");
             } else {
-                model.addAttribute("user", c.getEmail());
+                session.setAttribute("authenticated", "user");
             }
-            session.setAttribute("authenticated", customer);
             return "redirect:/";
-
         }
         return "redirect:/auth/login";
     }

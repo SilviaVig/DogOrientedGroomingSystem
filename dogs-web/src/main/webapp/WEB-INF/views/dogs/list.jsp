@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="false" session="false" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="false" session="true" %>
 <%@ taglib tagdir="/WEB-INF/tags/" prefix="my" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -34,6 +34,7 @@
                         <td>
                             <my:a href="/dogs/view/${dog.id}" class="btn">View</my:a>
                         </td>
+                        <c:if test="${sessionScope.authenticated} == admin">
                         <td>
                             <my:a href="/appointments/new/dog/${dog.id}" class="btn">Create Appointment</my:a>
                         </td>
@@ -42,6 +43,7 @@
                                 <button type="submit" class="btn">Delete</button>
                             </form>
                         </td>
+                        </c:if>
                     </tr>
                 </c:forEach>
             </tbody>
