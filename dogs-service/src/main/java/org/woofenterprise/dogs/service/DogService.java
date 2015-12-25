@@ -35,5 +35,7 @@ public interface DogService {
      * @return all dogs
      */
     Collection<Dog> getAllDogs();
+
+    public void updateDog(Dog map);
     
 }

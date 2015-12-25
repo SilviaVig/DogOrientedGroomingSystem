@@ -89,7 +89,7 @@ public class DogsController {
         dogCreate.setOwnerId(customerId);
         model.addAttribute("dogCreate", dogCreate);
         model.addAttribute("action", "/dogs/new");
-        return "dogs/form";
+        return "dogs/create";
     }
     
     @RequestMapping(value = "/new", method = RequestMethod.POST)
@@ -99,7 +99,7 @@ public class DogsController {
                 model.addAttribute(fe.getField() + "_error", true);
                 log.trace("FieldError: {}", fe);
             }
-            return "/dogs/form";
+            return "/dogs/create";
         }
             
         DogDTO dogDTO = facade.createDog(dogCreateDTO);
@@ -108,4 +108,32 @@ public class DogsController {
         return "redirect:" + uriBuilder.path("/dogs/view/{id}").buildAndExpand(id).encode().toUriString();
        
     }
+    
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String edit(@PathVariable long id, Model model) {
+        DogDTO dog = facade.findDogById(id);
+        if (dog == null) {
+            throw new ResourceNotFoundException();
+        }
+        //model.addAttribute("customer", dog.getOwner());
+        model.addAttribute("dogCreate", dog);
+        model.addAttribute("action", "/dogs/edit");
+        return "dogs/edit";
+    }
+    
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String update(@Valid @ModelAttribute DogDTO dogDTO,  Model model, UriComponentsBuilder uriBuilder,RedirectAttributes redirectAttributes, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                log.trace("FieldError: {}", fe);
+            }
+            return "/dogs/edit";
+        } 
+        facade.updateDog(dogDTO);
+        Long id = dogDTO.getId();
+
+        return "redirect:" + uriBuilder.path("/dogs/view/{id}").buildAndExpand(id).encode().toUriString();
+    }
+    
 }

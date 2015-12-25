@@ -53,4 +53,9 @@ public class DogFacadeImpl implements DogFacade {
         return beanMappingService.map(dogs, DogDTO.class);
     }
 
+    @Override
+    public void updateDog(DogDTO dogDTO) {
+        dogService.updateDog(beanMappingService.map(dogDTO, Dog.class));
+    }
+
 }

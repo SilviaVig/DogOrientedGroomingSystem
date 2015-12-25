@@ -6,6 +6,8 @@ package org.woofenterprise.dogs.dto;
  * @author michal.babel@embedit.cz
  */
 public class DogCreateDTO {
+    private Long id;
+    
     private Long ownerId;
 
     private String name;
@@ -13,6 +15,14 @@ public class DogCreateDTO {
     private String hobbies;
     
     private CustomerDTO owner;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getOwnerId() {
         return ownerId;
@@ -45,8 +55,5 @@ public class DogCreateDTO {
     public void setOwner(CustomerDTO owner) {
         this.owner = owner;
     }
-    
-    
-    
     
 }

@@ -38,5 +38,7 @@ public interface DogFacade {
      * @return collection of dogs converted to DTO objects.
      */
     Collection<DogDTO> getAllDogs();
+
+    public void updateDog(DogDTO dogDTO);
     
 }

@@ -36,4 +36,9 @@ public class DogServiceImpl implements DogService {
     public Collection<Dog> getAllDogs() {
         return dogDAO.findAll();
     }
+
+    @Override
+    public void updateDog(Dog dog) {
+        dogDAO.update(dog);
+    }
 }
