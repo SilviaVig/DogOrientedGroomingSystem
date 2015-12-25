@@ -19,15 +19,25 @@
             </dl>
            
             <form:hidden path="dog.id" />
+            <form:hidden path="dog.name" />
+            <form:hidden path="dog.owner.name" />
+            <form:hidden path="dog.owner.surname" />
             
             <label>Start time: 
-                <form:input type="datetime" path="startTime" placeholder="yyyy-mm-dd hh:mm" />
+                <div class="input">
+                <form:input type="text" path="startTime" placeholder="yyyy-mm-dd hh:mm" />
+                <form:errors path="startTime" cssClass="error"/>
+                </div>
             </label>
             
-            <label>Procedures <form:select path="procedures" multiple="true"  size="${fn:length(proceduresOptions)}">
+            <label>Procedures 
+                <div class="input">
+                <form:select path="procedures" multiple="true"  size="${fn:length(proceduresOptions)}">
                     <form:options items="${proceduresOptions}" />
-                </form:select></label>
-            
+                </form:select>
+                <form:errors path="procedures" cssClass="error"/>
+                </div>
+            </label>
             
             <input type="submit" class="btn" value="Calculate time needed" />
             

@@ -6,28 +6,40 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import org.woofenterprise.dogs.utils.Procedure;
+import org.woofenterprise.dogs.validator.DateBefore;
+import org.woofenterprise.dogs.validator.ValidateDateRange;
 
 /**
  * DTO for Appointment entity.
  *
  * @author michal.babel@embedit.cz
  */
+@ValidateDateRange(message = "End time must be after start time")
 public class AppointmentDTO {
 
     private Long id;
 
+    @NotNull
     @JsonBackReference
     private DogDTO dog;
 
+    @NotNull(message = "Must be in format \"YYYY-MM-DD HH:MM\"")
+    @DateBefore("9999-12-31")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date startTime;
 
+    @NotNull(message = "Must be in format \"YYYY-MM-DD HH:MM\"")
+    @DateBefore("9999-12-31")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date endTime;
 
+    @NotNull(message = "Must have at least 1 item selected")
+    @Size(min=1)
     private Set<Procedure> procedures = new HashSet<>();
 
     /**

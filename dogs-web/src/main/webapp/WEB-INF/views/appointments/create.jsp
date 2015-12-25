@@ -10,6 +10,12 @@
     <jsp:attribute name="body">   
         <form:form action="${pageContext.request.contextPath}/appointments/new" method="POST" modelAttribute="appointment">
             
+            <c:if test="${not empty globalError }">
+                <div class="alert alert-danger">
+                    <c:out value="${globalError}" />
+                </div>
+            </c:if>
+            
             <dl>
             <dt>Customer</dt>
             <dd><my:a href="/customers/view/${appointment.dog.owner.id}"> <c:out value="${appointment.dog.owner.name} ${appointment.dog.owner.surname}"/></my:a> </dd>
@@ -19,17 +25,31 @@
             </dl>
            
             <form:hidden path="dog.id" />
+            <form:hidden path="dog.name" />
+            <form:hidden path="dog.owner.name" />
+            <form:hidden path="dog.owner.surname" />
             
             <label>Start time: 
-                <form:input type="datetime" path="startTime" placeholder="yyyy-mm-dd hh:mm" />
+                <div class="input">
+                <form:input type="text" path="startTime" placeholder="yyyy-mm-dd hh:mm" />
+                <form:errors path="startTime" cssClass="error"/>
+                </div>
             </label>
             
-            <label>Procedures <form:select path="procedures" multiple="true"  size="${fn:length(proceduresOptions)}">
+            <label>Procedures 
+                <div class="input">
+                <form:select path="procedures" multiple="true"  size="${fn:length(proceduresOptions)}">
                     <form:options items="${proceduresOptions}" />
-                </form:select></label>
-            
+                </form:select>
+                <form:errors path="procedures" cssClass="error"/>
+                </div>
+            </label>
+                
             <label>End time: 
-                <form:input type="datetime" path="endTime" placeholder="yyyy-mm-dd hh:mm" />
+                <div class="input">
+                <form:input type="text" path="endTime" placeholder="yyyy-mm-dd hh:mm" />
+                <form:errors path="endTime" cssClass="error"/>
+                </div>
             </label>
             
             <input type="submit" class="btn" value="Submit" />
