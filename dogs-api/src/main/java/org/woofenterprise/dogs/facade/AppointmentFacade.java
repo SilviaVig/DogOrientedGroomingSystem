@@ -53,4 +53,6 @@ public interface AppointmentFacade {
      * @return calculated duration
      */
     Long calculateAppointmentDuration(AppointmentDTO appointmentDTO);
+
+    public void updateAppointment(AppointmentDTO appointmentDTO);
 }

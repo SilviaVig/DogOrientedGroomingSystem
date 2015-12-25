@@ -57,4 +57,6 @@ public interface AppointmentService {
      * @return appointments with starting time after time
      */
     Collection<Appointment> getAllAppointmentsAfter(Date time);
+
+    public void updateAppointment(Appointment map);
 }

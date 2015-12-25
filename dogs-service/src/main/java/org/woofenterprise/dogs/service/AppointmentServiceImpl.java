@@ -51,4 +51,9 @@ public class AppointmentServiceImpl implements AppointmentService {
         return appointmentDAO.findAllAppointmentsAfter(time);
     }
 
+    @Override
+    public void updateAppointment(Appointment map) {
+        appointmentDAO.update(map);
+    }
+
 }

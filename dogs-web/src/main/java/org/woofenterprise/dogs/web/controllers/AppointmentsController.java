@@ -9,9 +9,12 @@ import org.woofenterprise.dogs.web.exceptions.ResourceNotFoundException;
 import java.util.Collection;
 import java.util.Map;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +28,7 @@ import org.woofenterprise.dogs.dto.DogDTO;
 import org.woofenterprise.dogs.facade.AppointmentFacade;
 import org.woofenterprise.dogs.facade.DogFacade;
 import org.woofenterprise.dogs.utils.Procedure;
+import static org.woofenterprise.dogs.web.controllers.CustomerController.log;
 
 /**
  *
@@ -114,5 +118,35 @@ public class AppointmentsController {
             return "appointments/form";
         }
     }
+    
+    
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String edit(@PathVariable long id, Model model) {
+        AppointmentDTO appointment = facade.findAppointmentById(id);
+        if (appointment == null) {
+            throw new ResourceNotFoundException();
+        }
+        //model.addAttribute("customer", dog.getOwner());
+        model.addAttribute("appointment", appointment);
+        model.addAttribute("proceduresOptions", Procedure.values());
+        model.addAttribute("action", "/appointments/edit");
+        return "appointments/edit";
+    }
+    
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String update(@Valid @ModelAttribute AppointmentDTO appointmentDTO,  Model model, UriComponentsBuilder uriBuilder,RedirectAttributes redirectAttributes, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                log.trace("FieldError: {}", fe);
+            }
+            return "appointments/edit";
+        } 
+        facade.updateAppointment(appointmentDTO);
+        Long id = appointmentDTO.getId();
+
+        return "redirect:" + uriBuilder.path("/appointments/view/{id}").buildAndExpand(id).encode().toUriString();
+    }
+    
 }
 

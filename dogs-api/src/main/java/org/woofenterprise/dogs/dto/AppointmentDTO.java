@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import org.woofenterprise.dogs.utils.Procedure;
 
@@ -21,8 +22,10 @@ public class AppointmentDTO {
     @JsonBackReference
     private DogDTO dog;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date startTime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date endTime;
 
     private Set<Procedure> procedures = new HashSet<>();

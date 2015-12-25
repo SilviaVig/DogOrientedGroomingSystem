@@ -82,4 +82,13 @@ public class AppointmentFacadeImpl implements AppointmentFacade {
         return durationService.getDurationForProcedures(appointmentDTO.getProcedures());
     }
 
+    @Override
+    public void updateAppointment(AppointmentDTO appointmentDTO) {
+        Appointment a = beanMappingService.map(appointmentDTO, Appointment.class);
+        for (Procedure p : appointmentDTO.getProcedures()) {
+            a.addProcedure(p);
+        }
+        appointmentService.updateAppointment(a);
+    }
+
 }
