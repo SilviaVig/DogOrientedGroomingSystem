@@ -53,28 +53,11 @@ public class CustomerFacadeImpl implements CustomerFacade {
         return beanMappingService.map(customers, CustomerDTO.class);
     }
 
-    @Override
-    public CustomerDTO changeEmail(Long customerId, String newEmail) {
-        Customer customer = customerService.changeEmail(customerId, newEmail);
-        return beanMappingService.map(customer, CustomerDTO.class);
-    }
 
     @Override
     public void update(CustomerDTO customer) {
         Customer c = beanMappingService.map(customer, Customer.class);
         customerService.update(c);
-    }
-
-    @Override
-    public boolean authenticate(CustomerAuthenticationDTO customerAuthenticationDTO) {
-        return customerService.authenticate(customerService.findCustomerByEmail(
-                customerAuthenticationDTO.getEmail()), customerAuthenticationDTO.getPassword());
-    }
-
-    @Override
-    public boolean isAdmin(CustomerDTO customer) {
-        Customer c = beanMappingService.map(customer, Customer.class);
-        return customerService.isAdmin(c);
     }
 
 }

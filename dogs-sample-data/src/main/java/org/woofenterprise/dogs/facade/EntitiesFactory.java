@@ -38,7 +38,7 @@ class EntitiesFactory {
         customer.setAdmin(true);
         customer.setName("Admin");
         customer.setEmail("admin@admin.cz");
-        customer.setPasswordHash(createHash("admin"));
+        //customer.setPasswordHash(createHash("admin"));
         return customer;
     }
     
@@ -53,7 +53,7 @@ class EntitiesFactory {
         result.setAddressFirstLine(faker.address().streetAddress(false));
         result.setAddressPostalCode(faker.address().zipCode());
         result.setPhoneNumber(faker.phoneNumber().phoneNumber());
-        result.setPasswordHash(createHash("password"));
+        //result.setPasswordHash(createHash("password"));
         result.setAdmin(false);
         return result;
     }

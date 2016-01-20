@@ -49,14 +49,5 @@ public interface CustomerFacade {
      */
     Collection<CustomerDTO> getAllCustomers();
 
-    /**
-     * Changes email for customer with specified id.
-     * @param customerId id of customer
-     * @param email new email
-     */
-    CustomerDTO changeEmail(Long customerId, String email);
-
     void update(CustomerDTO  customerCreateDTO);
-    boolean authenticate(CustomerAuthenticationDTO customerAuthenticationDTO);
-    boolean isAdmin(CustomerDTO customer);
 }

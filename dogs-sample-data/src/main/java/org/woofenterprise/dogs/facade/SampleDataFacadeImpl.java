@@ -2,6 +2,8 @@ package org.woofenterprise.dogs.facade;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.woofenterprise.dogs.entity.Appointment;
 import org.woofenterprise.dogs.entity.Customer;
@@ -22,21 +24,26 @@ public class SampleDataFacadeImpl implements SampleDataFacade {
 
     @Inject
     DogService dogService;
-    
+
+    @Inject
+    PasswordEncoder passwordEncoder;
     
     @Override
     public void createSampleData() {
         
         Customer admin = EntitiesFactory.createAdmin();
+        admin.setPasswordHash(passwordEncoder.encode("admin"));
         customerService.createCustomer(admin);
         
         Customer user = EntitiesFactory.createCustomer(0);
         user.setEmail("user@user.cz");
+        user.setPasswordHash(passwordEncoder.encode("user"));
         customerService.createCustomer(user);
 
         for (long seed = 20; seed <100; seed+=10) {
             
             Customer customer1 = EntitiesFactory.createCustomer(seed);
+            customer1.setPasswordHash(passwordEncoder.encode("user"));
             customerService.createCustomer(customer1);
 
             Dog dog11 = EntitiesFactory.createDog(seed+1);

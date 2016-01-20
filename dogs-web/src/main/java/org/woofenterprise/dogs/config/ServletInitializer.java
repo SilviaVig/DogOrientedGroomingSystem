@@ -6,6 +6,8 @@
 package org.woofenterprise.dogs.config;
 
 import javax.servlet.Filter;
+
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -17,14 +19,13 @@ public class ServletInitializer extends AbstractAnnotationConfigDispatcherServle
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{SpringMvcConfig.class};
+        return new Class<?>[]{SpringMvcConfig.class, SpringSecurityConfig.class};
     }
 
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
-
     @Override
     protected Filter[] getServletFilters() {
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();

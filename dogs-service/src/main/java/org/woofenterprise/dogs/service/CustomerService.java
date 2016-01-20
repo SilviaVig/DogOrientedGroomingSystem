@@ -44,17 +44,6 @@ public interface CustomerService {
      */
     Collection<Customer> getAllCustomers();
 
-    /**
-     * Updates email of a customer.
-     * @param id id of a customemr
-     * @param email new email
-     */
-    Customer changeEmail(Long id, String email);
-
     void update(Customer customer);
-
-    boolean authenticate(Customer customer, String password);
-
-    boolean isAdmin(Customer customer);
 
 }

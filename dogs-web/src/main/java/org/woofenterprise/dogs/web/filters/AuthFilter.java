@@ -28,7 +28,7 @@ public class AuthFilter implements Filter {
     public void doFilter(ServletRequest r, ServletResponse s, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) r;
         HttpServletResponse response = (HttpServletResponse) s;
-        
+        /*
         String authenticated = (String) request.getSession().getAttribute("authenticated");
         boolean allow = false;
         
@@ -42,7 +42,7 @@ public class AuthFilter implements Filter {
         if (!allow) {
             response.sendRedirect(request.getContextPath() + "/auth/login");
             return;
-        }
+        }*/
         chain.doFilter(request, response);
     }
 
