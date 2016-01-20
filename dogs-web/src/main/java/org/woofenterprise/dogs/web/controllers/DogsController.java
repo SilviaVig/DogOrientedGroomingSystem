@@ -6,6 +6,7 @@
 package org.woofenterprise.dogs.web.controllers;
 
 import java.util.Collection;
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -58,6 +59,7 @@ public class DogsController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    @RolesAllowed("ROLE_ADMIN")
     public String deleteDog(@PathVariable("id") long id, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         try {
             DogDTO dog = facade.findDogById(id);
@@ -74,6 +76,7 @@ public class DogsController {
     }
 
     @RequestMapping(value = "/new/customer/{customerId}", method = RequestMethod.GET)
+    @RolesAllowed("ROLE_ADMIN")
     public String newDog(
             Model model, 
             @PathVariable long customerId
@@ -93,6 +96,7 @@ public class DogsController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RolesAllowed("ROLE_ADMIN")
     public String createDog(
             Model model, 
             @Valid @ModelAttribute("dog") DogDTO dogDTO, 
@@ -120,6 +124,7 @@ public class DogsController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    @RolesAllowed("ROLE_ADMIN")
     public String editDog( 
             Model model,
             @PathVariable long id
@@ -135,6 +140,7 @@ public class DogsController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RolesAllowed("ROLE_ADMIN")
     public String updateDog(
             Model model, 
             @Valid @ModelAttribute("dog") DogDTO dogDTO, 

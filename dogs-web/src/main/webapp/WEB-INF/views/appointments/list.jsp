@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <my:pagetemplate title="Appointments">
     <jsp:attribute name="head">
@@ -14,9 +15,9 @@
     <jsp:attribute name="body">   
         
         <p><span class="info"> Showing <c:out value="${fn:length(appointments)}" /> records.</span>
-            <c:if test="${sessionScope.authenticated eq 'admin'}">
-            <my:a href="/dogs/" class="btn" >Create new appointment</my:a>
-            </c:if>
+            <sec:authorize access="hasRole('ADMIN')">
+                <my:a href="/dogs/" class="btn" >Create new appointment</my:a>
+            </sec:authorize>
         </p>
         
         <table class="sortable">
@@ -44,13 +45,13 @@
                             <my:a href="/appointments/view/${appointment.id}" class="btn">View</my:a>
                         </td>
 
-                        <c:if test="${sessionScope.authenticated eq 'admin'}">
                         <td>
+                        <sec:authorize access="hasRole('ADMIN')">
                             <form method="post" action="${pageContext.request.contextPath}/appointments/delete/${appointment.id}">
                                 <button type="submit" class="btn">Delete</button>
                             </form>
+                        </sec:authorize>
                         </td>
-                        </c:if>
                     </tr>
                 </c:forEach>
             </tbody>

@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <my:pagetemplate title="Dogs">
     <jsp:attribute name="head">
@@ -14,9 +15,9 @@
     <jsp:attribute name="body">   
         
         <p><span class="info">Showing <c:out value="${fn:length(dogs)}" /> records.</span>
-            <c:if test="${sessionScope.authenticated eq 'admin'}">
+            <sec:authorize access="hasRole('ADMIN')">
             <my:a href="/customers/" class="btn" >Create new dog</my:a></p>
-            </c:if>
+            </sec:authorize>
         
         <table class="sortable">
             <thead>
@@ -37,7 +38,7 @@
                         <td>
                             <my:a href="/dogs/view/${dog.id}" class="btn">View</my:a>
                         </td>
-                        <c:if test="${sessionScope.authenticated eq 'admin'}">
+                        <sec:authorize access="hasRole('ADMIN')">
                         <td>
                             <my:a href="/appointments/new/dog/${dog.id}" class="btn">Create Appointment</my:a>
                         </td>
@@ -46,7 +47,7 @@
                                 <button type="submit" class="btn">Delete</button>
                             </form>
                         </td>
-                        </c:if>
+                        </sec:authorize>
                     </tr>
                 </c:forEach>
             </tbody>

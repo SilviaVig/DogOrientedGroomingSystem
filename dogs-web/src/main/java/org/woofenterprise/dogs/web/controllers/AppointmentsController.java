@@ -7,6 +7,7 @@ package org.woofenterprise.dogs.web.controllers;
 
 import java.util.Collection;
 import java.util.Date;
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -52,14 +53,14 @@ public class AppointmentsController {
     
     @Inject 
     private DogFacade dogFacade;
-    
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String listAppointments(Model model) {
         Collection<AppointmentDTO> appointments = facade.getAllAppointments();
         model.addAttribute("appointments", appointments);
         return "appointments/list";
     }
-    
+
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String viewAppointment(
             Model model, @PathVariable("id") long id) {
@@ -70,9 +71,9 @@ public class AppointmentsController {
         model.addAttribute("appointment", appointment);
         return "appointments/view";
     }
-    
-    
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    @RolesAllowed("ROLE_ADMIN")
     public String deleteAppointment(
             @PathVariable("id") long id, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         try {
@@ -90,6 +91,7 @@ public class AppointmentsController {
     
     
     @RequestMapping(value = "/new/dog/{dogId}", method = RequestMethod.GET)
+    @RolesAllowed("ROLE_ADMIN")
     public String newAppointment(Model model, @PathVariable long dogId) {
         model.addAttribute("proceduresOptions", Procedure.values());
         
@@ -105,6 +107,7 @@ public class AppointmentsController {
     }
     
     @RequestMapping(value = "/calculate", method = RequestMethod.POST)
+    @RolesAllowed("ROLE_ADMIN")
     public String calculateDuration(
             Model model, 
             @Valid @ModelAttribute("appointment") AppointmentDurationDTO appointmentDurationDTO, 
@@ -134,6 +137,7 @@ public class AppointmentsController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
+    @RolesAllowed("ROLE_ADMIN")
     public String createAppointment(
             Model model, 
             @Valid @ModelAttribute("appointment") AppointmentDTO appointmentDTO, 
@@ -175,6 +179,7 @@ public class AppointmentsController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    @RolesAllowed("ROLE_ADMIN")
     public String edit(@PathVariable long id, Model model) {
         AppointmentDTO appointmentDTO = facade.findAppointmentById(id);
         if (appointmentDTO == null) {
@@ -187,6 +192,7 @@ public class AppointmentsController {
     }
     
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @RolesAllowed("ROLE_ADMIN")
     public String update(
             Model model, 
             @Valid @ModelAttribute("appointment") AppointmentDTO appointmentDTO, 

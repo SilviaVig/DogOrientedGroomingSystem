@@ -33,8 +33,13 @@
                 <li><my:a href="/customers/">Customers</my:a></li>
                 <li><my:a href="/dogs/">Dogs</my:a></li>
                 <li><my:a href="/appointments/">Appointments</my:a></li>
-                <li><my:a href="/auth/login">Login</my:a></li>
-                <li><my:a href="/auth/logout">Logout</my:a></li>
+                <li>
+                    <c:url var="logoutUrl" value="/logout"/>
+                    <form class="form-inline" action="${logoutUrl}" method="post">
+                        <input type="submit" class="btn" value="Log out" />
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+                </li>
             </ul>
         </nav>
     </header>

@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <my:pagetemplate title="Customers">
     <jsp:attribute name="head">
         <c:url value='/js/sorttable.js' var="sortableJs" scope="page"/>
@@ -14,9 +15,9 @@
     <jsp:attribute name="body">
 
         <p><span class="info">Showing <c:out value="${fn:length(customers)}" /> records.</span>
-            <c:if test="${sessionScope.authenticated eq 'admin'}">
+            <sec:authorize access="hasRole('ADMIN')">
             <my:a href="/customers/create" class="btn">Create new customer</my:a>
-            </c:if>
+            </sec:authorize>
         </p>
 
         <table class="sortable">
@@ -38,16 +39,19 @@
                     <td>
                         <my:a href="/customers/view/${customer.id}" class="btn">View</my:a>
                     </td>
-                    <c:if test="${sessionScope.authenticated eq 'admin'}">
                     <td>
+                        <sec:authorize access="hasRole('ADMIN')">
                         <my:a href="/dogs/new/customer/${customer.id}" class="btn">Create Dog</my:a>
+                        </sec:authorize>
+
                     </td>
                     <td>
+                        <sec:authorize access="hasRole('ADMIN')">
                         <form method="post" action="${pageContext.request.contextPath}/customers/delete/${customer.id}">
                             <button type="submit" class="btn">Delete</button>
                         </form>
+                        </sec:authorize>
                     </td>
-                    </c:if>
                 </tr>
             </c:forEach>
             </tbody>

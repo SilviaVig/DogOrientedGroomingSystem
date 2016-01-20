@@ -115,6 +115,9 @@ h1, h2, h3 {
     /* IE6-9 */
     color: #fff; }
 
+form.form-inline {
+  display: inline; }
+
 table {
   border-spacing: 0;
   width: 100%;
