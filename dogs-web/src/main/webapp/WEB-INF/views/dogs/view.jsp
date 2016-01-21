@@ -10,6 +10,7 @@
     <jsp:attribute name="body">   
         <sec:authorize access="hasRole('ADMIN')">
         <form class="inline" method="post" action="${pageContext.request.contextPath}/dogs/delete/${dog.id}">
+            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             <my:a href="/dogs/edit/${dog.id}" class="btn">Edit dog</my:a>
             <button type="submit" class="btn">Delete dog</button>
         </form>

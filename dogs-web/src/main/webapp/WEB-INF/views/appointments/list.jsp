@@ -48,6 +48,7 @@
                         <td>
                         <sec:authorize access="hasRole('ADMIN')">
                             <form method="post" action="${pageContext.request.contextPath}/appointments/delete/${appointment.id}">
+                                <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                                 <button type="submit" class="btn">Delete</button>
                             </form>
                         </sec:authorize>

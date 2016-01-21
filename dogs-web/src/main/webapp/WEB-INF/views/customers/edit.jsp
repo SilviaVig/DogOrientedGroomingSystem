@@ -11,7 +11,7 @@
 
     <form:form method="POST" action="${pageContext.request.contextPath}/customers/edit/${customer.id}"
                modelAttribute="customer" cssClass="form-horizontal">
-        
+        <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
         <label>Name 
             <div class="input">
                 <form:input path="name" />

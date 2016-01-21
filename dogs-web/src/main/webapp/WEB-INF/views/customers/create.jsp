@@ -9,7 +9,7 @@
     <jsp:attribute name="body">
         <form:form method="POST" action="${pageContext.request.contextPath}/customers/create"
                    modelAttribute="customerCreate" cssClass="form-horizontal">
-
+            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             <label>Name 
                 <div class="input">
                     <form:input path="name" />

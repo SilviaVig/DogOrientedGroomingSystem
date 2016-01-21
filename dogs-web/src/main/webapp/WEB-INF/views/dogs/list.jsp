@@ -44,6 +44,7 @@
                         </td>
                         <td>
                             <form method="post" action="${pageContext.request.contextPath}/dogs/delete/${dog.id}">
+                                <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                                 <button type="submit" class="btn">Delete</button>
                             </form>
                         </td>

@@ -9,7 +9,7 @@
 <my:pagetemplate title="New Appointment">
     <jsp:attribute name="body">   
         <form:form action="${pageContext.request.contextPath}/appointments/new" method="POST" modelAttribute="appointment">
-            
+            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             <c:if test="${not empty globalError }">
                 <div class="alert alert-danger">
                     <c:out value="${globalError}" />

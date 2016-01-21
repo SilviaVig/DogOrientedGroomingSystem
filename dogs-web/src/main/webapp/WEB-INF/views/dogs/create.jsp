@@ -10,7 +10,7 @@
     <jsp:attribute name="body">   
 
         <form:form action="${pageContext.request.contextPath}/dogs/create" method="POST" modelAttribute="dog">
-            
+            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             <dl>
             <dt>Customer</dt>
             <dd><my:a href="/customers/view/${dog.owner.id}"> <c:out value="${dog.owner.name} ${dog.owner.surname}"/></my:a> </dd>

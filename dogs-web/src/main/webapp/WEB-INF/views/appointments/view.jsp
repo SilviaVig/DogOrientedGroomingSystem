@@ -10,6 +10,7 @@
     <jsp:attribute name="body">   
             <sec:authorize access="hasRole('ADMIN')">
         <form class="inline" method="post" action="${pageContext.request.contextPath}/appointments/delete/${appointment.id}">
+            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             <my:a href="/appointments/edit/${appointment.id}" class="btn">Edit appointment</my:a>
             <button type="submit" class="btn">Delete appointment</button>
         </form>

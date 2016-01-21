@@ -9,7 +9,7 @@
 <my:pagetemplate title="New Appointment">
     <jsp:attribute name="body">   
         <form:form action="${pageContext.request.contextPath}/appointments/calculate" method="POST" modelAttribute="appointment">
-            
+            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
             <dl>
             <dt>Customer</dt>
             <dd><my:a href="/customers/view/${appointment.dog.owner.id}"> <c:out value="${appointment.dog.owner.name} ${appointment.dog.owner.surname}"/></my:a> </dd>

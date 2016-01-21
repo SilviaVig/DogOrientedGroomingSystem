@@ -47,9 +47,10 @@
                     </td>
                     <td>
                         <sec:authorize access="hasRole('ADMIN')">
-                        <form method="post" action="${pageContext.request.contextPath}/customers/delete/${customer.id}">
-                            <button type="submit" class="btn">Delete</button>
-                        </form>
+                                <form method="post" action="${pageContext.request.contextPath}/customers/delete/${customer.id}">
+                                    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                                    <button type="submit" class="btn">Delete</button>
+                                </form>
                         </sec:authorize>
                     </td>
                 </tr>
