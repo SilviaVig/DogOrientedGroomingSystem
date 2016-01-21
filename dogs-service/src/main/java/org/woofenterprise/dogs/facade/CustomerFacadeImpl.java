@@ -44,7 +44,9 @@ public class CustomerFacadeImpl implements CustomerFacade {
     @Override
     public void deleteCustomer(CustomerDTO customerDTO) {
         Customer c = beanMappingService.map(customerDTO, Customer.class);
-        customerService.deleteCustomer(c);
+        if (!c.isAdmin()) {
+            customerService.deleteCustomer(c);
+        }
     }
 
     @Override

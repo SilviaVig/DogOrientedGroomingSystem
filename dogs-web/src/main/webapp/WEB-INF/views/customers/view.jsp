@@ -8,12 +8,14 @@
 
 <my:pagetemplate title="Customer #${customer.id}">
     <jsp:attribute name="body">   
-            <sec:authorize access="hasRole('ADMIN')">
-        <form class="inline" method="post" action="${pageContext.request.contextPath}/customers/delete/${customer.id}">
-            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-            <my:a href="/customers/edit/${customer.id}" class="btn">Edit customer</my:a>
-            <button type="submit" class="btn">Delete customer</button>
-        </form>
+        <sec:authorize access="hasRole('ADMIN')">
+            <c:if test="${customer.email ne 'admin@admin.cz'}">
+                 <form class="inline" method="post" action="${pageContext.request.contextPath}/customers/delete/${customer.id}">
+                    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                    <my:a href="/customers/edit/${customer.id}" class="btn">Edit customer</my:a>
+                    <button type="submit" class="btn">Delete customer</button>
+                 </form>
+            </c:if>
         </sec:authorize>
         
         <dl>

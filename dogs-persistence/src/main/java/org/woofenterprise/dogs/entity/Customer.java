@@ -50,7 +50,7 @@ public class Customer {
     private Set<Dog> dogs = new HashSet<>();
 
     private String passwordHash;
-    private Boolean admin;
+    private boolean admin;
 
     /**
      * Returns customers Id.
