@@ -41,7 +41,7 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    @RolesAllowed("ROLE_ADMIN")
+    @RolesAllowed("ADMIN")
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         CustomerDTO customerDTO = customerFacade.findCustomerById(id);
         customerFacade.deleteCustomer(customerDTO);
@@ -60,14 +60,14 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    @RolesAllowed("ROLE_ADMIN")
+    @RolesAllowed("ADMIN")
     public String create(Model model){
         model.addAttribute("customerCreate", new CustomerCreateDTO());
         return "customers/create";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    @RolesAllowed("ROLE_ADMIN")
+    @RolesAllowed("ADMIN")
     public String create(Model model, @Valid @ModelAttribute("customerCreate") CustomerCreateDTO customer, BindingResult bindingResult, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes){
         log.error("create customer(formBean={})", customer);
         if (bindingResult.hasErrors()) {
@@ -89,7 +89,7 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    @RolesAllowed("ROLE_ADMIN")
+    @RolesAllowed("ADMIN")
     public String update(@PathVariable long id, Model model){
         CustomerDTO customer = customerFacade.findCustomerById(id);
         model.addAttribute("customer", customer);
@@ -97,7 +97,7 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    @RolesAllowed("ROLE_ADMIN")
+    @RolesAllowed("ADMIN")
     public String update(Model model, @PathVariable long id, @Valid @ModelAttribute("customer") CustomerDTO editedCustomer, BindingResult bindingResult, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes){
         if (bindingResult.hasErrors()) {
             for (FieldError fe : bindingResult.getFieldErrors()) {
