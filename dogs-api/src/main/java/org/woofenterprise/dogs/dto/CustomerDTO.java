@@ -48,7 +48,7 @@ public class CustomerDTO {
     @Size(min=2, max=255)
     private String addressPostalCode;
     
-    @Pattern(regexp = "[0-9-()+ ]*", message = "Must contain only 0-9, (), +- or spaces")
+    @Pattern(regexp = "[0-9-()-.+ ]*", message = "Must contain only 0-9, (), +- . or spaces")
     private String phoneNumber;
 
     private boolean admin;
