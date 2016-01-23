@@ -42,6 +42,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public Customer update(Customer customer) {
+        Customer c = findById(customer.getId());
+        customer.setPasswordHash(c.getPasswordHash());
+        customer.setAdmin(c.isAdmin());
         return em.merge(customer);
     }
 

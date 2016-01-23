@@ -51,6 +51,8 @@ public class CustomerDTO {
     @Pattern(regexp = "[0-9-()+ ]*", message = "Must contain only 0-9, (), +- or spaces")
     private String phoneNumber;
 
+    private boolean admin;
+
     @JsonManagedReference
     private Set<DogDTO> dogs = new HashSet<>();
 
@@ -249,6 +251,15 @@ public class CustomerDTO {
      *
      * @param dogs customers dogs
      */
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
     public void setDogs(Set<DogDTO> dogs) {
         this.dogs = dogs;
     }

@@ -47,7 +47,7 @@
                     </td>
                     <td>
                         <sec:authorize access="hasRole('ADMIN')">
-                            <c:if test="${customer.email ne 'admin@admin.cz'}">
+                            <c:if test="${!customer.admin}">
                                 <form method="post" action="${pageContext.request.contextPath}/customers/delete/${customer.id}">
                                     <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
                                     <button type="submit" class="btn">Delete</button>
